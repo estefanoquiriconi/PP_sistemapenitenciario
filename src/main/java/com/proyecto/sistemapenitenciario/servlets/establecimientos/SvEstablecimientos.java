@@ -1,14 +1,16 @@
 package com.proyecto.sistemapenitenciario.servlets.establecimientos;
 
-import com.proyecto.sistemapenitenciario.logica.usuario.ControladoraUsuario;
 import com.proyecto.sistemapenitenciario.logica.establecimiento.ControladoraEstablecimiento;
 import com.proyecto.sistemapenitenciario.logica.establecimiento.Establecimiento;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "SvEstablecimientos", urlPatterns = {"/SvEstablecimientos"})
 public class SvEstablecimientos extends HttpServlet {
@@ -22,7 +24,12 @@ public class SvEstablecimientos extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        List<Establecimiento> listaEstablecimientos = new ArrayList<>();
+        listaEstablecimientos = control.traerEstablecimientos();
+        
+          HttpSession misesion = request.getSession();
+          misesion.setAttribute("listaEstablecimientos", listaEstablecimientos);
+          response.sendRedirect("pages_establecimientos/mostrarEstablecimientos.jsp");
     }
 
     @Override
@@ -46,7 +53,7 @@ public class SvEstablecimientos extends HttpServlet {
 
         control.crearEstablecimiento(est);
         response.sendRedirect("index.jsp");
-
+        
     }
 
     @Override

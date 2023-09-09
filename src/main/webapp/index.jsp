@@ -29,5 +29,9 @@
         <form action="SvUsuarios" method="GET">
             <button type="submit">Mostrar Usuarios</button>
         </form>
+        <a href="pages_establecimientos/altaEstablecimientos.jsp">Alta establecimiento</a>
+        <form action="SvEstablecimientos" method="GET">
+            <button type="submit">Mostrar Establecimientos</button>
+        </form>
     </body>
 </html>
