@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 8 sep. 2023, 18:39:39
+    Created on : 9 sep. 2023, 20:18:28
     Author     : tano_
 --%>
 
@@ -9,27 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Alta usuario</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1>Datos del Usuario</h1>
-        <form action="SvUsuarios" method="POST">
-            <p> <label>Nombre: <input type="text" name="nombre"> </label> </p>
-            <p> <label>Contraseña: <input type="password" name="password"> </label> </p>
-            <select id="rol" name="rol">
-                <option value="2">Director</option>
-                <option value="3">Administrativo</option>
-                <option value="4">Agente</option>
-            </select>
-            <button type="submit">Enviar</button>
-        </form>
-
-        <h1>Ver lista de usuarios</h1>
-        <p>Para ver los datos de los usuarios cargados haga click en el siguiente botón</p>
-        <form action="SvUsuarios" method="GET">
-            <button type="submit">Mostrar Usuarios</button>
-        </form>
-        <a href="pages_establecimientos/altaEstablecimientos.jsp">Alta establecimiento</a>
+        <a href="pages_establecimientos/altaEstablecimientos.jsp">Alta Establecimientos</a>
         <form action="SvEstablecimientos" method="GET">
             <button type="submit">Mostrar Establecimientos</button>
         </form>
