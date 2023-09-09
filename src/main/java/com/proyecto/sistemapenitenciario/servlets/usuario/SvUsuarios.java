@@ -1,7 +1,7 @@
-package com.proyecto.sistemapenitenciario.servlets;
+package com.proyecto.sistemapenitenciario.servlets.usuario;
 
-import com.proyecto.sistemapenitenciario.logica.Controladora;
-import com.proyecto.sistemapenitenciario.logica.Usuario;
+import com.proyecto.sistemapenitenciario.logica.usuario.ControladoraUsuario;
+import com.proyecto.sistemapenitenciario.logica.usuario.Usuario;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +15,12 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "SvUsuarios", urlPatterns = {"/SvUsuarios"})
 public class SvUsuarios extends HttpServlet {
     
-    Controladora control = new Controladora();
+    ControladoraUsuario control = new ControladoraUsuario();
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-     
+        
     }
 
       @Override

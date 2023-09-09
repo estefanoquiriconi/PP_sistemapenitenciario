@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.proyecto.sistemapenitenciario.persistencia;
+package com.proyecto.sistemapenitenciario.persistencia.usuario;
 
-import com.proyecto.sistemapenitenciario.logica.Rol;
+import com.proyecto.sistemapenitenciario.logica.usuario.Rol;
 import com.proyecto.sistemapenitenciario.persistencia.exceptions.NonexistentEntityException;
 import com.proyecto.sistemapenitenciario.persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;

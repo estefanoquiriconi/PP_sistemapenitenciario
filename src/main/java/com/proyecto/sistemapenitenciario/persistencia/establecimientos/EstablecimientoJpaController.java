@@ -1,6 +1,10 @@
-package com.proyecto.sistemapenitenciario.persistencia;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.proyecto.sistemapenitenciario.persistencia.establecimientos;
 
-import com.proyecto.sistemapenitenciario.logica.Usuario;
+import com.proyecto.sistemapenitenciario.logica.establecimiento.Establecimiento;
 import com.proyecto.sistemapenitenciario.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
@@ -12,9 +16,9 @@ import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-public class UsuarioJpaController implements Serializable {
+public class EstablecimientoJpaController implements Serializable {
 
-    public UsuarioJpaController(EntityManagerFactory emf) {
+    public EstablecimientoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -23,16 +27,16 @@ public class UsuarioJpaController implements Serializable {
         return emf.createEntityManager();
     }
     
-    public UsuarioJpaController() {
+    public EstablecimientoJpaController() {
         emf = Persistence.createEntityManagerFactory("sistemapenitenciarioPU");
     }
 
-    public void create(Usuario usuario) {
+    public void create(Establecimiento establecimiento) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(usuario);
+            em.persist(establecimiento);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -41,19 +45,19 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public void edit(Usuario usuario) throws NonexistentEntityException, Exception {
+    public void edit(Establecimiento establecimiento) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            usuario = em.merge(usuario);
+            establecimiento = em.merge(establecimiento);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = usuario.getId();
-                if (findUsuario(id) == null) {
-                    throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.");
+                int id = establecimiento.getId_establecimiento();
+                if (findEstablecimiento(id) == null) {
+                    throw new NonexistentEntityException("The establecimiento with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -69,14 +73,14 @@ public class UsuarioJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Usuario usuario;
+            Establecimiento establecimiento;
             try {
-                usuario = em.getReference(Usuario.class, id);
-                usuario.getId();
+                establecimiento = em.getReference(Establecimiento.class, id);
+                establecimiento.getId_establecimiento();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The establecimiento with id " + id + " no longer exists.", enfe);
             }
-            em.remove(usuario);
+            em.remove(establecimiento);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -85,19 +89,19 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public List<Usuario> findUsuarioEntities() {
-        return findUsuarioEntities(true, -1, -1);
+    public List<Establecimiento> findEstablecimientoEntities() {
+        return findEstablecimientoEntities(true, -1, -1);
     }
 
-    public List<Usuario> findUsuarioEntities(int maxResults, int firstResult) {
-        return findUsuarioEntities(false, maxResults, firstResult);
+    public List<Establecimiento> findEstablecimientoEntities(int maxResults, int firstResult) {
+        return findEstablecimientoEntities(false, maxResults, firstResult);
     }
 
-    private List<Usuario> findUsuarioEntities(boolean all, int maxResults, int firstResult) {
+    private List<Establecimiento> findEstablecimientoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Usuario.class));
+            cq.select(cq.from(Establecimiento.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -109,20 +113,20 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public Usuario findUsuario(int id) {
+    public Establecimiento findEstablecimiento(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Usuario.class, id);
+            return em.find(Establecimiento.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getUsuarioCount() {
+    public int getEstablecimientoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Usuario> rt = cq.from(Usuario.class);
+            Root<Establecimiento> rt = cq.from(Establecimiento.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

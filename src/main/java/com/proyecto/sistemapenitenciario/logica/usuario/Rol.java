@@ -1,4 +1,4 @@
-package com.proyecto.sistemapenitenciario.logica;
+package com.proyecto.sistemapenitenciario.logica.usuario;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
