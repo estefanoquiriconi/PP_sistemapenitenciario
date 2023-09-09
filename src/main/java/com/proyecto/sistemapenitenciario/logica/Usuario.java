@@ -1,7 +1,6 @@
 package com.proyecto.sistemapenitenciario.logica;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +15,6 @@ public class Usuario implements Serializable {
     private String nombre;
     private String password;
     private int rol;
-    @Column(columnDefinition = "boolean default true")
     private boolean estado;
 
     public Usuario() {
@@ -80,6 +78,5 @@ public class Usuario implements Serializable {
     public void setEstado(boolean state) {
         this.estado = state;
     }
-      
- 
+    
 }

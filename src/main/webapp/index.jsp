@@ -17,9 +17,9 @@
             <p> <label>Nombre: <input type="text" name="nombre"> </label> </p>
             <p> <label>Contraseña: <input type="password" name="password"> </label> </p>
             <select id="rol" name="rol">
-                <option value="1">Director</option>
-                <option value="2">Administrativo</option>
-                <option value="3">Agente</option>
+                <option value="2">Director</option>
+                <option value="3">Administrativo</option>
+                <option value="4">Agente</option>
             </select>
             <button type="submit">Enviar</button>
         </form>
