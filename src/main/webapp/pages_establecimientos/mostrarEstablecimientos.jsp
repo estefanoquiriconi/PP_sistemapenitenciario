@@ -30,7 +30,7 @@
         <body class="sb-nav-fixed">
             <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
                 <!-- Navbar Brand-->
-                <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand ps-3" href="index.html">Servicio Penitenciario</a>
                 <!-- Sidebar Toggle-->
                 <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
                 <!-- Navbar Search-->
@@ -118,30 +118,19 @@
                             </div>
                         </div>
                         <div class="sb-sidenav-footer">
-                            <div class="small">Logged in as:</div>
-                            Start Bootstrap
+                            <div class="small">Conectado como:</div>
+                            Administrador
                         </div>
                     </nav>
                 </div>
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Tables</h1>
-                            <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Tables</li>
-                            </ol>
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-                                    <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                    .
-                                </div>
-                            </div>
+                            <h1 class="mt-4">Establecimientos</h1>
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-table me-1"></i>
-                                    DataTable Example
+                                    Listado
                                 </div>
                                 <div class="card-body">
                                     <table id="datatablesSimple">
@@ -154,6 +143,8 @@
                                                 <th>Dirección</th>
                                                 <th>Telefono</th>
                                                 <th>Estado</th>
+                                                <th>Eliminar</th>
+                                                <th>Editar</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -165,6 +156,8 @@
                                                 <th>Dirección</th>
                                                 <th>Telefono</th>
                                                 <th>Estado</th>
+                                                <th>Eliminar</th>
+                                                <th>Editar</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -180,8 +173,21 @@
                                                 <td><%=est.getDireccion()%></td>
                                                 <td><%=est.getTelefono()%></td>
                                                 <td><%=est.isEstado()%></td>
-                                                <td style="display: flex; width: 230px">
-                                                    <form action="../SvEliminarEstablecimiento" method="POST"></form>
+                                                <td>
+                                                    <form name="eliminar" action="../SvEliminarEstablecimiento" method="GET">
+                                                        <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: red; margin-right: 5px; "> 
+                                                            <i class="fas fa-trash-alt"></i> Eliminar
+                                                        </button>
+                                                        <input type="hidden" name="id" value="<%=est.getId_establecimiento()%>">
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form name="editar" action="../SvEditarEstablecimiento" method="GET">
+                                                        <button type="submit" class="btn btn-primary btn-user btn-block" style="margin-left: 5px; " > 
+                                                            <i class="fas fa-pencil-alt"></i> Editar
+                                                        </button>
+                                                        <input type="hidden" name="id" value="<%=est.getId_establecimiento()%>">
+                                                    </form>
                                                 </td>
                                             </tr>
                                             <% }%>

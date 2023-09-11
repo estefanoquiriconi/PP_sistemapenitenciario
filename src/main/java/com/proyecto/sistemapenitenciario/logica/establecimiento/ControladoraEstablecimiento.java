@@ -14,6 +14,18 @@ public class ControladoraEstablecimiento {
     public List<Establecimiento> traerEstablecimientos() {
         return controlPersis.traerEstablecimientos();
     }
+
+    public Establecimiento traerEstablecimeinto(int id) {
+        return controlPersis.traerEstablecimiento(id);
+    }
+
+    public void EliminarEstablecimiento(Establecimiento est) {
+        controlPersis.elimiarEstablecimiento(est);
+    }
+
+    public void editarEstablecimiento(Establecimiento est) {
+        controlPersis.editarEstablecimiento(est);
+    }
     
     
     
