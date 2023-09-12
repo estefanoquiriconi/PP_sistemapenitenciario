@@ -6,9 +6,11 @@ package com.proyecto.sistemapenitenciario.servlets.usuario;
 
 import com.proyecto.sistemapenitenciario.logica.usuario.ControladoraUsuario;
 import com.proyecto.sistemapenitenciario.logica.usuario.Usuario;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,56 +19,50 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-/**
- *
- * @author Administrador
- */
-@WebServlet(name = "SvUsuarios", urlPatterns = {"/SvUsuarios"})
-public class SvUsuarios extends HttpServlet {
-    
-    ControladoraUsuario control = new ControladoraUsuario();
+@WebServlet(name = "SvUsuariosModificar", urlPatterns = {"/SvUsuariosModificar"})
+public class SvUsuariosModificar extends HttpServlet {
 
-
+  ControladoraUsuario control = new ControladoraUsuario();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
      
     }
 
-      @Override
+  
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Usuario> listaUsuarios = new ArrayList<>();
-        listaUsuarios = control.traerUsuarios();
-        
-          HttpSession misesion = request.getSession();
-          misesion.setAttribute("listaUsuarios", listaUsuarios);
-          response.sendRedirect("Pages_Usuarios/mostrarUsuarios.jsp");
+      int userId = Integer.parseInt(request.getParameter("modificar"));
+      Usuario user = control.traerUsuario(userId);
+       HttpSession misesion = request.getSession();
+          misesion.setAttribute("usuario", user);
+          response.sendRedirect("Pages_Usuarios/modificarUsuarios.jsp");
     }
 
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre = request.getParameter("nombre");
-        String password = request.getParameter("password");
-        int rol = Integer.parseInt(request.getParameter("rol"));
-        boolean resultadoValidacion= Boolean.parseBoolean(request.getParameter("resultadoValidacion"));
-       
-        if(resultadoValidacion ){
-             Usuario usu = new Usuario();
-        usu.setNombre(nombre);
-        usu.setPassword(password);
-        usu.setRol(rol);
-        usu.setEstado(true); 
-            control.crearUsuario(usu);
-        response.sendRedirect("index.jsp");
-    }else{
-             response.sendRedirect("Pages_Usuarios/altaUsuarios.jsp");
-        }
+             
+
+      Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+        user.setNombre(request.getParameter("nombre"));
+        user.setPassword(request.getParameter("password"));
+        user.setRol(Integer.parseInt(request.getParameter("rol"))); 
+        
+    try {
+        control.modificarUsuario(user);
+           response.sendRedirect("index.jsp");
+    } catch (Exception ex) {
+        Logger.getLogger(SvUsuariosEliminar.class.getName()).log(Level.SEVERE, null, ex);
     }
+    }
+
+    
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
 
 }

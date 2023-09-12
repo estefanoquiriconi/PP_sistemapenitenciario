@@ -66,7 +66,7 @@
                                                 <div class="form-check form-switch">
                                                     <% if (est.isEstado()) { %>
                                                     <input class="form-check-input" type="checkbox" id="estado" name="estado" checked="">
-                                                    <% }else { %>
+                                                    <% } else { %>
                                                     <input class="form-check-input" type="checkbox" id="estado" name="estado">
                                                     <% }%>
                                                     <label class="form-check-label" for="estado">Activar</label>
@@ -94,6 +94,8 @@
                     </div>
                 </main>
             </div>
+            <br>
+            <br>
             <div id="layoutAuthentication_footer">
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

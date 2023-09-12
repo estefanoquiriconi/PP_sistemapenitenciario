@@ -66,7 +66,14 @@ public class Usuario implements Serializable {
                 throw new AssertionError();
         }
     }
-
+public String getEstadoString(){
+    if(this.estado==false){
+        return "Inactivo";
+    }
+    return "Activo";
+}
+    
+    
     public void setRol(int rol) {
         this.rol = rol;
     }

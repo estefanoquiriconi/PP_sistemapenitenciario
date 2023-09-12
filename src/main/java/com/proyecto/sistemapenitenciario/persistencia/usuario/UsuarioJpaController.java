@@ -3,6 +3,7 @@ package com.proyecto.sistemapenitenciario.persistencia.usuario;
 import com.proyecto.sistemapenitenciario.logica.usuario.Usuario;
 import com.proyecto.sistemapenitenciario.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -120,6 +121,7 @@ public class UsuarioJpaController implements Serializable {
 
     public int getUsuarioCount() {
         EntityManager em = getEntityManager();
+        
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             Root<Usuario> rt = cq.from(Usuario.class);
@@ -130,5 +132,25 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
+    
+   
+public boolean ExistUser(String nombre) {
+    EntityManager em = getEntityManager();
+    String qry = "SELECT COUNT(*) FROM usuarios WHERE nombre_de_usuario = :nombre";
+    
+    try {
+        Query query = em.createNativeQuery(qry);
+        query.setParameter("nombre", nombre);
+        int count = ((Number) query.getSingleResult()).intValue();
+        
+        return count > 0; // Si count > 0, el usuario existe; de lo contrario, no existe.
+    } catch (Exception e) {
+        
+        e.printStackTrace();
+        return false; // Opcionalmente, puedes lanzar una excepción personalizada aquí en lugar de devolver false.
+    } finally {
+        em.close(); // Asegúrate de cerrar el EntityManager cuando hayas terminado.
+    }
+}
     
 }
