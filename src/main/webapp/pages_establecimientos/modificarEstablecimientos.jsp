@@ -44,7 +44,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-floating">
                                                     <input class="form-control" name="direccion" id="direccion" type="text" value="<%=est.getDireccion()%>" />
-                                                    <label for="ciudad">Dirección</label>
+                                                    <label for="direccion">Dirección</label>
                                                 </div>
                                             </div>
                                             <br>
@@ -58,7 +58,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-floating">
                                                     <input class="form-control" name="telefono" id="telefono" type="text" value="<%=est.getTelefono()%>" />
-                                                    <label for="ciudad">Telefono</label>
+                                                    <label for="telefono">Telefono</label>
                                                 </div>
                                             </div>
                                             <br>

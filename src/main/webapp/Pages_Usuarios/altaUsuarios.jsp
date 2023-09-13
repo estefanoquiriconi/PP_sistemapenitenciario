@@ -39,7 +39,6 @@
                                                 </div>
 
                                             </div>
-
                                             <div class="row mb-3">
                                                  <div class="col-md-6 mx-auto">
                                                     <div class="form-floating mb-3 mb-md-0">
@@ -47,7 +46,7 @@
                                                         <label for="password">Contraseña</label><div id="error-messagePass" class="alert alert-danger" style="display: none;"></div>
                                                     </div>
                                                 </div>
-                                               
+                                             
                                             </div>
                                              <div class="row mb-3">
                                              <div class="col-md-6 mx-auto">
