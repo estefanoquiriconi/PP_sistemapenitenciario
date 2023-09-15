@@ -21,24 +21,28 @@
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Eliminar Establecimiento</h3></div>
-                                    <div class="card-body">
+                                    <div class="card-body" style="align-self: center">
                                         <% Establecimiento est = (Establecimiento) request.getSession().getAttribute("estEliminar");%>
-                                        <div class="form-floating mb-3">
+                                        <div class="form-floating mb-6 mx-auto">
                                             <h5><strong>ID: </strong><%=est.getId_establecimiento() %></h5>
                                         </div>
-                                        <div class="form-floating mb-3">
+                                        <br>
+                                        <div class="form-floating mb-6 mx-auto"">
                                             <h5><strong>Nombre: </strong><%=est.getNombre() %></h5>
                                         </div>
-                                        <div class="form-floating mb-3">
+                                        <br>
+                                        <div class="form-floating mb-6 mx-auto"">
                                             <h5><strong>Ciudad: </strong><%=est.getCiudad() %></h5>
                                         </div>
-                                        <div class="form-floating mb-3">
+                                        <br>
+                                        <div class="form-floating mb-6 mx-auto"">
                                             <h5><strong>Direccion: </strong><%=est.getDireccion()%></h5>
                                         </div>
+                                        <br>
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
                                                 <form action="../SvEliminarEstablecimiento" method="POST">    
-                                                    <button class="btn btn-primary btn-user btn-block" type="submit" style="background-color: red">
+                                                    <button class="btn btn-primary btn-user btn-block" type="submit" style="background-color: red; width: 80%">
                                                         Confirmar
                                                     </button>
                                                     <input type="hidden" name="id" value="<%=est.getId_establecimiento()%>">
@@ -48,28 +52,28 @@
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
                                                 <form action="../SvEstablecimientos" method="GET">
-                                                    <button class="btn btn-primary btn-user btn-block" type="submit">
+                                                    <button class="btn btn-primary btn-user btn-block" type="submit" style="width: 80%">
                                                         Cancelar
                                                     </button>
                                                 </form>
                                             </div>
+                                            <br>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <br>
+                    <br>
                 </main>
             </div>
             <div id="layoutAuthentication_footer">
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div class="text-muted">Copyright &copy; Quiriconi - Dominguez 2023</div>
                             <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
                             </div>
                         </div>
                     </div>

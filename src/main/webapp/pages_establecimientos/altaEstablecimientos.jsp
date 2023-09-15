@@ -1,6 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -46,17 +46,16 @@
                                             <br>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating">
-                                                    <input class="form-control" name="capacidad" id="capacidad" type="text" placeholder="Capacidad"/>
+                                                    <input class="form-control" name="capacidad" id="capacidad" type="number" placeholder="Capacidad"/>
                                                     <label for="capacidad">Capacidad</label>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating">
-                                                    <input class="form-control" name="telefono" id="telefono" type="text" placeholder="Telefono" />
+                                                    <input class="form-control" name="telefono" id="telefono" type="text" placeholder="Telefono" value="(385) 456-7890"/>
                                                     <label for="ciudad">Teléfono</label>
                                                 </div>
-                                                <div id="mensajeErrorTelefono" style="color: red;"></div>
                                             </div>
                                             <br>
                                             <div id="mensajeError" style="color: red;"></div>

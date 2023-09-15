@@ -53,7 +53,9 @@
                                 <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#collapsePages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="Pages_Usuarios/altaUsuarios.jsp">Alta</a>
-                                        <a class="nav-link" href="SvUsuarios">Listado</a>
+                                        <a class="nav-link" href="SvUsuarios">
+                                            Listado
+                                        </a>
                                     </nav>
                                 </div>
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">

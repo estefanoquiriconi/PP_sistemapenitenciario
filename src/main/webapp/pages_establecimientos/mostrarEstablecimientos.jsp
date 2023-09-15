@@ -127,14 +127,20 @@
                                                 <td><%=est.getCapacidad()%></td>
                                                 <td><%=est.getDireccion()%></td>
                                                 <td><%=est.getTelefono()%></td>
-                                                <td><%=est.isEstado()%></td>
+                                                <%if (est.isEstado()) { %>
+                                                <td><p style="color: blue">Activo</p></td>
+                                                <% } else { %>
+                                                <td><p style="color: red">Inactivo</p></td>
+                                                <%}%>
                                                 <td>
+                                                    <%if (est.isEstado()) { %>
                                                     <form name="eliminar" action="../SvEliminarEstablecimiento" method="GET">
                                                         <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: red; margin-right: 5px; "> 
                                                             <i class="fas fa-trash-alt"></i> Eliminar
                                                         </button>
                                                         <input type="hidden" name="id" value="<%=est.getId_establecimiento()%>">
                                                     </form>
+                                                    <% } %>
                                                 </td>
                                                 <td>
                                                     <form name="editar" action="../SvEditarEstablecimiento" method="GET">
@@ -155,11 +161,8 @@
                     <footer class="py-4 bg-light mt-auto">
                         <div class="container-fluid px-4">
                             <div class="d-flex align-items-center justify-content-between small">
-                                <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                                <div class="text-muted">Copyright &copy; Quiriconi - Dominguez 2023</div>
                                 <div>
-                                    <a href="#">Privacy Policy</a>
-                                    &middot;
-                                    <a href="#">Terms &amp; Conditions</a>
                                 </div>
                             </div>
                         </div>

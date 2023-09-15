@@ -35,13 +35,17 @@ public class SvEstablecimientos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        request.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("nombre");
         String ciudad = request.getParameter("ciudad");
         int capacidad = Integer.parseInt(request.getParameter("capacidad"));
         String direccion = request.getParameter("direccion");
         String telefono = request.getParameter("telefono");
+        
 
+        System.out.println(request.getParameter("nombre"));
+        System.out.println(request.getParameter("ciudad"));
+        System.out.println(request.getParameter("direccion"));
 
         Establecimiento est = new Establecimiento();
         est.setNombre(nombre);

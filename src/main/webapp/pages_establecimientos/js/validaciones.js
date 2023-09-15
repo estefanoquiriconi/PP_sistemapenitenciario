@@ -4,31 +4,20 @@ function validarEstablecimiento() {
     var direccion = document.getElementById("direccion").value;
     var capacidad = document.getElementById("capacidad").value;
     var telefono = document.getElementById("telefono").value;
-    validarTelefono();
-
     var mensajeError = document.getElementById("mensajeError");
+    var telefonoRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
 
     if (nombre.trim() === "" || ciudad.trim() === "" || direccion.trim() === "" || capacidad.trim() === "" || telefono.trim() === "") {
         mensajeError.textContent = "Todos los campos son obligatorios. Por favor, complete todos los campos.";
         return false;
-    } else {
-        mensajeError.textContent = ""; // Limpia el mensaje de error si no hay errores
-        return true;
-    }
-}
-
-function validarTelefono() {
-    var telefono = document.getElementById("telefono").value;
-    var mensajeErrorTelefono = document.getElementById("mensajeErrorTelefono");
-
-    // Expresión regular para validar números de teléfono en Argentina
-    var expresionRegular = /^(?:(?:\+|00)54|0)[1-9]\d{9}$/;
-
-    if (!expresionRegular.test(telefono)) {
-        mensajeErrorTelefono.textContent = "Número de teléfono no válido. Utiliza el formato correcto.";
+    } else if (capacidad <= 0){
+        mensajeError.textContent = "La capacidad debe ser mayor a 0"; //
         return false;
-    } else {
-        mensajeErrorTelefono.textContent = ""; // Limpia el mensaje de error si no hay errores
+    }else if(!telefonoRegex.test(telefono)){
+        mensajeError.textContent = "El teléfono debe estar en el formato (###) ###-####"; //
+        return false;
+    }else{
+        mensajeError.textContent = ""; // Limpia el mensaje de error si no hay errores
         return true;
     }
 }

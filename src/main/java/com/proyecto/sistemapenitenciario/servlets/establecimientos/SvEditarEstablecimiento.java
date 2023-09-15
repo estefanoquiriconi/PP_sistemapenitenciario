@@ -34,6 +34,7 @@ public class SvEditarEstablecimiento extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("nombre");
         String ciudad = request.getParameter("ciudad");
         String direccion = request.getParameter("direccion");

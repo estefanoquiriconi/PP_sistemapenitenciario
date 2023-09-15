@@ -10,6 +10,7 @@ public class ControladoraPersistenciaEstablecimiento {
     EstablecimientoJpaController estJpa = new EstablecimientoJpaController();
 
     public void crearEstablecimiento(Establecimiento est) {
+        System.out.println("DESDE CONTROLADORAPERSIS: " + est.getNombre());
         estJpa.create(est);
     }
 
