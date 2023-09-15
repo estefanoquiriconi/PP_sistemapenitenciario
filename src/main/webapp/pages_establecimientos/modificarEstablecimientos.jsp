@@ -64,7 +64,6 @@
                                             </div>
                                             <br>
                                             <div class="col-md-6 mx-auto" >
-
                                                 <div class="form-check form-switch" style="text-align: initial">
                                                     <% if (est.isEstado()) { %>
                                                     <label for="estado">Habilitar</label>

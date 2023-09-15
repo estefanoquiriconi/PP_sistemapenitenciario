@@ -32,7 +32,6 @@ public class EstablecimientoJpaController implements Serializable {
     }
 
     public void create(Establecimiento establecimiento) {
-        System.out.println("DESDE PERSISTENCIA: " + establecimiento.getNombre());
         EntityManager em = null;
         try {
             em = getEntityManager();

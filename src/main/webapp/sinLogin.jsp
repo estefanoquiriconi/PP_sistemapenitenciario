@@ -1,13 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Login</title>
+        <title>Sin Login</title>
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="JavaScript/Validaciones.js" type="text/javascript"></script>
@@ -23,21 +23,18 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Servicio Penitenciario</h3></div>
                                     <div class="card-body">
-                                        <form action="SvLogin" method="POST">
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="nombre" type="text" name="nombre" placeholder="Nombre"/>
-                                                <label for="nombre">Usuario</label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="password" type="password" name="password" placeholder="Contraseña"/>
-                                                <label for="password"">Contraseña</label>
-                                            </div>
+                                        <form action="login.jsp">
+                                            <br>
+                                            <h5>Necesitas estar logueado para ingresar a esta sección</h6>
+                                            <br>
+                                            <br>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <p></p>
                                                 <button class="btn btn-primary btn-user btn-block" type="submit">
-                                                    Ingresar
+                                                    Ir al login
                                                 </button>
                                             </div>
+                                            <br>
                                         </form>
                                     </div>
                                 </div>

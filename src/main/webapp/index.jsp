@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.proyecto.sistemapenitenciario.logica.usuario.Usuario"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +19,18 @@
             <link href="css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
+        <!-- Validación Sesión -->
+
         <body class="sb-nav-fixed">
+            <%
+                HttpSession misesion = request.getSession();
+                Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+                if (usuario == null) {
+                    response.sendRedirect("sinLogin.jsp");
+                }else if(usuario.getRolString().equals("Agente")){
+                    response.sendRedirect("agente.jsp");
+                }
+            %>
             <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
                 <!-- Navbar Brand-->
                 <a class="navbar-brand ps-3" href="index.jsp">Servicio Penitenciario</a>
@@ -34,7 +46,7 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#!">Cambiar contraseña</a></li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="#!">Salir</a></li>
+                            <li><a class="dropdown-item" href="SvLogout">Salir</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -53,9 +65,7 @@
                                 <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#collapsePages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="Pages_Usuarios/altaUsuarios.jsp">Alta</a>
-                                        <a class="nav-link" href="SvUsuarios">
-                                            Listado
-                                        </a>
+                                        <a class="nav-link" href="SvUsuarios">Listado</a>
                                     </nav>
                                 </div>
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -73,13 +83,13 @@
                         </div>
                         <div class="sb-sidenav-footer">
                             <div class="small">Conectado como:</div>
-                            Administrador
+                            <p> <%=request.getSession().getAttribute("usuario")%> </p>
                         </div>
                     </nav>
                 </div>
                 <div id="layoutSidenav_content">
                     <main>
-                        
+
                         <h1 style="text-align: center; padding: 20px">Página principal</h1>
 
                     </main>
@@ -97,4 +107,5 @@
             <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
             <script src="js/datatables-simple-demo.js"></script>
         </body>
+        
     </html>

@@ -9,7 +9,6 @@ public class ControladoraEstablecimiento {
 
     public void crearEstablecimiento(Establecimiento est) {
         controlPersis.crearEstablecimiento(est);
-        System.out.println("DESDE CONTROLADORA: " + est.getNombre());
     }
 
     public List<Establecimiento> traerEstablecimientos() {

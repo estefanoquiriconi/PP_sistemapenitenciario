@@ -85,5 +85,12 @@ public String getEstadoString(){
     public void setEstado(boolean state) {
         this.estado = state;
     }
+
+    @Override
+    public String toString() {
+        return getRolString();
+    }
+    
+    
     
 }
