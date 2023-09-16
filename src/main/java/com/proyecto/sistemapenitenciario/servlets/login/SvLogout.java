@@ -19,8 +19,8 @@ public class SvLogout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession misesion = request.getSession(false);
-        misesion.setAttribute("usuario", null);
+        HttpSession misesion = request.getSession();
+        misesion.removeAttribute("usuario");
         response.sendRedirect("login.jsp");
     }
 
