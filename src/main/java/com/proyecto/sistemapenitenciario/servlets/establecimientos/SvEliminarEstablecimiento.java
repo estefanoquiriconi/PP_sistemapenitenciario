@@ -3,7 +3,6 @@ package com.proyecto.sistemapenitenciario.servlets.establecimientos;
 import com.proyecto.sistemapenitenciario.logica.establecimiento.ControladoraEstablecimiento;
 import com.proyecto.sistemapenitenciario.logica.establecimiento.Establecimiento;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +23,6 @@ public class SvEliminarEstablecimiento extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         int id = Integer.parseInt(request.getParameter("id"));
         Establecimiento est = control.traerEstablecimeinto(id);
 
@@ -37,7 +35,6 @@ public class SvEliminarEstablecimiento extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         Establecimiento est = (Establecimiento) request.getSession().getAttribute("estEliminar");
         est.setEstado(false);
         

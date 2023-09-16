@@ -1,3 +1,4 @@
+<%@page import="com.proyecto.sistemapenitenciario.logica.usuario.Usuario"%>
 <%@page import="com.proyecto.sistemapenitenciario.logica.establecimiento.Establecimiento"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
@@ -22,6 +23,14 @@
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
         <body class="sb-nav-fixed">
+            <%
+                response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                HttpSession misesion = request.getSession();
+                Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+                if (usuario == null) {
+                    response.sendRedirect("../sinLogin.jsp");
+                }
+            %>
             <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
                 <!-- Navbar Brand-->
                 <a class="navbar-brand ps-3" href="../index.jsp">Servicio Penitenciario</a>
@@ -37,7 +46,7 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#!">Cambiar contraseña</a></li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="#!">Salir</a></li>
+                            <li><a class="dropdown-item" href="../SvLogout">Salir</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -74,7 +83,7 @@
                         </div>
                         <div class="sb-sidenav-footer">
                             <div class="small">Conectado como:</div>
-                            Administrador
+                            <p> <%=request.getSession().getAttribute("usuario")%> </p>
                         </div>
                     </nav>
                 </div>
@@ -118,7 +127,8 @@
                                         <tbody>
                                             <%
                                                 List<Establecimiento> listaEstablecimientos = (List) request.getSession().getAttribute("listaEstablecimientos");
-                                                for (Establecimiento est : listaEstablecimientos) {
+                                                if (listaEstablecimientos != null) {
+                                                    for (Establecimiento est : listaEstablecimientos) {
                                             %>
                                             <tr>
                                                 <td><%=est.getId_establecimiento()%></td>
@@ -133,14 +143,14 @@
                                                 <td><p style="color: red">Inactivo</p></td>
                                                 <%}%>
                                                 <td>
-                                                    <%if (est.isEstado()) { %>
+                                                    <%if (est.isEstado()) {%>
                                                     <form name="eliminar" action="../SvEliminarEstablecimiento" method="GET">
                                                         <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: red; margin-right: 5px; "> 
                                                             <i class="fas fa-trash-alt"></i> Eliminar
                                                         </button>
                                                         <input type="hidden" name="id" value="<%=est.getId_establecimiento()%>">
                                                     </form>
-                                                    <% } %>
+                                                    <% }%>
                                                 </td>
                                                 <td>
                                                     <form name="editar" action="../SvEditarEstablecimiento" method="GET">
@@ -151,7 +161,14 @@
                                                     </form>
                                                 </td>
                                             </tr>
-                                            <% }%>
+                                            <%
+                                                }
+                                            } else {
+                                            %>
+                                        <p>No hay establecimientos registrados.</p>
+                                        <%
+                                            }
+                                        %>
                                         </tbody>
                                     </table>
                                 </div>

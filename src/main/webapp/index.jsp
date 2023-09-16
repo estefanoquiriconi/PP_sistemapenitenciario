@@ -23,6 +23,7 @@
 
         <body class="sb-nav-fixed">
             <%
+                response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
                 HttpSession misesion = request.getSession();
                 Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
                 if (usuario == null) {
