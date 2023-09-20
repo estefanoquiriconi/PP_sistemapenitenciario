@@ -35,18 +35,29 @@ public class SvLogin extends HttpServlet {
         String password = request.getParameter("password");
         Usuario usuario = new Usuario();
         boolean validacion = false;
+         boolean estadoUsuario= false;
         List<Usuario> listaUsuarios = control.traerUsuarios();
         for(Usuario usu : listaUsuarios){
+          
             if(usu.getNombre().equals(nombre) && usu.getPassword().equals(password)){
                 usuario = usu;
                 validacion = true;
+                  estadoUsuario=usuario.isEstado();
+              
             }
         }
-        if(validacion){
+        if(validacion && estadoUsuario){
             HttpSession misesion = request.getSession(true);
             misesion.setAttribute("usuario", usuario);
             response.sendRedirect("index.jsp");
         }else{
+             if(!validacion && !estadoUsuario){
+             HttpSession misesion = request.getSession(true);
+            misesion.setAttribute("estado", true);
+             } if(validacion && !estadoUsuario){
+                    HttpSession misesion = request.getSession(false);
+            misesion.setAttribute("estado", false);
+             }
             response.sendRedirect("loginError.jsp");
         }
         
