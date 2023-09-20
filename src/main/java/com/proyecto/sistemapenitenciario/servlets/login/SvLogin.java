@@ -13,12 +13,12 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "SvLogin", urlPatterns = {"/SvLogin"})
 public class SvLogin extends HttpServlet {
-    
+
     ControladoraUsuario control = new ControladoraUsuario();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     @Override
@@ -35,32 +35,32 @@ public class SvLogin extends HttpServlet {
         String password = request.getParameter("password");
         Usuario usuario = new Usuario();
         boolean validacion = false;
-         boolean estadoUsuario= false;
+        boolean estadoUsuario = false;
         List<Usuario> listaUsuarios = control.traerUsuarios();
-        for(Usuario usu : listaUsuarios){
-          
-            if(usu.getNombre().equals(nombre) && usu.getPassword().equals(password)){
+        for (Usuario usu : listaUsuarios) {
+
+            if (usu.getNombre().equals(nombre) && usu.getPassword().equals(password)) {
                 usuario = usu;
                 validacion = true;
-                  estadoUsuario=usuario.isEstado();
-              
+                estadoUsuario = usuario.isEstado();
             }
         }
-        if(validacion && estadoUsuario){
+        if (validacion && estadoUsuario) {
             HttpSession misesion = request.getSession(true);
-            misesion.setAttribute("usuario", usuario);
+            misesion.setAttribute("usuSession", usuario);
             response.sendRedirect("index.jsp");
-        }else{
-             if(!validacion && !estadoUsuario){
-             HttpSession misesion = request.getSession(true);
-            misesion.setAttribute("estado", true);
-             } if(validacion && !estadoUsuario){
-                    HttpSession misesion = request.getSession(false);
-            misesion.setAttribute("estado", false);
-             }
+        } else {
+            if (!validacion && !estadoUsuario) {
+                HttpSession misesion = request.getSession(true);
+                misesion.setAttribute("estado", true);
+            }
+            if (validacion && !estadoUsuario) {
+                HttpSession misesion = request.getSession(false);
+                misesion.setAttribute("estado", false);
+            }
             response.sendRedirect("loginError.jsp");
         }
-        
+
     }
 
     @Override

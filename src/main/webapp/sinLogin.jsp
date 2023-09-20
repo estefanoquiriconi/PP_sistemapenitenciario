@@ -25,7 +25,7 @@
                                     <div class="card-body">
                                         <form action="login.jsp">
                                             <br>
-                                            <h5>Necesitas estar logueado para ingresar a esta sección</h6>
+                                            <h5>Necesitas estar logueado para ingresar</h6>
                                             <br>
                                             <br>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">

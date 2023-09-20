@@ -1,7 +1,6 @@
 package com.proyecto.sistemapenitenciario.servlets.login;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +19,7 @@ public class SvLogout extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession misesion = request.getSession();
-        misesion.removeAttribute("usuario");
+        misesion.removeAttribute("usuSession");
         response.sendRedirect("login.jsp");
     }
 

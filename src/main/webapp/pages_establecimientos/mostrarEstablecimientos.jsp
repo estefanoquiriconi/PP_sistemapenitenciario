@@ -26,7 +26,7 @@
             <%
                 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
                 HttpSession misesion = request.getSession();
-                Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+                Usuario usuario = (Usuario) request.getSession().getAttribute("usuSession");
                 if (usuario == null) {
                     response.sendRedirect("../sinLogin.jsp");
                 }
@@ -88,7 +88,7 @@
                         </div>
                         <div class="sb-sidenav-footer">
                             <div class="small">Conectado como:</div>
-                            <p> <%=request.getSession().getAttribute("usuario")%> </p>
+                            <p> <%=request.getSession().getAttribute("usuSession")%> </p>
                         </div>
                     </nav>
                 </div>

@@ -25,7 +25,7 @@
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Editar Usuaario</h3></div>
                                     <div class="card-body" style="text-align: center">
                                         <form action="../SvUsuariosModificar" method="POST" onsubmit="return validarUsuario()">    
-                                            <% Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+                                            <% Usuario user = (Usuario) request.getSession().getAttribute("usuModificar");
                                             %>
                                             <div class="form-floating mb-3 mx-auto">
                                                 <h5 style="text-align: center"><strong>ID: </strong><%=user.getId()%></h5>

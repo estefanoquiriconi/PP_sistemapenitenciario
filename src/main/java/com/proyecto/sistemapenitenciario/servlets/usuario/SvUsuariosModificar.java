@@ -35,25 +35,22 @@ public class SvUsuariosModificar extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("modificar"));
         Usuario user = control.traerUsuario(userId);
         HttpSession misesion = request.getSession();
-        misesion.setAttribute("usuario", user);
+        misesion.setAttribute("usuModificar", user);
         response.sendRedirect("Pages_Usuarios/modificarUsuarios.jsp");
     }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         request.setCharacterEncoding("UTF-8");
-        Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+        Usuario user = (Usuario) request.getSession().getAttribute("usuModificar");
         user.setNombre(request.getParameter("nombre"));
         user.setPassword(request.getParameter("password"));
         user.setRol(Integer.parseInt(request.getParameter("rol")));        
          String valorCheck = request.getParameter("estado");
          user.setEstado("on".equals(valorCheck));    
-       //  int UserSession= (Integer.parseInt(request.getParameter("userSession")));
         try {
             control.modificarUsuario(user);
-         //   request.setAttribute("UserSessionActivo", UserSession);
             response.sendRedirect("index.jsp");
         } catch (Exception ex) {
             Logger.getLogger(SvUsuariosEliminar.class.getName()).log(Level.SEVERE, null, ex);

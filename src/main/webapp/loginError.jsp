@@ -26,7 +26,7 @@
                                             <br>
                                             <% boolean estadoUsuario = (boolean) request.getSession().getAttribute("estado");
                                                 if (estadoUsuario) {
-                                            %><!--GGGGGg-->
+                                            %>
                                             <h5 style="text-align: center">Nombre de usuario o contraseña incorrecto</h5>
                                             <%} else {%>
                                             <h5 style="text-align: center">Usuario Inactivo</h5>
