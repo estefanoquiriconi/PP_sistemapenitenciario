@@ -24,7 +24,14 @@
                                     <div class="card-body">
                                         <form action="login.jsp">
                                             <br>
+                                            <% boolean estadoUsuario = (boolean) request.getSession().getAttribute("estado");
+                                                if (estadoUsuario) {
+                                            %><!--GGGGGg-->
                                             <h5 style="text-align: center">Nombre de usuario o contraseña incorrecto</h5>
+                                            <%} else {%>
+                                            <h5 style="text-align: center">Usuario Inactivo</h5>
+
+                                            <%}%>
                                             <br>
                                             <br>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
