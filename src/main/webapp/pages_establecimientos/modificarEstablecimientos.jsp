@@ -67,7 +67,7 @@
                                                 <div class="form-check form-switch" style="text-align: initial">
                                                     <% if (est.isEstado()) { %>
                                                     <label for="estado">Habilitar</label>
-                                                    <input class="form-check-input" type="checkbox" id="estado" name="estado" checked="">
+                                                    <input class="form-check-input" type="checkbox" id="estado" name="estado" checked="" disabled="">
                                                     <% } else { %>
                                                     <input class="form-check-input" type="checkbox" id="estado" name="estado">
                                                     <label for="estado">Habilitar</label>
@@ -76,7 +76,7 @@
                                             </div>
                                             <div id="mensajeError" style="color: red;"></div>
                                             <div class="mt-4 mb-0 mx-auto">
-                                                <button class="btn btn-primary btn-user" type="submit" style="background-color: red; width: 50%">
+                                                <button class="btn btn-success btn-user" type="submit" style="width: 50%">
                                                     Guardar
                                                 </button>
                                                 <input type="hidden" name="id" value="<%=est.getId_establecimiento()%>">

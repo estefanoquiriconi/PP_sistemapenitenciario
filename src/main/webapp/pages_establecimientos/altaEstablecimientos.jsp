@@ -57,11 +57,10 @@
                                                     <label for="ciudad">Teléfono</label>
                                                 </div>
                                             </div>
-                                            <br>
                                             <div id="mensajeError" style="color: red;"></div>
                                             <br>
                                             <div class="mt-4 mb-0 mx-auto">
-                                                <button class="btn btn-primary btn-user" type="submit" style="background-color: red; width: 50%">
+                                                <button class="btn btn-success btn-user" type="submit" style="width: 50%">
                                                     Guardar
                                                 </button>
                                             </div>
@@ -80,17 +79,16 @@
                     </div>
                 </main>
             </div>
-            <br>
-            <br>
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Quiriconi-Dominguez 2023</div>
-                        </div>
+        </div>
+        <br>
+        <div id="layoutAuthentication_footer">
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Quiriconi-Dominguez 2023</div>
                     </div>
-                </footer>
-            </div>
+                </div>
+            </footer>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>

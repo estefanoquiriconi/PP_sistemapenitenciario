@@ -60,32 +60,71 @@
                 <div id="layoutSidenav_nav">
                     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                         <div class="sb-sidenav-menu">
-                            <div class="nav">
-                                <div class="sb-sidenav-menu-heading">Menú</div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-                                    Usuarios
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#collapsePages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="../Pages_Usuarios/altaUsuarios.jsp">Alta</a>
-                                        <a class="nav-link" href="../SvUsuarios">Listado</a>
-                                    </nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                    <i class="fa-solid fa-building-shield"></i>
-                                    Establecimientos
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="altaEstablecimientos.jsp">Alta</a>
-                                        <a class="nav-link" href="../SvEstablecimientos">Listado</a>
-                                    </nav>
-                                </div>
+                        <div class="nav">
+
+                            <div class="sb-sidenav-menu-heading">Menú</div>
+
+                            <%
+                                if (usuario != null && usuario.getRol() == 1) {
+                            %>
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                                Usuarios
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="Pages_Usuarios/altaUsuarios.jsp">Alta</a>
+                                    <a class="nav-link" href="SvUsuarios">Listado</a>
+                                </nav>
                             </div>
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEstablecimientos" aria-expanded="false" aria-controls="collapseEstablecimientos">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-building-shield"></i></i></div>
+                                Establecimientos
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseEstablecimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="pages_establecimientos/altaEstablecimientos.jsp">Alta</a>
+                                    <a class="nav-link" href="SvEstablecimientos">Listado</a>
+                                </nav>
+                            </div>
+                            <% }%>
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInternos" aria-expanded="false" aria-controls="collapseInternos">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-handcuffs"></i></i></div>
+                                Internos
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseInternos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <%
+                                        if (usuario != null && (usuario.getRol() != 4)) {
+                                    %>
+                                    <a class="nav-link" href="#">Alta</a>
+                                    <% }%>
+                                    <a class="nav-link" href="#">Listado</a>
+                                </nav>
+                            </div>
+                            <%
+                                if (usuario != null && (usuario.getRol() != 4)) {
+                            %>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCondenas" aria-expanded="false" aria-controls="collapseCondenas">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-box-archive"></i></i></i></div>
+                                Condenas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseCondenas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">Alta</a>
+                                    <a class="nav-link" href="#ientos">Listado</a>
+                                </nav>
+                            </div>
+                            <% }%>
                         </div>
+                    </div>
                         <div class="sb-sidenav-footer">
                             <div class="small">Conectado como:</div>
                             <p> <%=request.getSession().getAttribute("usuSession")%> </p>

@@ -1,10 +1,13 @@
 package com.proyecto.sistemapenitenciario.logica.establecimiento;
 
+import com.proyecto.sistemapenitenciario.logica.interno.Interno;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Establecimiento implements Serializable {
@@ -18,11 +21,13 @@ public class Establecimiento implements Serializable {
     private String direccion;
     private String telefono;
     private boolean estado;
+    @OneToMany(mappedBy = "idEstablecimiento")
+    private List<Interno> internosList;
 
     public Establecimiento() {
     }
 
-    public Establecimiento(int id_establecimiento, String nombre, String ciudad, int capacidad, String direccion, String telefono, boolean estado) {
+    public Establecimiento(int id_establecimiento, String nombre, String ciudad, int capacidad, String direccion, String telefono, boolean estado, List<Interno> internosList) {
         this.id_establecimiento = id_establecimiento;
         this.nombre = nombre;
         this.ciudad = ciudad;
@@ -30,6 +35,7 @@ public class Establecimiento implements Serializable {
         this.direccion = direccion;
         this.telefono = telefono;
         this.estado = estado;
+        this.internosList = internosList;
     }
 
     public int getId_establecimiento() {
@@ -86,6 +92,14 @@ public class Establecimiento implements Serializable {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public List<Interno> getInternosList() {
+        return internosList;
+    }
+
+    public void setInternosList(List<Interno> internosList) {
+        this.internosList = internosList;
     }
 
 }
