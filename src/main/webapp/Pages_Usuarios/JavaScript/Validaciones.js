@@ -26,6 +26,7 @@ function cancelarModificacion() {
 //llamada(login.jsp-(altaUsuario.jsp),valida contraseña(AAAAAA999) y usuario(AAAA..99)
 
 function validarUsuario() {
+    //tt
     let valido = false;
     // Cambiar document.getElementsByName a document.getElementById para seleccionar elementos por ID
     let usuario = document.getElementById("nombre");
