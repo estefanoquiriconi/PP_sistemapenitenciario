@@ -11,7 +11,7 @@ function validarEstado(valor) {
     if (contenido === "Inactivo") { //pregunta el valor del campo estado convertido en string(getString)
         estado.style.color = "red";
     } else if (contenido === "Activo") {//aplica color al estado segun su valor
-        estado.style.color = "green";
+        estado.style.color = "blue";
     }
 }
 function cancelarModificacion() {
@@ -25,55 +25,60 @@ function cancelarModificacion() {
 }
 //llamada(login.jsp-(altaUsuario.jsp),valida contraseña(AAAAAA999) y usuario(AAAA..99)
 
+function validarUsuario(formularioId) {
 function validarUsuario() {
-    //tt
     let valido = false;
-    // Cambiar document.getElementsByName a document.getElementById para seleccionar elementos por ID
-    let usuario = document.getElementById("nombre");
-    let contrasenia = document.getElementById("password");
-    let confirmContrasenia = document.getElementById("passwordConfirm");
-    let formulario=document.getElementById("formularioAlta");
-    let resultadoValidacion = document.getElementById("resultadoValidacion");
-    let errorUsuario= document.getElementById("error-messageUser");
-    let errorPass= document.getElementById("error-messagePass");
-    let errorPassConfirm= document.getElementById("error-messagePassConfirm");
-    let regExpPass = /^(?=(?:[^A-Za-z]*[A-Za-z]){1})(?=(?:\D*\d){1})[A-Za-z\d]+$/;
-    let regExpUsu = /^[A-Z][a-zA-Z]*\d{2}$/;
-    try {
-       if(regExpUsu.test(usuario.value)){
-         errorUsuario.style.display ="none";
-        if (regExpPass.test(contrasenia.value)) {
-             errorPass.style.display ="none";
-            usuario.value = usuario.value.trim(); // quitamos espacios en blanco
-            valido = true;
-            if(formulario.id==="formularioAlta"){
-                valido=confirmarContrasenia(contrasenia,confirmContrasenia);
-             if(valido){
-                 errorPassConfirm.style.display="none";
-             }else{
-                 errorPassConfirm.innerHTML="ERROR: no existe match entre contraseñas";
-                 errorPassConfirm.style.display="block";
-             }
-            }
-        }else{
-                errorPass.innerHTML="ERROR:Contraseña inválida: Formato(A-9)";
-                errorPass.style.display="block";
-        }
+    let form = document.getElementById(formularioId); 
+    let resultadoValidacion = form.querySelector("#resultadoValidacion");// Obtener el formulario por su ID
+if(!(form.id==='formularioActualizacionPass')){
+    
+    let usuario = form.querySelector("#nombre");
+    let errorUsuario = form.querySelector("#error-messageUser");
+    
+    
+    let regExpUsu = /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñ]+[0-9]{2}$/;
+
+    if (regExpUsu.test(usuario.value)) {
+        errorUsuario.style.display = "none";
+        valido = ActualizarContrasenia(form); // Pasar el formulario como argumento
     } else {
-          errorUsuario.innerHTML="ERROR:Usuario inválido: Formato(A-99)";
-           errorUsuario.style.display="block";
-            throw new Error(); // Lanzar un nuevo Error
-        }
-    } catch (Error) {
-      
+        errorUsuario.innerHTML = "ERROR: Usuario inválido: Formato(A-99)";
+        errorUsuario.style.display = "block";
     }
+    }else{ valido = ActualizarContrasenia(form);}
     resultadoValidacion.value = valido;
     return valido;
 }
-function  confirmarContrasenia(Pass1,Pass2){
-    isMatch=true;
-    if(!(Pass1.value===Pass2.value)){
-        isMatch=false;
+
+function confirmarContrasenia(Pass1, Pass2) {
+    return Pass1.value === Pass2.value;
+}
+
+function ActualizarContrasenia(form) { // Añadir el formulario como argumento
+    
+    let contrasenia = form.querySelector("#password");
+    let confirmContrasenia = form.querySelector("#passwordConfirm");
+    let errorPass = form.querySelector("#error-messagePass");
+    let errorPassConfirm = form.querySelector("#error-messagePassConfirm");
+    
+    let regExpPass = /^(?=(?:[^A-Za-z]*[A-Za-z]){1})(?=(?:\D*\d){1})[A-Za-z\d]+$/;
+    let valido = true;
+
+    if (regExpPass.test(contrasenia.value)) {
+        errorPass.style.display = "none";
+    } else {
+        errorPass.innerHTML = "ERROR: Contraseña inválida: Formato(A-9)";
+        errorPass.style.display = "block";
+        valido = false;
     }
-    return isMatch;
-} 
+
+    if (confirmarContrasenia(contrasenia, confirmContrasenia)) {
+        errorPassConfirm.style.display = "none";
+    } else {
+        errorPassConfirm.innerHTML = "ERROR: no existe match entre contraseñas";
+        errorPassConfirm.style.display = "block";
+        valido = false;
+    }
+   
+    return valido;
+}

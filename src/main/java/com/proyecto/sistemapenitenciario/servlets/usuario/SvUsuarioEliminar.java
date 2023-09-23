@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(name = "SvUsuarioEliminar", urlPatterns = {"/SvUsuarioEliminar"})
-public class SvUsuariosEliminar extends HttpServlet {
+public class SvUsuarioEliminar extends HttpServlet {
 ControladoraUsuario control = new ControladoraUsuario();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -36,20 +36,26 @@ ControladoraUsuario control = new ControladoraUsuario();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int userId = Integer.parseInt(request.getParameter("eliminar"));
+        Usuario user = control.traerUsuario(userId);
+        
+            request.getSession().setAttribute("usuEliminar", user);
+            response.sendRedirect("Pages_Usuarios/eliminarUsuarios.jsp");
        
+    
     }
 
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int userId = Integer.parseInt(request.getParameter("eliminar"));
-        Usuario user = control.traerUsuario(userId);
+       
+    Usuario user = (Usuario) request.getSession().getAttribute("usuEliminar");
     try {
         control.borrarUsuario(user);
            response.sendRedirect("index.jsp");
     } catch (Exception ex) {
-        Logger.getLogger(SvUsuariosEliminar.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(SvUsuarioEliminar.class.getName()).log(Level.SEVERE, null, ex);
     }
         
     }

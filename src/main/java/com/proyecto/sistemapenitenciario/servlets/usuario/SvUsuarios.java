@@ -47,6 +47,7 @@ public class SvUsuarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("nombre");
         String password = request.getParameter("password");
         int rol = Integer.parseInt(request.getParameter("rol"));
