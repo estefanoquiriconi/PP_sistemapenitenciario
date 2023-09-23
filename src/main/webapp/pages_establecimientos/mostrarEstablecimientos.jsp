@@ -75,8 +75,8 @@
                             </a>
                             <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="Pages_Usuarios/altaUsuarios.jsp">Alta</a>
-                                    <a class="nav-link" href="SvUsuarios">Listado</a>
+                                    <a class="nav-link" href="../Pages_Usuarios/altaUsuarios.jsp">Alta</a>
+                                    <a class="nav-link" href="../SvUsuarios">Listado</a>
                                 </nav>
                             </div>
 
@@ -87,8 +87,8 @@
                             </a>
                             <div class="collapse" id="collapseEstablecimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="pages_establecimientos/altaEstablecimientos.jsp">Alta</a>
-                                    <a class="nav-link" href="SvEstablecimientos">Listado</a>
+                                    <a class="nav-link" href="../pages_establecimientos/altaEstablecimientos.jsp">Alta</a>
+                                    <a class="nav-link" href="../SvEstablecimientos">Listado</a>
                                 </nav>
                             </div>
                             <% }%>
@@ -119,7 +119,7 @@
                             <div class="collapse" id="collapseCondenas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="#">Alta</a>
-                                    <a class="nav-link" href="#ientos">Listado</a>
+                                    <a class="nav-link" href="#">Listado</a>
                                 </nav>
                             </div>
                             <% }%>

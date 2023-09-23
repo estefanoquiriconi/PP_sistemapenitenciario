@@ -80,7 +80,7 @@
                                 </a>
                                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                     <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="altaEstablecimientos.jsp">Alta</a>
+                                        <a class="nav-link" href="../pages_establecimientos/altaEstablecimientos.jsp">Alta</a>
                                         <a class="nav-link" href="../SvEstablecimientos">Listado</a>
                                     </nav>
                                 </div>
