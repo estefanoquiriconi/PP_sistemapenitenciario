@@ -10,5 +10,9 @@ public class ControladoraInterno {
     public List<Interno> traerInternos() {
         return controlPersis.traerInternos();
     }
+
+    public Interno traerInterno(Integer id) {
+        return controlPersis.traerInterno(id);
+    }
     
 }

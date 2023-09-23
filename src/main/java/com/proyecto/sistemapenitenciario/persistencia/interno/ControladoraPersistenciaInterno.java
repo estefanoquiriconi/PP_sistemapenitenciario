@@ -18,4 +18,8 @@ public class ControladoraPersistenciaInterno {
     public List<Interno> traerInternos() {
         return intJpa.findInternoEntities();
     }
+
+    public Interno traerInterno(Integer id) {
+        return intJpa.findInterno(id);
+    }
 }
