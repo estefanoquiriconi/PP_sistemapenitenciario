@@ -26,6 +26,7 @@ function cancelarModificacion() {
 //llamada(login.jsp-(altaUsuario.jsp),valida contraseña(AAAAAA999) y usuario(AAAA..99)
 
 function validarUsuario(formularioId) {
+function validarUsuario() {
     let valido = false;
     let form = document.getElementById(formularioId); 
     let resultadoValidacion = form.querySelector("#resultadoValidacion");// Obtener el formulario por su ID
