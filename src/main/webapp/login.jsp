@@ -11,9 +11,13 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="JavaScript/Validaciones.js" type="text/javascript"></script>
-
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="css/stylesPages.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     </head>
-    <body class="bg-primary">
+    <body class="bg-dark">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -34,7 +38,7 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <p></p>
-                                                <button class="btn btn-primary btn-user btn-block" type="submit">
+                                                <button class="btn btn-dark btn-user btn-block" type="submit">
                                                     Ingresar
                                                 </button>
                                             </div>

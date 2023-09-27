@@ -12,6 +12,12 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!--<!-- referencias fonts para el body -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="css/stylesPages.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     </head>
     <!-- Validación Sesión -->
     <body class="sb-nav-fixed">
@@ -25,7 +31,7 @@
         %>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.jsp">Servicio Penitenciario</a>
+            <a class="navbar-brand ps-3" href="index.jsp"><h4><i class="fa-solid fa-house fa-sm"></i></i></i> Home </h4></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -53,7 +59,9 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Menú</div>
+                            <div class="sb-sidenav-menu-heading">
+                                <h6 style="color: white; text-align:center">Menú</h6>
+                            </div>
                             <%
                                 if (usuario != null && usuario.getRol() == 1) {
                             %>
@@ -121,11 +129,14 @@
                     </div>
                 </nav>
             </div>
-            <div id="layoutSidenav_content">
-                <main>
-
-                    <h1 style="text-align: center; padding: 20px">Página principal</h1>
-
+            <div id="layoutSidenav_content" class="paginaprincial">
+                <main class="indexContent">
+                    <center>
+                        <img src="./css/logo.png" alt="alt"/>
+                        <h1 style="text-align: center; color: white">SERVICIO PENITENCIARIO</h1>
+                        <h1 style="text-align: center;">SANTIAGO DEL ESTERO</h1>
+                        <h5 style="text-align: center">Trabajamos para propiciar la inclusión social de las personas privadas de la libertad.</h5>
+                    </center>
                 </main>
                 <%@include file="components/footer.jsp"%>
             </div>
