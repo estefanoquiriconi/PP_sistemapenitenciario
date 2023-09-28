@@ -12,8 +12,12 @@
         <title>Inforamción Interno</title>
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="../css/stylesPages.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Montserrat:wght@500&display=swap" rel="stylesheet">
     </head>
-    <body class="bg-primary">
+    <body class="bg-dark">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -21,7 +25,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Información</h3></div>
+                                    <div class="card-header"><h1 class="text-center font-weight-light my-4">Información</h1></div>
                                     <div class="card-body" style="align-self: center">
                                         <% Interno interno = (Interno) request.getSession().getAttribute("infoInterno");%>
                                         <div class="form-floating mb-6 ">
@@ -29,38 +33,25 @@
                                             <h5><strong>Apellido: </strong><%=interno.getApellido()%></h5>
                                             <h5><strong>Nombre: </strong><%=interno.getNombre() %></h5>
                                             <h5><strong>Apodo: </strong><%=interno.getApodo() %></h5>
-                                        </div>
-                                        <br>
-                                        <div class="form-floating mb-6 mx-auto"">
                                             <h5><strong>Tipo de Documento: </strong><%=interno.getTipoDoc()%></h5>
                                             <h5><strong>Número de Documento: </strong><%=interno.getNumDoc()%></h5>
                                             <h5><strong>Nacionalidad: </strong><%=interno.getNacionalidad() %></h5>
                                             <h5><strong>Domicilio: </strong><%=interno.getDomicilio()%></h5>
-                                        </div>
-                                        <br>
-                                        <div class="form-floating mb-6 mx-auto"">
                                             <%SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                                              String fechaNacimiento = sdf.format(interno.getFechaNac());
                                             %>
                                             <h5><strong>Fecha de Nacimiento: </strong><%=fechaNacimiento%></h5>
                                             <h5><strong>Provincia de Nacimiento: </strong><%=interno.getPciaNac()%></h5>
                                             <h5><strong>Departamento de Nacimiento: </strong><%=interno.getDptoNac()%></h5>
-                                        </div>
-                                        <br>
-                                        <div class="form-floating mb-6 mx-auto"">
                                             <h5><strong>Profesión: </strong><%=interno.getProfesion() %></h5>
                                             <h5><strong>Estado Civil: </strong><%=interno.getEstadoCivil() %></h5>
                                             <h5><strong>Sexo: </strong><%=interno.getSexo()%></h5>
-                                        </div>
-                                        <br>
-                                        <div class="form-floating mb-6 mx-auto"">
                                             <h5><strong>Establecimiento: </strong><%=interno.getIdEstablecimiento().getNombre()%></h5>
                                         </div>
-                                        <br>
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
                                                 <form action="../index.jsp" >
-                                                    <button class="btn btn-primary btn-user btn-block" type="submit" style="width: 80%">
+                                                    <button class="btn btn-dark btn-user btn-block" type="submit" style="width: 80%">
                                                         Regresar
                                                     </button>
                                                 </form>

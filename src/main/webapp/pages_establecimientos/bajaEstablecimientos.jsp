@@ -11,8 +11,12 @@
         <title>Eliminar Establecimiento</title>
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="../css/stylesPages.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=DM+Serif+Display:ital@0;1&family=Inclusive+Sans&family=Montserrat:wght@500&family=Roboto+Slab&display=swap" rel="stylesheet">
     </head>
-    <body class="bg-primary">
+    <body class="bg-dark">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -24,15 +28,15 @@
                                     <div class="card-body" style="align-self: center">
                                         <% Establecimiento est = (Establecimiento) request.getSession().getAttribute("estEliminar");%>
                                         <div class="form-floating mb-6 mx-auto">
-                                            <h5><strong>ID: </strong><%=est.getId_establecimiento() %></h5>
+                                            <h5><strong>ID: </strong><%=est.getId_establecimiento()%></h5>
                                         </div>
                                         <br>
                                         <div class="form-floating mb-6 mx-auto"">
-                                            <h5><strong>Nombre: </strong><%=est.getNombre() %></h5>
+                                            <h5><strong>Nombre: </strong><%=est.getNombre()%></h5>
                                         </div>
                                         <br>
                                         <div class="form-floating mb-6 mx-auto"">
-                                            <h5><strong>Ciudad: </strong><%=est.getCiudad() %></h5>
+                                            <h5><strong>Ciudad: </strong><%=est.getCiudad()%></h5>
                                         </div>
                                         <br>
                                         <div class="form-floating mb-6 mx-auto"">
@@ -42,7 +46,7 @@
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
                                                 <form action="../SvEliminarEstablecimiento" method="POST">    
-                                                    <button class="btn btn-primary btn-user btn-block" type="submit" style="background-color: red; width: 80%">
+                                                    <button class="btn btn-dark btn-user btn-block" type="submit" style="background-color: red; width: 80%">
                                                         Confirmar
                                                     </button>
                                                     <input type="hidden" name="id" value="<%=est.getId_establecimiento()%>">
@@ -52,7 +56,7 @@
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
                                                 <form action="../SvEstablecimientos" method="GET">
-                                                    <button class="btn btn-primary btn-user btn-block" type="submit" style="width: 80%">
+                                                    <button class="btn btn-dark btn-user btn-block" type="submit" style="width: 80%">
                                                         Cancelar
                                                     </button>
                                                 </form>

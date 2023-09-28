@@ -15,11 +15,10 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!--<!-- referencias fonts para el body -->
-        <link href="../css/stylesPages.css" rel="stylesheet" type="text/css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=DM+Serif+Display:ital@0;1&family=Roboto+Slab&display=swap" rel="stylesheet">
+        <link href="../css/stylesPages.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Montserrat:wght@500&display=swap" rel="stylesheet">
     </head>
     <body class="sb-nav-fixed">
         <%
@@ -32,7 +31,7 @@
         %>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-1" href="../index.jsp" style="width: 20%">Servicio Penitenciario</a>
+            <a class="navbar-brand ps-3" href="../index.jsp"><h4><i class="fa-solid fa-house fa-sm"></i></i></i> Home </h4></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -60,9 +59,9 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-
-                            <div class="sb-sidenav-menu-heading">Menú</div>
-
+                            <div class="sb-sidenav-menu-heading">
+                                <h6 style="text-align:center">Menú</h6>
+                            </div>
                             <%
                                 if (usuario != null && usuario.getRol() == 1) {
                             %>
@@ -134,7 +133,7 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Establecimientos</h1>
-                        <div class="card mb-4 fonts-table">
+                        <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 Listado
@@ -153,6 +152,7 @@
                                             <th>Eliminar</th>
                                             <th>Editar</th>
                                         </tr>
+                                        
                                     </thead>
                                     <tfoot>
                                         <tr>
