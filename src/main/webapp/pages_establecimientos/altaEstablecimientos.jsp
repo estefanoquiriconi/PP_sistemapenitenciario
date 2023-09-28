@@ -11,8 +11,12 @@
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="js/validaciones.js" type="text/javascript"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="../css/stylesPages.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=DM+Serif+Display:ital@0;1&family=Inclusive+Sans&family=Montserrat:wght@500&family=Roboto+Slab&display=swap" rel="stylesheet">
     </head>
-    <body class="bg-primary">
+    <body class="bg-dark">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -20,7 +24,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Alta Establecimiento</h3></div>
+                                    <div class="card-header"><h2 class="text-center font-weight-light my-4">Alta Establecimiento</h2></div>
                                     <div class="card-body" style="text-align: center">
                                         <form action="../SvEstablecimientos" method="POST" onsubmit="return validarEstablecimiento()" style="align-items: center"> 
                                             <div class="col-md-6 mx-auto">
@@ -60,14 +64,14 @@
                                             <div id="mensajeError" style="color: red;"></div>
                                             <br>
                                             <div class="mt-4 mb-0 mx-auto">
-                                                <button class="btn btn-success btn-user" type="submit" style="width: 50%">
+                                                <button class="btn btn-dark btn-user" type="submit" style="width: 50%">
                                                     Guardar
                                                 </button>
                                             </div>
                                         </form>
                                         <div class="mt-4 mb-0">
                                             <form action="../index.jsp" method="GET">
-                                                <button class="btn btn-primary btn-user btn-block" type="submit" style="width: 50%">
+                                                <button class="btn btn-dark btn-user btn-block" type="submit" style="width: 50%">
                                                     Cancelar
                                                 </button>
                                             </form>
