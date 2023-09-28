@@ -33,7 +33,7 @@
                                         </div>
                                         <br>
                                         <div class="form-floating mb-6 mx-auto"">
-                                            <h5><strong>Ciudad: </strong><%=usuEliminar.getRolString() %></h5>
+                                            <h5><strong>Rol: </strong><%=usuEliminar.getRolString() %></h5>
                                         </div>
                                         <br>
                                        

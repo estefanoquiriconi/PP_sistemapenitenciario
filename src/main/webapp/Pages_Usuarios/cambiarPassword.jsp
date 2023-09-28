@@ -38,7 +38,7 @@
                                                             <br>
                                                             <div class="col-md-6 mx-auto">
                                                                 <div class="form-floating mb-3 mb-md-0">
-                                                                    <input class="form-control"  id="password" name="password" type="password" placeholder="password" />
+                                                                    <input class="form-control"  id="password" name="password" type="password" value="<%=usuario.getPassword()%>" placeholder="password" />
                                                                     <label for="password">Contraseña</label><div id="error-messagePass" class="alert alert-danger" style="display: none;"></div>
                                                                 </div>
                                                             </div>
@@ -47,7 +47,7 @@
                                                             <div class="col-md-6 mx-auto">
                                                                 <div class="form-floating mb-3 mb-md-0">
                                                                     <div class="form-floating">
-                                                                        <input class="form-control"  id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Confirm password" />
+                                                                        <input class="form-control"  id="passwordConfirm" name="passwordConfirm" type="password" value="<%=usuario.getPassword()%>" placeholder="Confirm password" />
                                                                         <label for="PasswordConfirm">Confirmar contraseña</label><div id="error-messagePassConfirm" class="alert alert-danger" style="display: none;">
                                                                         </div>
                                                                     </div>

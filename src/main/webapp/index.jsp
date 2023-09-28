@@ -78,7 +78,11 @@
                             <div class="collapse" id="collapseEstablecimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="pages_establecimientos/altaEstablecimientos.jsp">Alta</a>
-                                    <a class="nav-link" href="SvEstablecimientos">Listado</a>
+                                    <form action="SvEstablecimientos" method="get" id="ListarEstablecimientos">
+                                        <input type="hidden" name="altaInternos" value="0">
+                                    </form>
+
+                                    <a href="#" class="nav-link" onclick="document.getElementById('ListarEstablecimientos').submit(); return false;">Listado</a>
                                 </nav>
                             </div>
                             <% }%>
@@ -93,7 +97,11 @@
                                     <%
                                         if (usuario != null && (usuario.getRol() != 4)) {
                                     %>
-                                    <a class="nav-link" href="#">Alta</a>
+                                    <form action="SvEstablecimientos" method="get" id="formAltaInternos">
+                                        <input type="hidden" id="altaInternos" name="altaInternos" value="1">
+                                    </form>
+
+                                    <a href="#" class="nav-link" onclick="document.getElementById('formAltaInternos').submit(); return false;">Alta</a>
                                     <% }%>
                                     <a class="nav-link" href="SvInternos">Listado</a>
                                 </nav>

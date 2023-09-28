@@ -24,12 +24,19 @@ public class SvEstablecimientos extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         List<Establecimiento> listaEstablecimientos = new ArrayList<>();
         listaEstablecimientos = control.traerEstablecimientos();
-        
+   
           HttpSession misesion = request.getSession();
           misesion.setAttribute("listaEstablecimientos", listaEstablecimientos);
+      
+              if(request.getParameter("altaInternos").equals("1")){
+           response.sendRedirect("pages_internos/altaInternos.jsp");
+       }else{
           response.sendRedirect("pages_establecimientos/mostrarEstablecimientos.jsp");
+       }
+       
     }
 
     @Override

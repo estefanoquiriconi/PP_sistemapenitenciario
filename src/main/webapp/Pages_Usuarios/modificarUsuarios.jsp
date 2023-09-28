@@ -15,6 +15,8 @@
         <script src="JavaScript/Validaciones.js" type="text/javascript"></script>
     </head>
     <body class="bg-primary">
+             <%
+                response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");%>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -24,8 +26,9 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Editar Usuario</h3></div>
                                     <div class="card-body" style="text-align: center">
-                                        <form id="formularioModificar"action="../SvUsuariosModificar" method="POST" onsubmit="return validarUsuario('formularioModificar')">    
+                                        <form id="formularioModificar" name="formularioModificar" action="../SvUsuariosModificar" method="POST" onsubmit="return validarUsuario('formularioModificar')">    
                                             <% Usuario user = (Usuario) request.getSession().getAttribute("usuModificar");
+                                                System.out.println(user.getRolString());
                                             %>
                                             <div class="form-floating mb-3 mx-auto">
                                                 <h5 style="text-align: center"><strong>ID: </strong><%=user.getId()%></h5>
@@ -47,26 +50,29 @@
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <div class="form-floating">
-                                                        <input class="form-control"  id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Confirm password" />
+                                                        <input class="form-control"  id="passwordConfirm" name="passwordConfirm" type="password" value="<%=user.getPassword()%>" placeholder="Confirm password" />
                                                         <label for="PasswordConfirm">Confirmar contraseña</label><div id="error-messagePassConfirm" class="alert alert-danger" style="display: none;">
                                                         </div>
                                                     </div>
                                                     <br>
-                                                  
-                                                        <div class="form-floating mb-3 mb-md-0">
-                                                            <select id="rol" name="rol" value="<%=user.getRolString()%>" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="height:20% ;width: 80%">
-                                                                <option value="2">Director</option>
-                                                                <option value="3">Administrativo</option>
-                                                                <option value="4">Agente</option>
-                                                            </select>
-                                                        </div>
-                                                    
+                                                   
+                                                    <select id="rol" name="rol" class="form-select form-select-lg mb-3" style="height:20% ;width: 80%">
+                                                        <option value="2" <% if(user.getRol()==2){%> selected<%}%> >Director</option>
+                                                        <option value="3"  <% if(user.getRol()==3){%> selected<%}%> >Administrativo</option>
+                                                        <option value="4" <% if(user.getRol()==4) {%> selected<%}%>>Agente</option>
+                                                    </select>
+                                       
+                                                 
+
                                                     <br>
+
+
+
                                                     <div class="col-md-6 mx-auto" >
                                                         <div class="form-check form-switch" style="text-align: initial">
                                                             <% if (user.isEstado()) { %>
-                                                            <label for="estado">Desactivar</label>    
-                                                            <input class="form-check-input" type="checkbox" id="estadoInvalido" name="estado" checked="">
+                                                            <label for="estado">habilitar</label>    
+                                                            <input class="form-check-input" type="checkbox" id="estadoInvalido" name="estado"  checked="" disabled="">>
                                                             <% } else { %>
                                                             <input class="form-check-input" type="checkbox" id="estadoValido" name="estado">
                                                             <label for="estado">Habilitar</label>
@@ -89,7 +95,7 @@
                                                             </button>
                                                         </form>
                                                     </div>
-                                                  
+
 
                                                 </div>
                                             </div>

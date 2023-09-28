@@ -33,17 +33,17 @@ if(!(form.id==='formularioActualizacionPass')){
     let usuario = form.querySelector("#nombre");
     let errorUsuario = form.querySelector("#error-messageUser");
     
-    
     let regExpUsu = /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñ]+[0-9]{2}$/;
 
     if (regExpUsu.test(usuario.value)) {
         errorUsuario.style.display = "none";
-        valido = ActualizarContrasenia(form); // Pasar el formulario como argumento
-    } else {
+    valido = ActualizarContrasenia(form);    // Pasar el formulario como argumento
+  
+            } else {
         errorUsuario.innerHTML = "ERROR: Usuario inválido: Formato(A-99)";
         errorUsuario.style.display = "block";
-    }
-    }else{ valido = ActualizarContrasenia(form);}
+    
+} }else{ valido = ActualizarContrasenia(form);}
     resultadoValidacion.value = valido;
     return valido;
 }
