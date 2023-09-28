@@ -36,7 +36,7 @@ public class SvUsuarios extends HttpServlet {
       @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Usuario> listaUsuarios = new ArrayList<>();
+        List<Usuario> listaUsuarios;
         listaUsuarios = control.traerUsuarios();
         
           HttpSession misesion = request.getSession();
@@ -47,13 +47,20 @@ public class SvUsuarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+           List<Usuario> listaUsuarios;
+        listaUsuarios = control.traerUsuarios();
         request.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("nombre");
         String password = request.getParameter("password");
         int rol = Integer.parseInt(request.getParameter("rol"));
         boolean resultadoValidacion= Boolean.parseBoolean(request.getParameter("resultadoValidacion"));
-       
-        if(resultadoValidacion ){
+       boolean existe=false;
+        for (Usuario user : listaUsuarios) {
+            if(user.getNombre().equals(nombre)){
+                existe= true;
+            }
+        }
+        if(resultadoValidacion && !existe ){
              Usuario usu = new Usuario();
         usu.setNombre(nombre);
         usu.setPassword(password);
@@ -62,7 +69,8 @@ public class SvUsuarios extends HttpServlet {
             control.crearUsuario(usu);
         response.sendRedirect("index.jsp");
     }else{
-             response.sendRedirect("Pages_Usuarios/altaUsuarios.jsp");
+            if(existe){  response.sendRedirect("Pages_Usuarios/ExisteUsuario.jsp");}else{
+             response.sendRedirect("Pages_Usuarios/altaUsuarios.jsp");}
         }
     }
     @Override

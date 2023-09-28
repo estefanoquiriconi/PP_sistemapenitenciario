@@ -24,13 +24,15 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Crear Usuario</h3></div>
                                     <div class="card-body" style="text-align: center">
+                                     
                                         <form id="formularioAlta" action="../SvUsuarios" method="POST"  onsubmit="return validarUsuario('formularioAlta')">  
 
-
+                                          
                                             <div class="col-md-6 mx-auto">
                                               <div class="form-floating mb-3 mb-md-0">
                                                     <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Usuario" />
                                                     <label for="usuario">Nombre de Usuario</label><div id="error-messageUser" class="alert alert-danger" style="display: none;"></div>
+                                                 
                                                 </div>
                                             </div>
                                             <br>
@@ -38,6 +40,7 @@
                                               <div class="form-floating mb-3 mb-md-0">
                                                     <input class="form-control"  id="password" name="password" type="password" placeholder="password" />
                                                     <label for="password">Contraseña</label><div id="error-messagePass" class="alert alert-danger" style="display: none;"></div>
+                                                     
                                                 </div>
                                             </div>
                                             
