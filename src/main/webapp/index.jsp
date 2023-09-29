@@ -86,11 +86,8 @@
                             <div class="collapse" id="collapseEstablecimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="pages_establecimientos/altaEstablecimientos.jsp">Alta</a>
-                                    <form action="SvEstablecimientos" method="get" id="ListarEstablecimientos">
-                                        <input type="hidden" name="altaInternos" value="0">
-                                    </form>
-
-                                    <a href="#" class="nav-link" onclick="document.getElementById('ListarEstablecimientos').submit(); return false;">Listado</a>
+                                    
+                                    <a href="SvEstablecimientos" class="nav-link" >Listado</a>
                                 </nav>
                             </div>
                             <% }%>

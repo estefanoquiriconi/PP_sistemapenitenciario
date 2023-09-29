@@ -16,8 +16,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Interno implements Serializable{
-    
+public class Interno implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -69,6 +69,17 @@ public class Interno implements Serializable{
     @JoinColumn(name = "id_establecimiento", referencedColumnName = "id_establecimiento")
     @ManyToOne
     private Establecimiento idEstablecimiento;
+    @Column(name = "fechaIngreso")
+    @Temporal(TemporalType.DATE)
+    private Date fechaIngreso;
+
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
 
     public Interno() {
     }
@@ -208,5 +219,5 @@ public class Interno implements Serializable{
     public void setIdEstablecimiento(Establecimiento idEstablecimiento) {
         this.idEstablecimiento = idEstablecimiento;
     }
-    
+
 }

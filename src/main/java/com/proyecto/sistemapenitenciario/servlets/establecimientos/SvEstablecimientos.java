@@ -30,13 +30,14 @@ public class SvEstablecimientos extends HttpServlet {
    
           HttpSession misesion = request.getSession();
           misesion.setAttribute("listaEstablecimientos", listaEstablecimientos);
-      
+          String llamado=request.getParameter("altaInternos");
+          System.out.println(llamado);
+      if(!(request.getParameter("altaInternos")==null)){
               if(request.getParameter("altaInternos").equals("1")){
            response.sendRedirect("pages_internos/altaInternos.jsp");
-       }else{
-          response.sendRedirect("pages_establecimientos/mostrarEstablecimientos.jsp");
-       }
-       
+       }}else{
+       response.sendRedirect("pages_establecimientos/mostrarEstablecimientos.jsp");
+      }
     }
 
     @Override
