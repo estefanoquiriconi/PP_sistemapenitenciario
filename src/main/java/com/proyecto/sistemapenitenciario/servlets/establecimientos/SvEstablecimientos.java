@@ -24,19 +24,21 @@ public class SvEstablecimientos extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         List<Establecimiento> listaEstablecimientos = new ArrayList<>();
         listaEstablecimientos = control.traerEstablecimientos();
-   
-          HttpSession misesion = request.getSession();
-          misesion.setAttribute("listaEstablecimientos", listaEstablecimientos);
-      
-              if(request.getParameter("altaInternos").equals("1")){
-           response.sendRedirect("pages_internos/altaInternos.jsp");
-       }else{
-          response.sendRedirect("pages_establecimientos/mostrarEstablecimientos.jsp");
-       }
-       
+
+        HttpSession misesion = request.getSession();
+        misesion.setAttribute("listaEstablecimientos", listaEstablecimientos);
+
+        if (!(request.getParameter("altaInternos") == null)) {
+            if (request.getParameter("altaInternos").equals("1")) {
+                response.sendRedirect("pages_internos/altaInternos.jsp");
+            }
+        } else {
+            response.sendRedirect("pages_establecimientos/mostrarEstablecimientos.jsp");
+        }
+
     }
 
     @Override
@@ -48,7 +50,6 @@ public class SvEstablecimientos extends HttpServlet {
         int capacidad = Integer.parseInt(request.getParameter("capacidad"));
         String direccion = request.getParameter("direccion");
         String telefono = request.getParameter("telefono");
-        
 
         System.out.println(request.getParameter("nombre"));
         System.out.println(request.getParameter("ciudad"));
@@ -64,7 +65,7 @@ public class SvEstablecimientos extends HttpServlet {
 
         control.crearEstablecimiento(est);
         response.sendRedirect("index.jsp");
-        
+
     }
 
     @Override

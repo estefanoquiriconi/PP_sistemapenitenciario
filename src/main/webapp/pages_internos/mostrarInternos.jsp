@@ -35,7 +35,7 @@
             %>
             <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
                 <!-- Navbar Brand-->
-                <a class="navbar-brand ps-3" href="../index.jsp">Servicio Penitenciario</a>
+                <a class="navbar-brand ps-3" href="../index.jsp"><h4><i class="fa-solid fa-house fa-sm"></i></i></i> Home </h4></a>
                 <!-- Sidebar Toggle-->
                 <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
                 <!-- Navbar Search-->
@@ -51,7 +51,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">Cambiar contraseña</a></li>
+                            <li><a class="dropdown-item" href="../Pages_Usuarios/cambiarPassword.jsp">Cambiar contraseña</a></li>
                             <li><hr class="dropdown-divider" /></li>
                             <li><a class="dropdown-item" href="../SvLogout">Salir</a></li>
                         </ul>
@@ -61,68 +61,75 @@
             <div id="layoutSidenav">
                 <div id="layoutSidenav_nav">
                     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                           <div class="sb-sidenav-menu-heading">Menú</div>
-                            <%
-                                if (usuario != null && usuario.getRol() == 1) {
-                            %>
+                        <div class="sb-sidenav-menu">
+                            <div class="nav">
+                                <div class="sb-sidenav-menu-heading">
+                                    <h6 style="text-align:center">Menú</h6>
+                                </div>
+                                <%
+                                    if (usuario != null && usuario.getRol() == 1) {
+                                %>
 
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-                                Usuarios
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="Pages_Usuarios/altaUsuarios.jsp">Alta</a>
-                                    <a class="nav-link" href="SvUsuarios">Listado</a>
-                                </nav>
-                            </div>
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                                    Usuarios
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="../Pages_Usuarios/altaUsuarios.jsp">Alta</a>
+                                        <a class="nav-link" href="../SvUsuarios">Listado</a>
+                                    </nav>
+                                </div>
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEstablecimientos" aria-expanded="false" aria-controls="collapseEstablecimientos">
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-building-shield"></i></i></div>
+                                    Establecimientos
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapseEstablecimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="../pages_establecimientos/altaEstablecimientos.jsp">Alta</a>
+                                        <a href="../SvEstablecimientos" class="nav-link">Listado</a>
+                                    </nav>
+                                </div>
+                                <% }%>
 
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEstablecimientos" aria-expanded="false" aria-controls="collapseEstablecimientos">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-building-shield"></i></i></div>
-                                Establecimientos
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseEstablecimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="pages_establecimientos/altaEstablecimientos.jsp">Alta</a>
-                                    <a class="nav-link" href="SvEstablecimientos">Listado</a>
-                                </nav>
-                            </div>
-                            <% }%>
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInternos" aria-expanded="false" aria-controls="collapseInternos">
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-handcuffs"></i></i></div>
+                                    Internos
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapseInternos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <%
+                                            if (usuario != null && (usuario.getRol() != 4)) {
+                                        %>
+                                        <form action="../SvEstablecimientos" method="get" id="formAltaInternos">
+                                            <input type="hidden" id="altaInternos" name="altaInternos" value="1">
+                                        </form>
 
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInternos" aria-expanded="false" aria-controls="collapseInternos">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-handcuffs"></i></i></div>
-                                Internos
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseInternos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <%
-                                        if (usuario != null && (usuario.getRol() != 4)) {
-                                    %>
-                                    <a class="nav-link" href="pages_internos/altaInternos.jsp">Alta</a>
-                                    <% }%>
-                                    <a class="nav-link" href="SvInternos">Listado</a>
-                                </nav>
+                                        <a href="#" class="nav-link" onclick="document.getElementById('formAltaInternos').submit(); return false;">Alta</a>
+                                        <% }%>
+                                        <a class="nav-link" href="../SvInternos">Listado</a>
+                                    </nav>
+                                </div>
+                                <%
+                                    if (usuario != null && (usuario.getRol() != 4)) {
+                                %>
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCondenas" aria-expanded="false" aria-controls="collapseCondenas">
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-box-archive"></i></i></i></div>
+                                    Condenas
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapseCondenas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="#">Alta</a>
+                                        <a class="nav-link" href="#">Listado</a>
+                                    </nav>
+                                </div>
+                                <% }%>
                             </div>
-                            <%
-                                if (usuario != null && (usuario.getRol() != 4)) {
-                            %>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCondenas" aria-expanded="false" aria-controls="collapseCondenas">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-box-archive"></i></i></i></div>
-                                Condenas
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseCondenas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Alta</a>
-                                    <a class="nav-link" href="#ientos">Listado</a>
-                                </nav>
-                            </div>
-                            <% }%>
                         </div>
-                    </div>
                         <div class="sb-sidenav-footer">
                             <div class="small">Conectado como:</div>
                             <p> <%=request.getSession().getAttribute("usuSession")%> </p>
@@ -148,8 +155,10 @@
                                                 <th>Sexo</th>
                                                 <th>Establecimiento</th>
                                                 <th>Información</th>
+                                                    <%if (usuario.getRol() != 4) {%>
                                                 <th>Eliminar</th>
                                                 <th>Editar</th>
+                                                    <% }%>
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -160,8 +169,10 @@
                                                 <th>Sexo</th>
                                                 <th>Establecimiento</th>
                                                 <th>Información</th>
+                                                    <%if (usuario.getRol() != 4) {%>
                                                 <th>Eliminar</th>
                                                 <th>Editar</th>
+                                                <% }%>
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -178,12 +189,13 @@
                                                 <td><%=interno.getIdEstablecimiento().getNombre()%></td>
                                                 <td>
                                                     <form name="info" action="../SvInfoInterno" method="GET">
-                                                        <button type="submit" class="btn btn-primary btn-user btn-block" style="margin-left: 5px; " > 
+                                                        <button type="submit" class="btn btn-dark btn-user btn-block" style="margin-left: 5px; " > 
                                                             <i class="fa-regular fa-id-card"></i> Ver más
                                                         </button>
                                                         <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
                                                     </form>
                                                 </td>
+                                                <%if (usuario.getRol() != 4) {%>
                                                 <td>
                                                     <%if (interno.getEstado()) {%>
                                                     <form name="eliminar" action="#" method="GET">
@@ -202,6 +214,7 @@
                                                         <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
                                                     </form>
                                                 </td>
+                                                <% }%>
                                             </tr>
                                             <%
                                                 }
