@@ -1,6 +1,7 @@
-<%@page import="com.proyecto.sistemapenitenciario.logica.interno.Interno"%>
-<%@page import="java.util.List"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.proyecto.sistemapenitenciario.logica.condenas.Condena"%>
 <%@page import="com.proyecto.sistemapenitenciario.logica.usuario.Usuario"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Internos</title>
+        <title>Condenas</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -22,8 +23,8 @@
     <body class="sb-nav-fixed">
         <%
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            HttpSession misesion = request.getSession();
             Usuario usuario = (Usuario) request.getSession().getAttribute("usuSession");
-            Boolean isCargarCondena = (Boolean) request.getSession().getAttribute("cargaCondenaInterno");
             if (usuario == null) {
                 response.sendRedirect("../sinLogin.jsp");
             }
@@ -76,6 +77,7 @@
                                     <a class="nav-link" href="../SvUsuarios">Listado</a>
                                 </nav>
                             </div>
+
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEstablecimientos" aria-expanded="false" aria-controls="collapseEstablecimientos">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-building-shield"></i></i></div>
                                 Establecimientos
@@ -84,7 +86,7 @@
                             <div class="collapse" id="collapseEstablecimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="../pages_establecimientos/altaEstablecimientos.jsp">Alta</a>
-                                    <a href="../SvEstablecimientos" class="nav-link">Listado</a>
+                                    <a class="nav-link" href="../SvEstablecimientos">Listado</a>
                                 </nav>
                             </div>
                             <% }%>
@@ -99,11 +101,7 @@
                                     <%
                                         if (usuario != null && (usuario.getRol() != 4)) {
                                     %>
-                                    <form action="../SvEstablecimientos" method="get" id="formAltaInternos">
-                                        <input type="hidden" id="altaInternos" name="altaInternos" value="1">
-                                    </form>
-
-                                    <a href="#" class="nav-link" onclick="document.getElementById('formAltaInternos').submit(); return false;">Alta</a>
+                                    <a class="nav-link" href="#">Alta</a>
                                     <% }%>
                                     <a class="nav-link" href="../SvInternos">Listado</a>
                                 </nav>
@@ -134,7 +132,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Internos</h1>
+                        <h1 class="mt-4">Condenas</h1>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -144,78 +142,62 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Legajo</th>
-                                            <th>Apellido</th>
-                                            <th>Nombre</th>
-                                            <th>Sexo</th>
-                                            <th>Establecimiento</th>
-                                                <% if (isCargarCondena) {%>
-                                            <th>Condena</th>
-                                                <% } else { %>
-                                            <th>Información</th>
-                                                <%if (usuario.getRol() != 4) {%>
+                                            <th>Código</th>
+                                            <th>Iterno</th>
+                                            <th>Delito</th>
+                                            <th>Juez</th>
+                                            <th>Detención</th>
+                                            <th>Inicio</th>
+                                            <th>Duración</th>
+                                            <th>Fin</th>
+                                            <th>Estado</th>
                                             <th>Eliminar</th>
                                             <th>Editar</th>
-                                                <% }%>
-                                                <% }%>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Legajo</th>
-                                            <th>Apellido</th>
-                                            <th>Nombre</th>
-                                            <th>Sexo</th>
-                                            <th>Establecimiento</th>
-                                                <% if (isCargarCondena) { %>
-                                            <th>Condena</th>
-                                                <% } else { %>
-                                            <th>Información</th>
-                                                <%if (usuario.getRol() != 4) {%>
+                                            <th>Código</th>
+                                            <th>Iterno</th>
+                                            <th>Delito</th>
+                                            <th>Juez</th>
+                                            <th>Detención</th>
+                                            <th>Inicio</th>
+                                            <th>Duración</th>
+                                            <th>Fin</th>
+                                            <th>Estado</th>
                                             <th>Eliminar</th>
                                             <th>Editar</th>
-                                                <% }%>
-                                                <% }%>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <%
-                                            List<Interno> listaInternos = (List) request.getSession().getAttribute("listaInternos");
-                                            if (listaInternos != null) {
-                                                for (Interno interno : listaInternos) {
+                                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                            List<Condena> listaCondenas = (List) request.getSession().getAttribute("listaCondenas");
+                                            if (listaCondenas != null) {
+                                                for (Condena condena : listaCondenas) {
                                         %>
                                         <tr>
-                                            <td><%=interno.getLegajo()%></td>
-                                            <td><%=interno.getApellido()%></td>
-                                            <td><%=interno.getNombre()%></td>
-                                            <td><%=interno.getSexo()%></td>
-                                            <td><%=interno.getIdEstablecimiento().getNombre()%></td>
-                                            <% if (isCargarCondena) {%>
+                                            <td><%=condena.getCodCondena()%></td>
+                                            <td><%=condena.getFkInterno().getApellido() + " " + condena.getFkInterno().getNombre()%></td>
+                                            <td><%=condena.getFkDelito().getDescripcion()%></td>
+                                            <td><%=condena.getJuez()%></td>
+                                            <td><%=sdf.format(condena.getFechaDetencion())%></td>
+                                            <td><%=sdf.format(condena.getFechaInicio())%></td>
+                                            <td><%=condena.getDuracionDias()%></td>
+                                            <td><%=sdf.format(condena.getFechaFin())%></td>
+                                            <%if (condena.getEstado()) { %>
+                                            <td><p style="color: blue">Activo</p></td>
+                                            <% } else { %>
+                                            <td><p style="color: red">Inactivo</p></td>
+                                            <%}%>
                                             <td>
-                                                <form name="info" action="../SvCondenas" method="GET">
-                                                    <button type="submit" class="btn btn-dark btn-user btn-block" style="margin-left: 5px; " > 
-                                                        <i class="fa-solid fa-file-lines"></i> Cargar Condena
-                                                    </button>
-                                                    <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
-                                                </form>
-                                            </td>
-                                            <% } else {%>
-                                            <td>
-                                                <form name="info" action="../SvInfoInterno" method="GET">
-                                                    <button type="submit" class="btn btn-dark btn-user btn-block" style="margin-left: 5px; " > 
-                                                        <i class="fa-regular fa-id-card"></i> Ver más
-                                                    </button>
-                                                    <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
-                                                </form>
-                                            </td>
-                                            <%if (usuario.getRol() != 4) {%>
-                                            <td>
-                                                <%if (interno.getEstado()) {%>
+                                                <%if (condena.getEstado()) {%>
                                                 <form name="eliminar" action="#" method="GET">
                                                     <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: red; margin-right: 5px; "> 
                                                         <i class="fas fa-trash-alt"></i> Eliminar
                                                     </button>
-                                                    <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
+                                                    <input type="hidden" name="id" value="<%=condena.getIdCondena()%>">
                                                 </form>
                                                 <% }%>
                                             </td>
@@ -224,17 +206,15 @@
                                                     <button type="submit" class="btn btn-primary btn-user btn-block" style="margin-left: 5px; " > 
                                                         <i class="fas fa-pencil-alt"></i> Editar
                                                     </button>
-                                                    <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
+                                                    <input type="hidden" name="id" value="<%=condena.getIdCondena()%>">
                                                 </form>
                                             </td>
-                                            <% }%>
-                                            <% }%>
                                         </tr>
                                         <%
                                             }
                                         } else {
                                         %>
-                                    <p>No hay internos registrados.</p>
+                                    <p>No hay condenas registradas!</p>
                                     <%
                                         }
                                     %>
