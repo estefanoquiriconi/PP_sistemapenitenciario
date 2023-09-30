@@ -8,6 +8,7 @@ import com.proyecto.sistemapenitenciario.logica.interno.Interno;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -65,8 +66,13 @@ public class SvCondenas extends HttpServlet {
         int cantDias = Integer.parseInt(request.getParameter("cantDias"));
         int idDelito = Integer.parseInt(request.getParameter("delito"));
         int idInterno = Integer.parseInt(request.getParameter("idInterno"));
-
         Interno internoCondena = controlInterno.traerInterno(idInterno);
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fechaInicio);
+        calendar.add(Calendar.DAY_OF_YEAR, cantDias);
+        Date fechaFin = calendar.getTime();
+        
 
         Condena condena = new Condena();
         condena.setJuez(juez);
@@ -75,6 +81,7 @@ public class SvCondenas extends HttpServlet {
         condena.setDuracionDias(cantDias);
         condena.setFkInterno(internoCondena);
         condena.setFkDelito(controlDelito.traerDelito(idDelito));
+        condena.setFechaFin(fechaFin);
         condena.setEstado(true);
         condena.setCodCondena("COD-" + internoCondena.getApellido().charAt(0) + internoCondena.getNombre().charAt(0) + "-" + internoCondena.getLegajo());
 
