@@ -75,10 +75,9 @@
                                                     <div class="col-md-6 mx-auto" >
                                                         <div class="form-check form-switch" style="text-align: initial">
                                                             <% if (user.isEstado()) { %>
-                                                            <label for="estado">Habilitar</label>    
-                                                            <input class="form-check-input" type="checkbox" id="estadoInvalido" name="estado"  checked="" disabled="">
+                                                            <input class="form-check-input" type="" id="estadoValido" name="estado" hidden="" checked="true">
                                                             <% } else { %>
-                                                            <input class="form-check-input" type="checkbox" id="estadoValido" name="estado">
+                                                            <input class="form-check-input" type="checkbox" id="estadoInvalido" name="estado">
                                                             <label for="estado">Habilitar</label>
                                                             <% }%>
                                                         </div>

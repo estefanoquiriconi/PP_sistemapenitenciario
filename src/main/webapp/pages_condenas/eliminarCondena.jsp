@@ -1,4 +1,4 @@
-<%@page import="com.proyecto.sistemapenitenciario.logica.establecimiento.Establecimiento"%>
+<%@page import="com.proyecto.sistemapenitenciario.logica.condenas.Condena"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Eliminar Establecimiento</title>
+        <title>Desactivar Condena</title>
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,38 +24,38 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Eliminar Establecimiento</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Desactivar Condena</h3></div>
                                     <div class="card-body" style="align-self: center">
-                                        <% Establecimiento est = (Establecimiento) request.getSession().getAttribute("estEliminar");%>
+                                        <% Condena condena = (Condena) request.getSession().getAttribute("condenaElim");%>
                                         <div class="form-floating mb-6 mx-auto">
-                                            <h5><strong>ID: </strong><%=est.getId_establecimiento()%></h5>
+                                            <h5><strong>ID: </strong><%=condena.getIdCondena()%></h5>
                                         </div>
                                         <br>
                                         <div class="form-floating mb-6 mx-auto"">
-                                            <h5><strong>Nombre: </strong><%=est.getNombre()%></h5>
+                                            <h5><strong>Código: </strong><%=condena.getCodCondena()%></h5>
                                         </div>
                                         <br>
                                         <div class="form-floating mb-6 mx-auto"">
-                                            <h5><strong>Ciudad: </strong><%=est.getCiudad()%></h5>
+                                            <h5><strong>Apellido: </strong><%=condena.getFkInterno().getApellido() %></h5>
                                         </div>
                                         <br>
                                         <div class="form-floating mb-6 mx-auto"">
-                                            <h5><strong>Direccion: </strong><%=est.getDireccion()%></h5>
+                                            <h5><strong>Nombre: </strong><%=condena.getFkInterno().getNombre()%></h5>
                                         </div>
                                         <br>
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
-                                                <form action="../SvEliminarEstablecimiento" method="POST">    
+                                                <form action="../SvElimCondena" method="POST">    
                                                     <button class="btn btn-dark btn-user btn-block" type="submit" style="background-color: red; width: 80%">
                                                         Confirmar
                                                     </button>
-                                                    <input type="hidden" name="id" value="<%=est.getId_establecimiento()%>">
+                                                    <input type="hidden" name="id" value="<%=condena.getIdCondena()%>">
                                                 </form>
                                             </div>
                                         </div>
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
-                                                <form action="../SvEstablecimientos" method="GET">
+                                                <form action="../SvCondenasList" method="GET">
                                                     <button class="btn btn-dark btn-user btn-block" type="submit" style="width: 80%">
                                                         Cancelar
                                                     </button>
@@ -88,4 +88,5 @@
         <script src="../js/scripts.js"></script>
     </body>
 </html>
+
 

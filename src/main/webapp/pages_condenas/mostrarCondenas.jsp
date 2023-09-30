@@ -116,8 +116,11 @@
                             </a>
                             <div class="collapse" id="collapseCondenas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Alta</a>
-                                    <a class="nav-link" href="#">Listado</a>
+                                    <form action="../SvInternos" method="GET" id="formAltaCondena">
+                                        <input type="hidden" id="altaCondena" name="altaCondena" value="1">
+                                    </form>
+                                    <a href="#" class="nav-link" onclick="document.getElementById('formAltaCondena').submit(); return false;">Cargar</a>
+                                    <a class="nav-link" href="../SvCondenasList">Listado</a>
                                 </nav>
                             </div>
                             <% }%>
@@ -193,7 +196,7 @@
                                             <%}%>
                                             <td>
                                                 <%if (condena.getEstado()) {%>
-                                                <form name="eliminar" action="#" method="GET">
+                                                <form name="eliminar" action="../SvElimCondena" method="GET">
                                                     <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: red; margin-right: 5px; "> 
                                                         <i class="fas fa-trash-alt"></i> Eliminar
                                                     </button>
@@ -202,7 +205,7 @@
                                                 <% }%>
                                             </td>
                                             <td>
-                                                <form name="editar" action="#" method="GET">
+                                                <form name="editar" action="../SvEditCondena" method="GET">
                                                     <button type="submit" class="btn btn-primary btn-user btn-block" style="margin-left: 5px; " > 
                                                         <i class="fas fa-pencil-alt"></i> Editar
                                                     </button>

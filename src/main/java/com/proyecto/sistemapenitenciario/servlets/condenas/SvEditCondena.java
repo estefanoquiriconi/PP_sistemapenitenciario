@@ -3,8 +3,6 @@ package com.proyecto.sistemapenitenciario.servlets.condenas;
 import com.proyecto.sistemapenitenciario.logica.condenas.Condena;
 import com.proyecto.sistemapenitenciario.logica.condenas.ControladoraCondena;
 import com.proyecto.sistemapenitenciario.logica.condenas.ControladoraDelito;
-import com.proyecto.sistemapenitenciario.logica.interno.ControladoraInterno;
-import com.proyecto.sistemapenitenciario.logica.interno.Interno;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,29 +15,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "SvCondenas", urlPatterns = {"/SvCondenas"})
-public class SvCondenas extends HttpServlet {
-
-    ControladoraInterno controlInterno = new ControladoraInterno();
-    ControladoraDelito controlDelito = new ControladoraDelito();
-    ControladoraCondena controlCondena = new ControladoraCondena();
+@WebServlet(name = "SvEditCondena", urlPatterns = {"/SvEditCondena"})
+public class SvEditCondena extends HttpServlet {
+    
+     ControladoraCondena controlCondena = new ControladoraCondena();
+     ControladoraDelito controlDelito = new ControladoraDelito();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         int id = Integer.parseInt(request.getParameter("id"));
-        Interno interno = controlInterno.traerInterno(id);
+        Condena condena = controlCondena.traerCondena(id);
 
         HttpSession misesion = request.getSession();
-        misesion.setAttribute("internoCondena", interno);
+        misesion.setAttribute("condenaEdit", condena);
 
-        response.sendRedirect("pages_condenas/altaCondenas.jsp");
+        response.sendRedirect("pages_condenas/editarCondena.jsp");
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -61,33 +60,35 @@ public class SvCondenas extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
+        
+        int idDelito = Integer.parseInt(request.getParameter("delito"));
         String juez = request.getParameter("juez");
         int cantDias = Integer.parseInt(request.getParameter("cantDias"));
-        int idDelito = Integer.parseInt(request.getParameter("delito"));
-        int idInterno = Integer.parseInt(request.getParameter("idInterno"));
-        Interno internoCondena = controlInterno.traerInterno(idInterno);
+        String valorCheck = request.getParameter("estado");
         
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaInicio);
         calendar.add(Calendar.DAY_OF_YEAR, cantDias);
         Date fechaFin = calendar.getTime();
         
-        String codCondena = "COD" + "-" + internoCondena.getApellido().charAt(0) + internoCondena.getNombre().charAt(0) + "-" + strFecDet.charAt(2) + strFecDet.charAt(3);
-
-        Condena condena = new Condena();
+        Condena condena = (Condena) request.getSession().getAttribute("condenaEdit");
+        
+        if (valorCheck != null) {
+            condena.setEstado(true);
+        } else {
+            condena.setEstado(false);
+        }
+        
         condena.setJuez(juez);
-        condena.setFechaInicio(fechaInicio);
         condena.setFechaDetencion(fechaDetencion);
+        condena.setFechaInicio(fechaInicio);
         condena.setDuracionDias(cantDias);
-        condena.setFkInterno(internoCondena);
         condena.setFkDelito(controlDelito.traerDelito(idDelito));
         condena.setFechaFin(fechaFin);
-        condena.setEstado(true);
-        condena.setCodCondena(codCondena);
         
-        controlCondena.cargarCondena(condena);
-        response.sendRedirect("index.jsp");
+        controlCondena.editarCondena(condena);
+        
+        response.sendRedirect("SvCondenasList");
     }
 
     @Override

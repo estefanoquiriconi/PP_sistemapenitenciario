@@ -40,18 +40,22 @@ public class SvEditarEstablecimiento extends HttpServlet {
         String direccion = request.getParameter("direccion");
         int capacidad = Integer.parseInt(request.getParameter("capacidad"));
         String telefono = request.getParameter("telefono");
+
         String valorCheck = request.getParameter("estado");
-        boolean estado = "on".equals(valorCheck);
 
         Establecimiento est = (Establecimiento) request.getSession().getAttribute("estEditar");
+
+        if (valorCheck != null) {
+            est.setEstado(true);
+        } else {
+            est.setEstado(false);
+        }
 
         est.setNombre(nombre);
         est.setCiudad(ciudad);
         est.setDireccion(direccion);
         est.setCapacidad(capacidad);
         est.setTelefono(telefono);
-        est.setEstado(estado);
-        
 
         control.editarEstablecimiento(est);
 

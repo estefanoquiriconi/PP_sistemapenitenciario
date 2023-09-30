@@ -28,7 +28,6 @@ public class SvInternos extends HttpServlet {
         listaInternos = control.traerInternos();
 
         HttpSession misesion = request.getSession();
-        System.out.println("alta condena: " + request.getParameter("altaCondena"));
         if(request.getParameter("altaCondena") != null && request.getParameter("altaCondena").equals("1")){
             misesion.setAttribute("cargaCondenaInterno", true);
         }else{
