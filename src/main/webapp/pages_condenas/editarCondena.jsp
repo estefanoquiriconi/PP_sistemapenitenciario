@@ -30,13 +30,13 @@
                                     <div class="card-body" style="text-align: center">
                                         <form action="../SvEditCondena" method="POST" onsubmit="return validarFormulario();">    
                                             <% Condena condena = (Condena) request.getSession().getAttribute("condenaEdit");
-                                            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                                             String strFechaDetencion = formato.format(condena.getFechaDetencion());
-                                             String strFechaInicio = formato.format(condena.getFechaInicio());
+                                                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                                                String strFechaDetencion = formato.format(condena.getFechaDetencion());
+                                                String strFechaInicio = formato.format(condena.getFechaInicio());
                                             %>
                                             <div class="form-floating mb-3 mx-auto">
-                                                <h5 style="text-align: center"><strong>ID: </strong><%=condena.getIdCondena() %></h5>
-                                                <h5 style="text-align: center"><strong>Código: </strong><%=condena.getCodCondena() %></h5>
+                                                <h5 style="text-align: center"><strong>ID: </strong><%=condena.getIdCondena()%></h5>
+                                                <h5 style="text-align: center"><strong>Código: </strong><%=condena.getCodCondena()%></h5>
                                             </div>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating">
@@ -47,7 +47,7 @@
                                             <br>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating">
-                                                    <input class="form-control" value="<%=strFechaDetencion %>" name="fechaDetencion" id="fechaDetencion" type="date">
+                                                    <input class="form-control" value="<%=strFechaDetencion%>" name="fechaDetencion" id="fechaDetencion" type="date">
                                                     <label for="fechaDentencion">Fecha Detención</label>
                                                 </div>
                                             </div>
@@ -61,7 +61,7 @@
                                             <br>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating">
-                                                    <input class="form-control" name="cantDias" id="cantDias" type="number" value="<%=condena.getDuracionDias() %>" />
+                                                    <input class="form-control" name="cantDias" id="cantDias" type="number" value="<%=condena.getDuracionDias()%>" />
                                                     <label for="cantDias">Duración en días</label>
                                                 </div>
                                             </div>
@@ -79,7 +79,7 @@
                                             <div id="mensajeError" class="text-danger mb-3"></div>
                                             <div class="col-md-6 mx-auto" >
                                                 <div class="form-check form-switch" style="text-align: initial">
-                                                    <% if (condena.getEstado() ) { %>
+                                                    <% if (condena.getEstado()) { %>
                                                     <input class="form-check-input" type="" id="estadoValido" name="estado" hidden="" checked="true">
                                                     <% } else { %>
                                                     <input class="form-check-input" type="checkbox" id="estadoInvalido" name="estado">

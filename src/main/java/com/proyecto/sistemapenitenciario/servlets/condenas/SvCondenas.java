@@ -73,7 +73,7 @@ public class SvCondenas extends HttpServlet {
         calendar.add(Calendar.DAY_OF_YEAR, cantDias);
         Date fechaFin = calendar.getTime();
         
-        String codCondena = "COD" + "-" + internoCondena.getApellido().charAt(0) + internoCondena.getNombre().charAt(0) + "-" + strFecDet.charAt(2) + strFecDet.charAt(3);
+        String codCondena = "COD" + "-" + internoCondena.getApellido().charAt(0) + internoCondena.getNombre().charAt(0) + "-" + strFecInicio.charAt(2) + strFecInicio.charAt(3);
 
         Condena condena = new Condena();
         condena.setJuez(juez);
