@@ -135,7 +135,6 @@
                             </a>
                             <div class="collapse" id="collapseEstadisticas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <form action="SvInternos" method="GET" id="formAltaCondena">
                                     <a href="SvEstadisticasDelitos" class="nav-link">Delitos</a>
                                 </nav>
                             </div>

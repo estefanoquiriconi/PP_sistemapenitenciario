@@ -123,6 +123,17 @@
                                     <a class="nav-link" href="../SvCondenasList">Listado</a>
                                 </nav>
                             </div>
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEstadisticas" aria-expanded="false" aria-controls="collapseEstadisticas">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-simple"></i></div>
+                                Estadísticas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseEstadisticas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                        <a href="../SvEstadisticasDelitos" class="nav-link">Delitos</a>
+                                </nav>
+                            </div>
                             <% }%>
                         </div>
                     </div>
@@ -133,49 +144,49 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                <main style="width: 80%; padding: 5%">
-                        <%
-                            List<Condena> listaCondenas = (List) request.getSession().getAttribute("listCondenasDelitos");
-                            int robo = 0;
-                            int homicidio = 0;
-                            int traficDrog = 0;
-                            int apropInd = 0;
-                            if (listaCondenas != null) {
-                                for (Condena condena : listaCondenas) {
-                                    switch (condena.getFkDelito().getIdDelito()) {
-                                        case 1:
-                                            robo++;
-                                            break;
-                                        case 2:
-                                            homicidio++;
-                                            break;
-                                        case 3:
-                                            traficDrog++;
-                                            break;
-                                        case 4:
-                                            apropInd++;
-                                            break;
-                                        default:
-                                            break;
-                                    }
+                <main>
+                    <%
+                        List<Condena> listaCondenas = (List) request.getSession().getAttribute("listCondenasDelitos");
+                        int robo = 0;
+                        int homicidio = 0;
+                        int traficDrog = 0;
+                        int apropInd = 0;
+                        if (listaCondenas != null) {
+                            for (Condena condena : listaCondenas) {
+                                switch (condena.getFkDelito().getIdDelito()) {
+                                    case 1:
+                                        robo++;
+                                        break;
+                                    case 2:
+                                        homicidio++;
+                                        break;
+                                    case 3:
+                                        traficDrog++;
+                                        break;
+                                    case 4:
+                                        apropInd++;
+                                        break;
+                                    default:
+                                        break;
                                 }
                             }
-                        %>
-                        <%
-                            List<Integer> arrayDelitos = new ArrayList<>();
-                            arrayDelitos.add(robo);
-                            arrayDelitos.add(homicidio);
-                            arrayDelitos.add(traficDrog);
-                            arrayDelitos.add(apropInd);
-                        %>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-chart-pie me-1"></i>
-                                Estadísticas de delitos
-                            </div>
-                            <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
-                            <div class="card-footer small text-muted"><p>Actualizado el: <span id="fecha"></span></p><script></script></div>
+                        }
+                    %>
+                    <%
+                        List<Integer> arrayDelitos = new ArrayList<>();
+                        arrayDelitos.add(robo);
+                        arrayDelitos.add(homicidio);
+                        arrayDelitos.add(traficDrog);
+                        arrayDelitos.add(apropInd);
+                    %>
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-chart-pie me-1"></i>
+                            Estadísticas de delitos
                         </div>
+                        <div class="card-body"><canvas id="myPieChart" width="80%" height="28"></canvas></div>
+                        <div class="card-footer small text-muted"><p>Actualizado el: <span id="fecha"></span></p><script></script></div>
+                    </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
