@@ -106,7 +106,7 @@
                                     <a class="nav-link" href="../SvInternos">Listado</a>
                                 </nav>
                             </div>
-                            <%
+                             <%
                                 if (usuario != null && (usuario.getRol() != 4)) {
                             %>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCondenas" aria-expanded="false" aria-controls="collapseCondenas">
@@ -116,11 +116,14 @@
                             </a>
                             <div class="collapse" id="collapseCondenas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Alta</a>
-                                    <a class="nav-link" href="#">Listado</a>
+                                    <form action="../SvInternos" method="GET" id="formAltaCondena">
+                                        <input type="hidden" id="altaCondena" name="altaCondena" value="1">
+                                    </form>
+                                    <a href="#" class="nav-link" onclick="document.getElementById('formAltaCondena').submit(); return false;">Cargar</a>
+                                    <a class="nav-link" href="../SvCondenasList">Listado</a>
                                 </nav>
                             </div>
-                            
+
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEstadisticas" aria-expanded="false" aria-controls="collapseEstadisticas">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-simple"></i></div>
                                 Estadísticas

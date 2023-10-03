@@ -161,7 +161,7 @@
                                             <th>Legajo</th>
                                             <th>Apellido</th>
                                             <th>Nombre</th>
-                                            <th>Sexo</th>
+                                            <th>Documento</th>
                                             <th>Establecimiento</th>
                                                 <% if (isCargarCondena) {%>
                                             <th>Condena</th>
@@ -179,7 +179,7 @@
                                             <th>Legajo</th>
                                             <th>Apellido</th>
                                             <th>Nombre</th>
-                                            <th>Sexo</th>
+                                            <th>Documento</th>
                                             <th>Establecimiento</th>
                                                 <% if (isCargarCondena) { %>
                                             <th>Condena</th>
@@ -202,7 +202,7 @@
                                             <td><%=interno.getLegajo()%></td>
                                             <td><%=interno.getApellido()%></td>
                                             <td><%=interno.getNombre()%></td>
-                                            <td><%=interno.getSexo()%></td>
+                                            <td><%=interno.getNumDoc() %></td>
                                             <td><%=interno.getIdEstablecimiento().getNombre()%></td>
                                             <% if (isCargarCondena) {%>
                                             <td>
