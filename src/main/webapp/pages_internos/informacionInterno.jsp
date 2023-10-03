@@ -25,7 +25,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h1 class="text-center font-weight-light my-4">Información</h1></div>
+                                    <div class="card-header"><h2 class="text-center font-weight-light my-4">Información</h2></div>
                                     <div class="card-body" style="align-self: center">
                                         <% Interno interno = (Interno) request.getSession().getAttribute("infoInterno");%>
                                         <div class="form-floating mb-6 ">
@@ -50,7 +50,7 @@
                                         </div>
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
-                                                <form action="../index.jsp" >
+                                                <form action="../SvInternos" >
                                                     <button class="btn btn-dark btn-user btn-block" type="submit" style="width: 80%">
                                                         Regresar
                                                     </button>

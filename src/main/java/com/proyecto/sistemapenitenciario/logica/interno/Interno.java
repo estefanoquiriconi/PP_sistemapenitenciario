@@ -220,4 +220,10 @@ public class Interno implements Serializable {
         this.idEstablecimiento = idEstablecimiento;
     }
 
+    @Override
+    public String toString() {
+        return "Interno{" + "idInterno=" + idInterno + ", legajo=" + legajo + ", nombre=" + nombre + ", apellido=" + apellido + ", sexo=" + sexo + ", apodo=" + apodo + ", fechaNac=" + fechaNac + ", dptoNac=" + dptoNac + ", pciaNac=" + pciaNac + ", nacionalidad=" + nacionalidad + ", domicilio=" + domicilio + ", estadoCivil=" + estadoCivil + ", profesion=" + profesion + ", tipoDoc=" + tipoDoc + ", numDoc=" + numDoc + ", estado=" + estado + ", idEstablecimiento=" + idEstablecimiento + ", fechaIngreso=" + fechaIngreso + '}';
+    }
+
+    
 }

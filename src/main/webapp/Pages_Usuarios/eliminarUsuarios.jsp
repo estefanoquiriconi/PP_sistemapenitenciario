@@ -12,8 +12,12 @@
         <title>Eliminar Establecimiento</title>
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="../css/stylesPages.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Montserrat:wght@500&display=swap" rel="stylesheet">
     </head>
-    <body class="bg-primary">
+    <body class="bg-dark">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -50,7 +54,7 @@
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
                                                 <form action="../SvUsuarios" method="GET">
-                                                    <button class="btn btn-primary btn-user btn-block" type="submit" style="width: 100%">
+                                                    <button class="btn btn-dark btn-user btn-block" type="submit" style="width: 100%">
                                                         Cancelar
                                                     </button>
                                                 </form>

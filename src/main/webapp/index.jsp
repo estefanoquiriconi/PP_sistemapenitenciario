@@ -86,8 +86,10 @@
                             <div class="collapse" id="collapseEstablecimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="pages_establecimientos/altaEstablecimientos.jsp">Alta</a>
+
                                     
                                     <a href="SvEstablecimientos" class="nav-link" >Listado</a>
+
                                 </nav>
                             </div>
                             <% }%>

@@ -4,6 +4,7 @@
     Author     : Estéfano
 --%>
 
+<%@page import="com.proyecto.sistemapenitenciario.logica.usuario.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+            <%
+                response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                Usuario usuario = (Usuario) request.getSession().getAttribute("usuSession");
+                if (usuario == null) {
+                    response.sendRedirect("../sinLogin.jsp");
+                }
+            %>
+     
     </body>
 </html>

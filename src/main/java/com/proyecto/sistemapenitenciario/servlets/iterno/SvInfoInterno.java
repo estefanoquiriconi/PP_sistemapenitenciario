@@ -3,7 +3,6 @@ package com.proyecto.sistemapenitenciario.servlets.iterno;
 import com.proyecto.sistemapenitenciario.logica.interno.ControladoraInterno;
 import com.proyecto.sistemapenitenciario.logica.interno.Interno;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

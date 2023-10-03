@@ -13,10 +13,14 @@
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="JavaScript/Validaciones.js" type="text/javascript"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="../css/stylesPages.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Montserrat:wght@500&display=swap" rel="stylesheet">
     </head>
-    <body class="bg-primary">
-             <%
-                response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");%>
+    <body class="bg-dark">
+        <%
+                 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");%>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -55,14 +59,14 @@
                                                         </div>
                                                     </div>
                                                     <br>
-                                                   
+
                                                     <select id="rol" name="rol" class="form-select form-select-lg mb-3" style="height:20% ;width: 80%">
-                                                        <option value="2" <% if(user.getRol()==2){%> selected<%}%> >Director</option>
-                                                        <option value="3"  <% if(user.getRol()==3){%> selected<%}%> >Administrativo</option>
-                                                        <option value="4" <% if(user.getRol()==4) {%> selected<%}%>>Agente</option>
+                                                        <option value="2" <% if (user.getRol() == 2) {%> selected<%}%> >Director</option>
+                                                        <option value="3"  <% if (user.getRol() == 3) {%> selected<%}%> >Administrativo</option>
+                                                        <option value="4" <% if (user.getRol() == 4) {%> selected<%}%>>Agente</option>
                                                     </select>
-                                       
-                                                 
+
+
 
                                                     <br>
 
@@ -71,8 +75,8 @@
                                                     <div class="col-md-6 mx-auto" >
                                                         <div class="form-check form-switch" style="text-align: initial">
                                                             <% if (user.isEstado()) { %>
-                                                            <label for="estado">habilitar</label>    
-                                                            <input class="form-check-input" type="checkbox" id="estadoInvalido" name="estado"  checked="" disabled="">>
+                                                            <label for="estado">Habilitar</label>    
+                                                            <input class="form-check-input" type="checkbox" id="estadoInvalido" name="estado"  checked="" disabled="">
                                                             <% } else { %>
                                                             <input class="form-check-input" type="checkbox" id="estadoValido" name="estado">
                                                             <label for="estado">Habilitar</label>
@@ -81,7 +85,7 @@
                                                     </div>
 
                                                     <div class="mt-4 mb-0 mx-auto">
-                                                        <button class="btn btn-primary btn-user" type="submit" style="background-color: red; width: 100%">
+                                                        <button class="btn btn-dark btn-user" type="submit" style="width: 100%">
                                                             Guardar
                                                         </button>
 
@@ -90,7 +94,7 @@
                                                     </form>
                                                     <div class="mt-4 mb-0">
                                                         <form action="../SvUsuarios" method="GET">
-                                                            <button class="btn btn-primary btn-user btn-block" type="submit" style="width: 100%">
+                                                            <button class="btn btn-dark btn-user btn-block" type="submit" style="width: 100%">
                                                                 Regresar
                                                             </button>
                                                         </form>
