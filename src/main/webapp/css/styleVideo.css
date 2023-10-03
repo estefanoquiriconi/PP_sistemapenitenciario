@@ -1,0 +1,5 @@
+@media (max-width: 768px) {
+  .embed-responsive-item {
+    width: 100%; /* Establece el ancho completo en dispositivos móviles */
+  }
+}

@@ -16,6 +16,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="css/stylesPages.css" rel="stylesheet" type="text/css"/>
+        <link href="css/styleVideo.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=DM+Serif+Display:ital@0;1&family=Inclusive+Sans&family=Montserrat:wght@500&family=Roboto+Slab&display=swap" rel="stylesheet">
     </head>
@@ -87,7 +88,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="pages_establecimientos/altaEstablecimientos.jsp">Alta</a>
 
-                                    
+
                                     <a href="SvEstablecimientos" class="nav-link" >Listado</a>
 
                                 </nav>
@@ -130,7 +131,7 @@
                                     <a class="nav-link" href="SvCondenasList">Listado</a>
                                 </nav>
                             </div>
-                            
+
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEstadisticas" aria-expanded="false" aria-controls="collapseEstadisticas">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-simple"></i></div>
                                 Estadísticas
@@ -157,6 +158,26 @@
                         <h1 style="text-align: center; color: white">SERVICIO PENITENCIARIO</h1>
                         <h1 style="text-align: center;">SANTIAGO DEL ESTERO</h1>
                         <h5 style="text-align: center">Trabajamos para propiciar la inclusión social de las personas privadas de la libertad.</h5>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="ratio ratio-16x9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cNYsWeTHtpI?si=k5xVcStcfNt7zdbW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="ratio ratio-16x9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/KLX9hjp0y-8?si=kUeSdSq_aRHSDNTe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div> 
+                            </div>
+                        </div>
+
+
                     </center>
                 </main>
                 <%@include file="components/footer.jsp"%>

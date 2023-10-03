@@ -101,7 +101,7 @@
                                     <%
                                         if (usuario != null && (usuario.getRol() != 4)) {
                                     %>
-                                    <a class="nav-link" href="#">Alta</a>
+                                    <a class="nav-link" href="../pages_internos/altaInternos.jsp">Alta</a>
                                     <% }%>
                                     <a class="nav-link" href="../SvInternos">Listado</a>
                                 </nav>
