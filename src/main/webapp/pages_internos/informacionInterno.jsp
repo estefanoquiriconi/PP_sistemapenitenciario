@@ -47,6 +47,7 @@
                                             <h5><strong>Estado Civil: </strong><%=interno.getEstadoCivil() %></h5>
                                             <h5><strong>Sexo: </strong><%=interno.getSexo()%></h5>
                                             <h5><strong>Establecimiento: </strong><%=interno.getIdEstablecimiento().getNombre()%></h5>
+                                            <h5><strong>Fecha de Ingreso: </strong><%=sdf.format(interno.getFechaIngreso())%></h5>
                                         </div>
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">

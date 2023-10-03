@@ -157,7 +157,7 @@
                                     <thead>
                                         <tr>
                                             <th>Código</th>
-                                            <th>Iterno</th>
+                                            <th>Interno</th>
                                             <th>Delito</th>
                                             <th>Juez</th>
                                             <th>Detención</th>
@@ -172,7 +172,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>Código</th>
-                                            <th>Iterno</th>
+                                            <th>Interno</th>
                                             <th>Delito</th>
                                             <th>Juez</th>
                                             <th>Detención</th>

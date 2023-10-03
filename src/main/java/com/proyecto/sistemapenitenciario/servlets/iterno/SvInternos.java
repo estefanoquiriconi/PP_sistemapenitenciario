@@ -97,8 +97,8 @@ if (resultadoValidacion){
     }
 
     private String obtenerLegajo(Interno interno) {
-        return interno.getApellido().charAt(0) + interno.getNombre().charAt(0)+ "/"
-                + interno.getNumDoc().substring(interno.getNumDoc().length() - 3, interno.getNumDoc().length()) + "/"
+        return interno.getApellido().charAt(0) + "" + interno.getNombre().charAt(0)+ ""
+                + interno.getNumDoc().substring(interno.getNumDoc().length() - 3, interno.getNumDoc().length()) + ""
                 + interno.getIdEstablecimiento().getId_establecimiento();
     }
 

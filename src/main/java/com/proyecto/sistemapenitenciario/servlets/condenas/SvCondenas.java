@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Random;
 
 @WebServlet(name = "SvCondenas", urlPatterns = {"/SvCondenas"})
 public class SvCondenas extends HttpServlet {
@@ -73,7 +74,9 @@ public class SvCondenas extends HttpServlet {
         calendar.add(Calendar.DAY_OF_YEAR, cantDias);
         Date fechaFin = calendar.getTime();
         
-        String codCondena = "COD" + "-" + internoCondena.getApellido().charAt(0) + internoCondena.getNombre().charAt(0) + "-" + strFecInicio.charAt(2) + strFecInicio.charAt(3);
+        Random random = new Random();
+        int num = random.nextInt(9000) + 1000;
+        String codCondena =  num + "" + internoCondena.getApellido().charAt(0) + internoCondena.getNombre().charAt(0) + "" + strFecInicio.charAt(2) + strFecInicio.charAt(3);
 
         Condena condena = new Condena();
         condena.setJuez(juez);

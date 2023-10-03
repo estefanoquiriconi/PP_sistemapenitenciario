@@ -157,9 +157,10 @@
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <select id="profesion" name="profesion"  class="mi-selector form-select "  >
                                                             <option  disabled="" selected="">Seleccione una Profesion</option>
-                                                            <option value="1">Medico</option>
-                                                            <option value="2">Arquitecto</option>
-                                                            <option value="3">Cocinero</option>
+                                                            <option value="Ninguna">Ninguna</option>
+                                                            <option value="Médico">Medico</option>
+                                                            <option value="Arquitecto">Arquitecto</option>
+                                                            <option value="Cocinero">Cocinero</option>
                                                         </select>
 
                                                     </div>
@@ -190,9 +191,9 @@
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <select id="estCivil" name="estCivil"  class="mi-selector form-select "  >
                                                             <option  disabled="" selected="">Estado Civil</option>
-                                                            <option value="1">Soltero</option>
-                                                            <option value="2">Casado</option>
-                                                            <option value="3">Viudo</option>
+                                                            <option value="Soltero">Soltero</option>
+                                                            <option value="Casado">Casado</option>
+                                                            <option value="Viudo">Viudo</option>
                                                         </select>
 
                                                     </div>
@@ -201,9 +202,8 @@
                                                     <div class="form-floating">
                                                         <select id="tipoDoc" name="tipoDoc"   class="mi-selector form-select "  >
                                                             <option disabled="" selected="">Tipo de Documento</option>
-                                                            <option value="1">DNI</option>
-                                                            <option value="2">Pasaporte</option>
-                                                            <option value="3">Licencia de Conducir</option>
+                                                            <option value="DNI">DNI</option>
+                                                            <option value="Pasaporte">Pasaporte</option>
                                                         </select>
                                                     </div>
                                                 </div>
