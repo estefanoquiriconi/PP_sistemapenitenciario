@@ -199,6 +199,7 @@
                                             <td>
                                                 <%if (est.isEstado()) {%>
                                                 <form name="eliminar" action="../SvEliminarEstablecimiento" method="GET">
+                                               
                                                     <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: red; margin-right: 5px; "> 
                                                         <i class="fas fa-trash-alt"></i> Eliminar
                                                     </button>

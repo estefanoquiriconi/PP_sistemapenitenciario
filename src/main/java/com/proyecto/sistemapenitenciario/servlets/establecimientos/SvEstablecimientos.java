@@ -28,6 +28,7 @@ public class SvEstablecimientos extends HttpServlet {
         List<Establecimiento> listaEstablecimientos = new ArrayList<>();
         listaEstablecimientos = control.traerEstablecimientos();
 
+
         HttpSession misesion = request.getSession();
         misesion.setAttribute("listaEstablecimientos", listaEstablecimientos);
 
@@ -38,6 +39,7 @@ public class SvEstablecimientos extends HttpServlet {
         } else {
             response.sendRedirect("pages_establecimientos/mostrarEstablecimientos.jsp");
         }
+
 
     }
 

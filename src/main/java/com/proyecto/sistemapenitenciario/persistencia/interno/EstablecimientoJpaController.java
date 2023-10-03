@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.proyecto.sistemapenitenciario.persistencia.interno;
 
 import com.proyecto.sistemapenitenciario.logica.establecimiento.Establecimiento;
@@ -12,10 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
- * @author Estéfano
+ * @author Administrador
  */
 public class EstablecimientoJpaController implements Serializable {
 
@@ -26,6 +31,10 @@ public class EstablecimientoJpaController implements Serializable {
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+
+    public EstablecimientoJpaController() {
+        emf = Persistence.createEntityManagerFactory("sistemapenitenciarioPU");
     }
 
     public void create(Establecimiento establecimiento) {
@@ -181,5 +190,5 @@ public class EstablecimientoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

@@ -26,108 +26,190 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="../css/stylesPages.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
     </head>
 
     <body class="bg-dark">
+            <%
+                response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                Usuario usuario = (Usuario) request.getSession().getAttribute("usuSession");
+                if (usuario == null) {
+                    response.sendRedirect("../sinLogin.jsp");
+                }
+            %>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
+
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Alta Internos</h3></div>
                                     <div class="card-body" style="text-align: center">
-                                        <form id="formularioAlta" action="../SvUsuarios" method="POST" >
+
+                                        <form id="formularioAlta" action="../SvInternos" method="POST" onsubmit="return validarFormulario()" >
                                             <% List<Establecimiento> establecimientos = (List<Establecimiento>) request.getSession().getAttribute("listaEstablecimientos");
                                             %>
-                                            <div class="col-md-6 mx-auto">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre" />
-                                                    <label for="nombre">Nombre</label>
-                                                    <div id="error-messageNombre" class="alert alert-danger" style="display: none;"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mx-auto">
-                                                <div class="mt-4 mb-0">
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="apellido" name="apellido" type="text" placeholder="Apellido" />
-                                                        <label for="apellido">Apellido</label>
-                                                        <div id="error-messageApellido" class="alert alert-danger" style="display: none;"></div>
+                                                        <input class="form-control" id="dni" name="dni" type="text" placeholder="DNI"  />
+                                                        <label for="dni">DNI</label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre" />
+                                                        <label for="nombre">Nombre</label>
+
                                                     </div>
                                                 </div>
                                             </div>
-                                            <br>
-
-                                            <div class="col-md-6 mx-auto">
-                                                <div class="form-floating mb-3 mb-md-0">
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="apellido" name="apellido" type="text" placeholder="Apellido" />
+                                                        <label for="apellido">Apellido</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
                                                     <div class="form-floating">
                                                         <input class="form-control" id="apodo" name="apodo" type="text" placeholder="Apodo" />
                                                         <label for="apodo">Apodo</label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-md-6 mx-lg-6">
-                                                    <div style="padding-left:30%;">
-                                                        <p >Sexo:</p>
-                                                        <input class="form-check-input" type="radio" name="sexo" id="checkFemenino" value="femenino">
-                                                        <label class="form-check-label" for="checkFemenino">Femenino</label>
-
-                                                        <br>
-                                                        <input class="form-check-input" type="radio" name="sexo" id="checkMasculino" value="masculino">
-                                                        <label class="form-check-label" for="checkMasculino">Masculino</label>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="domicilio" name="domicilio" type="text" placeholder="Provincia de Nacimiento" />
+                                                        <label for="provincia">Domicilio</label>
 
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 mx-lg-6">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" id="dpto_nac" name="dpto_nac" type="text" placeholder="Provincia de Nacimiento" />
+                                                        <label for="provincia">Departamento de Nacimiento</label>
 
-                                                    <div class="form-group">
-                                                        <p style="padding-right: 60%;padding-top: 2%">Fecha de Nacimiento</p>
-                                                        <input  type="text" class="form-control" id="datepicker" name="datepicker" width="160">
 
                                                     </div>
                                                 </div>
                                             </div>
-
-
-                                            <br>
-                                            <div class="col-md-6 mx-auto">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <div class="form-floating">
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
                                                         <input class="form-control" id="provincia" name="provincia" type="text" placeholder="Provincia de Nacimiento" />
                                                         <label for="provincia">Provincia de Nacimiento</label>
+
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <br>
-                                            <div class="col-md-6 mx-auto">
-                                                <div class="form-floating mb-3 mb-md-0">
+                                                <div class="col-md-6">
                                                     <div class="form-floating">
                                                         <input class="form-control" id="nacionalidad" name="nacionalidad" type="text" placeholder="Nacionalidad" />
                                                         <label for="nacionalidad">Nacionalidad</label>
+
+
                                                     </div>
                                                 </div>
                                             </div>
-                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-4 ">
 
-                                            <%int i = 0;%>  
-                                            <div class="col-md-6 mx-auto">
-                                                <div class="mb-3 mb-md-0">
+                                                    <p >Sexo:</p>
+                                                    <input class="form-check-input" type="radio" name="sexo" id="checkFemenino" value="femenino">
+                                                    <label class="form-check-label" for="checkFemenino">Femenino</label>
 
-                                                    <select id="miSelect" name="miSelect" class="mi-selector form-select "  >
+                                                    <br>
+                                                    <input class="form-check-input" type="radio" name="sexo" id="checkMasculino" value="masculino">
+                                                    <label class="form-check-label" for="checkMasculino">Masculino</label>
 
-                                                        <option value="">Selecciona un Establecimiento</option>
-                                                        <%     for (Establecimiento est : establecimientos) {%>
-                                                        <option value="Opción <%=i%>"> <%=est.getNombre()%></option>
-                                                        <%
-                                                                i++;
-                                                            };
-                                                        %>
-                                                    </select>
+
+                                                </div>
+                                                <div class="col-md-4 ">
+
+                                                    <div class="form-group" style="padding-top:2% ;" >
+                                                        <p >Fecha Nacim.</p>
+
+
+                                                        <input  type="text" class="form-control" id="fechaNac" name="fechaNac" width="190">
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 "style="padding-top:1%  ;">
+
+                                                    <div class="form-group">
+                                                        <p >Fecha Ingreso</p>
+
+
+                                                        <input  type="text" class="form-control" id="fechaIngreso" name="fechaIngreso" width="190">
+
+
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <select id="profesion" name="profesion"  class="mi-selector form-select "  >
+                                                            <option  disabled="" selected="">Seleccione una Profesion</option>
+                                                            <option value="1">Medico</option>
+                                                            <option value="2">Arquitecto</option>
+                                                            <option value="3">Cocinero</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+
+                                                   
+
+
+                                                        <select id="establecimientos" name="establecimientos"  class="mi-selector form-select "  >
+
+                                                            <option  disabled="" selected="">Selecciona un Establecimiento</option>
+                                                            <%     for (Establecimiento est : establecimientos) {%>
+                                                            <option value="<%=est.getId_establecimiento()%>"> <%=est.getNombre()%></option>
+                                                            <%
+                                                                   
+                                                                };
+                                                            %>
+                                                        </select>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <select id="estCivil" name="estCivil"  class="mi-selector form-select "  >
+                                                            <option  disabled="" selected="">Estado Civil</option>
+                                                            <option value="1">Soltero</option>
+                                                            <option value="2">Casado</option>
+                                                            <option value="3">Viudo</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <select id="tipoDoc" name="tipoDoc"   class="mi-selector form-select "  >
+                                                            <option disabled="" selected="">Tipo de Documento</option>
+                                                            <option value="1">DNI</option>
+                                                            <option value="2">Pasaporte</option>
+                                                            <option value="3">Licencia de Conducir</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+                                            <br>
                                             <br>
                                             <div class="col-md-6 mx-auto">
                                                 <input type="hidden" id="resultadoValidacion" name="resultadoValidacion" value="" />
@@ -142,7 +224,10 @@
                                             </form>
 
                                         </div>
+
                                     </div>
+
+
 
                                 </div>
                             </div>
@@ -167,5 +252,9 @@
         <script src="../js/scripts.js"></script>
         <script src="../js/scripts.js"></script>
         <script src="JavaScript/Js_internos.js" type="text/javascript"></script>
+
+
+
+
     </body>
 </html>

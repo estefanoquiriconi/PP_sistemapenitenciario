@@ -15,6 +15,10 @@ public class ControladoraPersistenciaInterno {
     
     InternoJpaController intJpa = new InternoJpaController();
 
+    public void crearInterno(Interno interno){
+        intJpa.create(interno);
+    }
+    
     public List<Interno> traerInternos() {
         return intJpa.findInternoEntities();
     }
