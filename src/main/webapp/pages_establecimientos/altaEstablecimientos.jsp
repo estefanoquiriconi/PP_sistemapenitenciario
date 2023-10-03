@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Alta Establecimiento</title>
+        <title>Registrar Establecimiento</title>
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="js/validaciones.js" type="text/javascript"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -24,7 +24,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h2 class="text-center font-weight-light my-4">Alta Establecimiento</h2></div>
+                                    <div class="card-header"><h2 class="text-center font-weight-light my-4">Registrar Establecimiento</h2></div>
                                     <div class="card-body" style="text-align: center">
                                         <form action="../SvEstablecimientos" method="POST" onsubmit="return validarEstablecimiento()" style="align-items: center"> 
                                             <div class="col-md-6 mx-auto">

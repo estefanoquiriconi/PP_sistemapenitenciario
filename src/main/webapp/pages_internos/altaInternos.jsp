@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Alta Internos</title>
+        <title>Registrar Interno</title>
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link href="css_internos/Styles_Internos.css" rel="stylesheet" type="text/css"/>
@@ -30,13 +30,13 @@
     </head>
 
     <body class="bg-dark">
-            <%
-                response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-                Usuario usuario = (Usuario) request.getSession().getAttribute("usuSession");
-                if (usuario == null) {
-                    response.sendRedirect("../sinLogin.jsp");
-                }
-            %>
+        <%
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            Usuario usuario = (Usuario) request.getSession().getAttribute("usuSession");
+            if (usuario == null) {
+                response.sendRedirect("../sinLogin.jsp");
+            }
+        %>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -45,7 +45,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Alta Internos</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Registrar Interno</h3></div>
                                     <div class="card-body" style="text-align: center">
 
                                         <form id="formularioAlta" action="../SvInternos" method="POST" onsubmit="return validarFormulario()" >
@@ -119,7 +119,7 @@
                                             <div class="row">
                                                 <div class="col-md-4 ">
 
-                                                    <p >Sexo:</p>
+                                                    <p>Sexo:</p>
                                                     <input class="form-check-input" type="radio" name="sexo" id="checkFemenino" value="femenino">
                                                     <label class="form-check-label" for="checkFemenino">Femenino</label>
 
@@ -168,7 +168,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
 
-                                                   
+
 
 
                                                         <select id="establecimientos" name="establecimientos"  class="mi-selector form-select "  >
@@ -208,7 +208,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                              <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+                                            <div id="error-message" class="alert alert-danger" style="display: none;"></div>
                                             <br>
                                             <br>
                                             <div class="col-md-6 mx-auto">
