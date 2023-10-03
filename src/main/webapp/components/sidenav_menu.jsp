@@ -8,7 +8,6 @@
                 <%
                     if (usuario != null && usuario.getRol() == 1) {
                 %>
-
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                     Usuarios
@@ -69,7 +68,9 @@
                         <a class="nav-link" href="../SvCondenasList">Listado</a>
                     </nav>
                 </div>
-
+                <%
+                    if (usuario.getRol() != 4 && usuario.getRol() != 3) {
+                %>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEstadisticas" aria-expanded="false" aria-controls="collapseEstadisticas">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-simple"></i></div>
                     Estadísticas
@@ -80,6 +81,7 @@
                         <a href="../SvEstadisticasDelitos" class="nav-link">Delitos</a>
                     </nav>
                 </div>
+                <% }%>
                 <% }%>
             </div>
         </div>
