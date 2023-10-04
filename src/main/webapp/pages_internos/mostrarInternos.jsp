@@ -47,7 +47,7 @@
                                             <th>Condena</th>
                                                 <% } else { %>
                                             <th>Información</th>
-                                                <%if (usuario.getRol() != 4) {%>
+                                                <%if (usuario.getRol() != 4 && usuario.getRol() != 3) {%>
                                             <th>Eliminar</th>
                                             <th>Editar</th>
                                                 <% }%>
@@ -65,7 +65,7 @@
                                             <th>Condena</th>
                                                 <% } else { %>
                                             <th>Información</th>
-                                                <%if (usuario.getRol() != 4) {%>
+                                                <%if (usuario.getRol() != 4 && usuario.getRol() != 3) {%>
                                             <th>Eliminar</th>
                                             <th>Editar</th>
                                                 <% }%>
@@ -102,7 +102,7 @@
                                                     <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
                                                 </form>
                                             </td>
-                                            <%if (usuario.getRol() != 4) {%>
+                                            <%if (usuario.getRol() != 4 && usuario.getRol() != 3) {%>
                                             <td>
                                                 <%if (interno.getEstado()) {%>
                                                 <form name="eliminar" action="#" method="GET">

@@ -1,5 +1,6 @@
 package com.proyecto.sistemapenitenciario.logica.condenas;
 
+import com.proyecto.sistemapenitenciario.logica.interno.Interno;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -8,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -43,10 +46,6 @@ public class CondenaHistorial implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "cod_condena")
     private String codCondena;
-    @Column(name = "fk_interno")
-    private Integer fkInterno;
-    @Column(name = "fk_delito")
-    private Integer fkDelito;
     @Size(max = 255)
     @Column(name = "juez")
     private String juez;
@@ -63,6 +62,12 @@ public class CondenaHistorial implements Serializable {
     private Date fechaDetencion;
     @Column(name = "estado")
     private Boolean estado;
+    @JoinColumn(name = "fk_interno", referencedColumnName = "id_interno")
+    @ManyToOne
+    private Interno fkInterno;
+    @JoinColumn(name = "fk_delito", referencedColumnName = "id_delito")
+    @ManyToOne
+    private Delito fkDelito;
 
     public CondenaHistorial() {
     }
@@ -92,19 +97,19 @@ public class CondenaHistorial implements Serializable {
         this.codCondena = codCondena;
     }
 
-    public Integer getFkInterno() {
+    public Interno getFkInterno() {
         return fkInterno;
     }
 
-    public void setFkInterno(Integer fkInterno) {
+    public void setFkInterno(Interno fkInterno) {
         this.fkInterno = fkInterno;
     }
 
-    public Integer getFkDelito() {
+    public Delito getFkDelito() {
         return fkDelito;
     }
 
-    public void setFkDelito(Integer fkDelito) {
+    public void setFkDelito(Delito fkDelito) {
         this.fkDelito = fkDelito;
     }
 

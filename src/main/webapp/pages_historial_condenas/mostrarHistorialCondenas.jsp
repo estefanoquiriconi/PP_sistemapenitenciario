@@ -1,4 +1,4 @@
-<%@page import="com.proyecto.sistemapenitenciario.logica.condenas.ReduccionCondenas"%>
+<%@page import="com.proyecto.sistemapenitenciario.logica.condenas.CondenaHistorial"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.proyecto.sistemapenitenciario.logica.condenas.Condena"%>
 <%@page import="com.proyecto.sistemapenitenciario.logica.usuario.Usuario"%>
@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Reducciones</title>
+        <title>Historial Condenas</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -29,7 +29,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Reducciones de Condenas</h1>
+                        <h1 class="mt-4">Historial Condenas</h1>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -41,33 +41,36 @@
                                         <tr>
                                             <th>Condena</th>
                                             <th>Interno</th>
-                                            <th>Fecha</th>
-                                            <th>Motivo</th>
-                                            <th>Tiempo</th>
+                                            <th>Documento</th>
+                                            <th>Inicio</th>
+                                            <th>Duración</th>
+                                            <th>Fin</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Condena</th>
                                             <th>Interno</th>
-                                            <th>Fecha</th>
-                                            <th>Motivo</th>
-                                            <th>Tiempo</th>
+                                            <th>Documento</th>
+                                            <th>Inicio</th>
+                                            <th>Duración</th>
+                                            <th>Fin</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <%
                                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                                            List<ReduccionCondenas> listaReducciones = (List) request.getSession().getAttribute("listaReducciones");
-                                            if (listaReducciones != null) {
-                                                for (ReduccionCondenas reduccion : listaReducciones) {
+                                            List<CondenaHistorial> listaHistorialCondena = (List) request.getSession().getAttribute("listaHistorialCondena");
+                                            if (listaHistorialCondena != null) {
+                                                for (CondenaHistorial historial : listaHistorialCondena) {
                                         %>
                                         <tr>
-                                            <td><%=reduccion.getFkCondena().getCodCondena()%></td>
-                                            <td><%=reduccion.getFkCondena().getFkInterno().getApellido() + " " + reduccion.getFkCondena().getFkInterno().getNombre()%></td>
-                                            <td><%=sdf.format(reduccion.getFechaReduccion())%></td>
-                                            <td><%=reduccion.getMotivoReduccion()%></td>
-                                            <td><%=reduccion.getTiempoDias()%></td>
+                                            <td><%=historial.getCodCondena()%></td>
+                                            <td><%=historial.getFkInterno().getApellido() + " " + historial.getFkInterno().getNombre()%></td>
+                                            <td><%=historial.getFkInterno().getNumDoc() %></td>
+                                            <td><%=sdf.format(historial.getFechaInicio())%></td>
+                                            <td><%=historial.getDuracionDias()%></td>
+                                            <td><%=sdf.format(historial.getFechaFin())%></td>
                                         </tr>
                                         <%
                                             }

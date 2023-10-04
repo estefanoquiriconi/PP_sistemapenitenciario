@@ -27,7 +27,7 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h2 class="text-center font-weight-light my-4">Registrar Reducción</h2></div>
                                     <div class="card-body" style="text-align: center">
-                                        <form action="../SvCargarReduccion" method="POST" style="align-items: center">
+                                        <form action="../SvCargarReduccion" method="POST" style="align-items: center" onsubmit="return validarFormulario()">
                                             <div class="form-floating mb-6 mx-auto">
                                                 <h5><strong>Condena: </strong><%=condenaReduc.getCodCondena()%></h5>
                                                 <h5><strong>Apellido: </strong><%=condenaReduc.getFkInterno().getApellido() %></h5>
@@ -55,7 +55,7 @@
                                             <br>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating">
-                                                    <input class="form-control" name="tiempoDias" id="tiempoDias" type="number" placeholder="Tiempo en días" />
+                                                    <input class="form-control" name="tiempoDias" id="tiempoDias" type="number" placeholder="Tiempo en días" max="<%=condenaReduc.getDuracionDias()%>" />
                                                     <label for="tiempoDias">Tiempo en días</label>
                                                 </div>
                                             </div>
@@ -94,6 +94,6 @@
             </footer>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/validacionesCondena.js" type="text/javascript"></script>
+        <script src="js/validarFormulario.js" type="text/javascript"></script>
     </body>
 </html>

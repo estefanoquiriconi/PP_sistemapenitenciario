@@ -70,7 +70,7 @@
                                             List<Condena> listaCondenas = (List) request.getSession().getAttribute("listaCondenas");
                                             if (listaCondenas != null) {
                                                 for (Condena condena : listaCondenas) {
-                                                    if (condena.getEstado()) {
+                                                    if (condena.getEstado() && condena.getDuracionDias() > 0) {
                                         %>
                                         <tr>
                                             <td><%=condena.getCodCondena()%></td>
