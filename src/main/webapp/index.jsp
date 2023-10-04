@@ -131,6 +131,17 @@
                                     <a class="nav-link" href="SvCondenasList">Listado</a>
                                 </nav>
                             </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReducciones" aria-expanded="false" aria-controls="collapseReducciones">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-award"></i></i></div>
+                                Reducciones
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseReducciones" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="SvReducciones">Cargar</a>
+                                    <a class="nav-link" href="SvReduccionesList">Listado</a>
+                                </nav>
+                            </div>
                             <%
                                 if (usuario.getRol() != 4 && usuario.getRol() != 3) {
                             %>
@@ -171,7 +182,6 @@
                                 <div class="ratio ratio-16x9">
                                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cNYsWeTHtpI?si=k5xVcStcfNt7zdbW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
-
                             </div>
                             <div class="col-md-6">
                                 <div class="ratio ratio-16x9">
@@ -179,8 +189,6 @@
                                 </div> 
                             </div>
                         </div>
-
-
                     </center>
                 </main>
                 <%@include file="components/footer.jsp"%>

@@ -79,17 +79,30 @@
         <script>
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
             Chart.defaults.global.defaultFontColor = '#292b2c';
+            const arrayDelitos = <%=arrayDelitos%>;
+            let totalDelitos = 0;
+            for (let i = 0; i < arrayDelitos.length; i++) {
+                totalDelitos += arrayDelitos[i];
+            }
+
+            let porcentajes = [];
+            for (let i = 0; i < arrayDelitos.length; i++) {
+                let porcentaje = (arrayDelitos[i] * 100) / totalDelitos;
+                let porcentajeFormateado = porcentaje.toFixed(2);
+                porcentajes.push(porcentajeFormateado);
+            }
+
 
             var ctx = document.getElementById("myPieChart");
             var myPieChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ["Robo a mano armada", "Homicidio", "Tráfico de drogas", "Apropiación indebida"],
+                    labels: ["Robo a mano armada " + porcentajes[0] + "%", "Homicidio " + porcentajes[1] + "%", "Tráfico de drogas " + porcentajes[2] + "%", "Apropiación indebida " + porcentajes[3] + "%"],
                     datasets: [{
-                            data: <%=arrayDelitos%>,
-                            backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
-                        }],
-                },
+                            data: arrayDelitos,
+                            backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745']
+                        }]
+                }
             });
         </script>
         <script src="js/calcularFechaActual.js" type="text/javascript"></script>

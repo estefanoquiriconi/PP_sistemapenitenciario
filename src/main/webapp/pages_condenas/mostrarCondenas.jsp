@@ -90,7 +90,7 @@
                                             <td>
                                                 <%if (condena.getEstado()) {%>
                                                 <form name="eliminar" action="../SvElimCondena" method="GET">
-                                                    <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: red; margin-right: 5px; "> 
+                                                    <button type="submit" class="btn btn-danger btn-user btn-block" style="margin-right: 5px; "> 
                                                         <i class="fas fa-trash-alt"></i> Eliminar
                                                     </button>
                                                     <input type="hidden" name="id" value="<%=condena.getIdCondena()%>">

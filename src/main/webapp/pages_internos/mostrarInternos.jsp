@@ -88,7 +88,7 @@
                                             <td>
                                                 <form name="info" action="../SvCondenas" method="GET">
                                                     <button type="submit" class="btn btn-dark btn-user btn-block" style="margin-left: 5px; " > 
-                                                        <i class="fa-solid fa-file-lines"></i> Cargar Condena
+                                                        <i class="fa-solid fa-file-lines"></i> Cargar 
                                                     </button>
                                                     <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
                                                 </form>
@@ -106,7 +106,7 @@
                                             <td>
                                                 <%if (interno.getEstado()) {%>
                                                 <form name="eliminar" action="#" method="GET">
-                                                    <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: red; margin-right: 5px; "> 
+                                                    <button type="submit" class="btn btn-danger btn-user btn-block" style="margin-right: 5px; "> 
                                                         <i class="fas fa-trash-alt"></i> Eliminar
                                                     </button>
                                                     <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">

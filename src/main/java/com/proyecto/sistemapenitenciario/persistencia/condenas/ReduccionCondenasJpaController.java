@@ -15,6 +15,7 @@ import com.proyecto.sistemapenitenciario.persistencia.condenas.exceptions.Nonexi
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -30,6 +31,11 @@ public class ReduccionCondenasJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+    
+    public ReduccionCondenasJpaController() {
+        emf = Persistence.createEntityManagerFactory("sistemapenitenciarioPU");
+    }
+
 
     public void create(ReduccionCondenas reduccionCondenas) {
         EntityManager em = null;
