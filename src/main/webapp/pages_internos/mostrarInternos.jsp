@@ -18,6 +18,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="../css/stylesPages.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="../css/styleButton.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="sb-nav-fixed">
         <%
@@ -148,11 +149,27 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Internos</h1>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <h1 class="mt-4">Internos</h1>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mt-4 mb-0" >
+                                    <form name="editar" action="filtrarFechas.jsp" method="GET">
+                                        <button type="submit" class="btn btn-primary btn-user btn-dark" style="margin-left: 5px; float: right; " > 
+                                            <i class="fas fa-pencil-alt"></i> Listar por Fechas
+                                        </button>
+                                        <input type="hidden" name="modificar" value=" ">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>                
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Listado
+                                Listado 
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -225,20 +242,29 @@
                                             <%if (usuario.getRol() != 4) {%>
                                             <td>
                                                 <%if (interno.getEstado()) {%>
-                                                <form name="eliminar" action="#" method="GET">
-                                                    <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: red; margin-right: 5px; "> 
-                                                        <i class="fas fa-trash-alt"></i> Eliminar
+                                                <form name="eliminar" action="../SvEliminarInternos" method="GET">
+                                                    <button type="submit" class="btn btn-primary btn-user btn-danger"  margin-right: 5px; "> 
+                                                        <i class="fas fa-trash-alt"></i> Desactivar
                                                     </button>
-                                                    <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
+                                                    <input type="hidden" name="interEliminar" value="<%=interno.getIdInterno()%>">
+                                                </form>
+                                                <% } else {%>
+                                                <form name="activar" action="../SvInternos" method="GET">
+                                                    <button type="submit" class="btn btn-primary btn-user btn-success"  margin-right: 5px; "> 
+                                                        <i class="fa-regular fa-circle-check"></i>  Activar
+                                                    </button>
+                                                    <input type="hidden" name="interEliminar" value="<%=interno.getIdInterno()%>">
                                                 </form>
                                                 <% }%>
+
+
                                             </td>
                                             <td>
-                                                <form name="editar" action="#" method="GET">
-                                                    <button type="submit" class="btn btn-primary btn-user btn-block" style="margin-left: 5px; " > 
+                                                <form name="editar" action="../SvMoodificarInterno" method="GET">
+                                                    <button type="submit" class="btn btn-primary btn-user btn-block " style="margin-left: 5px; " > 
                                                         <i class="fas fa-pencil-alt"></i> Editar
                                                     </button>
-                                                    <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
+                                                    <input type="hidden" name="modificar" value="<%=interno.getIdInterno()%>">
                                                 </form>
                                             </td>
                                             <% }%>
