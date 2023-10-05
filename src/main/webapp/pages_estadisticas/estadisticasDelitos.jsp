@@ -67,7 +67,7 @@
                             Estadísticas de delitos
                         </div>
                         <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
-                        <div class="card-footer small text-muted"><p>Actualizado el: <span id="fecha"></span></p><script></script></div>
+                        <div class="card-footer small text-muted"><p>Actualizado el: <span id="fecha"></span></p></div>
                     </div>
                 </main>
                 <%@include file="../components/footer.jsp"%>

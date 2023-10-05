@@ -1,4 +1,4 @@
-package com.proyecto.sistemapenitenciario.servlets.iterno;
+package com.proyecto.sistemapenitenciario.servlets.estadisticas;
 
 import com.proyecto.sistemapenitenciario.logica.establecimiento.ControladoraEstablecimiento;
 import com.proyecto.sistemapenitenciario.logica.establecimiento.Establecimiento;
@@ -13,44 +13,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "SvMoodificarInterno", urlPatterns = {"/SvMoodificarInterno"})
-public class SvMoodificarInterno extends HttpServlet {
-ControladoraInterno control= new ControladoraInterno();
-        ControladoraEstablecimiento controlEstablecimientos = new ControladoraEstablecimiento();
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+@WebServlet(name = "SvEstadisticasEstablecimientos", urlPatterns = {"/SvEstadisticasEstablecimientos"})
+public class SvEstadisticasEstablecimientos extends HttpServlet {
+    
+    ControladoraInterno controlInterno = new ControladoraInterno();
+    ControladoraEstablecimiento controlEstablecimiento = new ControladoraEstablecimiento();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-   
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Establecimiento> est = controlEstablecimientos.traerEstablecimientos();
-        int interId = Integer.parseInt(request.getParameter("modificar"));
-        Interno inter = control.traerInterno(interId);
+        request.setCharacterEncoding("UTF-8");
+        List<Interno> listaInternos = controlInterno.traerInternos();
+        List<Establecimiento> listaEstablecimiento = controlEstablecimiento.traerEstablecimientos();
+
         HttpSession misesion = request.getSession();
-        misesion.setAttribute("interModificar", inter);
-         misesion.setAttribute("listaEstablecimientos",est);
-        response.sendRedirect("Pages_Usuarios/modificarInternos.jsp");
+        misesion.setAttribute("listaInternosEstadisticas", listaInternos);
+        misesion.setAttribute("listaEstablecimientosEstadisticas", listaEstablecimiento);
+
+        response.sendRedirect("pages_estadisticas/estadisticasEstablecimientos.jsp");
     }
-    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
 
     @Override
     public String getServletInfo() {

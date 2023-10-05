@@ -98,6 +98,8 @@
                 <div class="collapse" id="collapseEstadisticas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a href="../SvEstadisticasDelitos" class="nav-link">Delitos</a>
+                        <a href="#" class="nav-link">Condenas</a>
+                        <a href="../SvEstadisticasEstablecimientos" class="nav-link">Establecimientos</a>
                     </nav>
                 </div>
                 <% }%>
