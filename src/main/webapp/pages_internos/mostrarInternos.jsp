@@ -32,18 +32,20 @@
             <%@include file="../components/sidenav_menu.jsp"%>
             <div id="layoutSidenav_content">
                 <main>
-                    <%
-                        
+                    <% 
+                       
                         String fechaInicio = (String) request.getSession().getAttribute("fechaInicio");
-                       String fechaFin = (String) request.getSession().getAttribute("fechaFin");
-                     
+                        String fechaFin = (String) request.getSession().getAttribute("fechaFin");
+
                     %>
                     <div class="container-fluid px-4">
 
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <h1 class="mt-4">Internos </h1>
-                                 <%if (fechaInicio != null) {%><p>Salidas periodo desde: <%=fechaInicio%> hasta: <%=fechaFin%> </p><%}%>
+                               
+                                <%if (fechaInicio != " "&&fechaInicio!=null) {%><p>Salidas periodo desde: <%=fechaInicio%> hasta: <%=fechaFin%> </p>}%>
+                              <%request.getSession().removeAttribute("fechaInicio"); %>
                             </div>
 
                             <div class="col-md-6">
@@ -75,7 +77,7 @@
                                             <th>Condena</th>
                                                 <% } else { %>
                                             <th>Información</th>
-                                                <%if (usuario.getRol() != 4) {%>
+                                                <%if (usuario.getRol() != 4 && usuario.getRol() != 3) {%>
                                             <th>Eliminar</th>
                                             <th>Editar</th>
                                                 <% }%>
@@ -93,7 +95,7 @@
                                             <th>Condena</th>
                                                 <% } else { %>
                                             <th>Información</th>
-                                                <%if (usuario.getRol() != 4) {%>
+                                                <%if (usuario.getRol() != 4 && usuario.getRol() != 3) {%>
                                             <th>Eliminar</th>
                                             <th>Editar</th>
                                                 <% }%>
@@ -117,7 +119,7 @@
                                             <td>
                                                 <form name="info" action="../SvCondenas" method="GET">
                                                     <button type="submit" class="btn btn-dark btn-user btn-block" style="margin-left: 5px; " > 
-                                                        <i class="fa-solid fa-file-lines"></i> Cargar Condena
+                                                        <i class="fa-solid fa-file-lines"></i> Cargar 
                                                     </button>
                                                     <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
                                                 </form>
@@ -131,12 +133,14 @@
                                                     <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
                                                 </form>
                                             </td>
-                                            <%if (usuario.getRol() != 4) {%>
+                                            <%if (usuario.getRol() != 4 && usuario.getRol() != 3) {%>
                                             <td>
                                                 <%if (interno.getEstado()) {%>
+
                                                 <form name="eliminar" action="../SvEliminarInternos" method="GET">
                                                     <button type="submit" class="btn btn-primary btn-user btn-danger"  margin-right: 5px; "> 
                                                         <i class="fas fa-trash-alt"></i> Desactivar
+
                                                     </button>
                                                     <input type="hidden" name="interEliminar" value="<%=interno.getIdInterno()%>">
                                                 </form>

@@ -71,7 +71,7 @@ public class SvFiltraFechas extends HttpServlet {
         }
         misesion.setAttribute("fechaInicio", fechaInicio);
         misesion.setAttribute("fechaFin", fechaFin);
-     
+   misesion.setAttribute("mostrarFechas", true);
         misesion.setAttribute("listaInternos", listaFiltradaFechas);
 
         response.sendRedirect("pages_internos/mostrarInternos.jsp");

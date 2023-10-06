@@ -42,6 +42,7 @@ public class SvInternos extends HttpServlet {
         } else {
             misesion.setAttribute("cargaCondenaInterno", false);
         }
+         misesion.setAttribute("mostrarFechas", false);
         misesion.setAttribute("listaInternos", listaInternos);
         response.sendRedirect("pages_internos/mostrarInternos.jsp");
     }

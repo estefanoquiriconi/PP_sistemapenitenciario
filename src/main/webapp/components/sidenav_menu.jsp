@@ -51,9 +51,6 @@
                         <a class="nav-link" href="../SvInternos">Listado</a>
                     </nav>
                 </div>
-                <%
-                    if (usuario != null && (usuario.getRol() != 4)) {
-                %>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCondenas" aria-expanded="false" aria-controls="collapseCondenas">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-box-archive"></i></i></i></div>
                     Condenas
@@ -64,13 +61,35 @@
                         <form action="../SvInternos" method="GET" id="formAltaCondena">
                             <input type="hidden" id="altaCondena" name="altaCondena" value="1">
                         </form>
+                        <%
+                            if (usuario.getRol() != 4) {
+                        %>
                         <a href="#" class="nav-link" onclick="document.getElementById('formAltaCondena').submit(); return false;">Cargar</a>
                         <a class="nav-link" href="../SvCondenasList">Listado</a>
+                        <%
+                            if (usuario.getRol() != 3) {
+                        %>
+                        <a class="nav-link" href="../SvHistorialCondenas">Historial</a>
+                        <%}%>
+                        <% } else {  %>
+                        <a class="nav-link" href="../SvCondenasList">Listado</a>
+                        <%}%>
                     </nav>
                 </div>
                 <%
                     if (usuario.getRol() != 4 && usuario.getRol() != 3) {
                 %>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReducciones" aria-expanded="false" aria-controls="collapseReducciones">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-award"></i></i></div>
+                    Reducciones
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseReducciones" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="../SvReducciones">Cargar</a>
+                        <a class="nav-link" href="../SvReduccionesList">Listado</a>
+                    </nav>
+                </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEstadisticas" aria-expanded="false" aria-controls="collapseEstadisticas">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-simple"></i></div>
                     Estadísticas
@@ -79,9 +98,10 @@
                 <div class="collapse" id="collapseEstadisticas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a href="../SvEstadisticasDelitos" class="nav-link">Delitos</a>
+                        <a href="#" class="nav-link">Condenas</a>
+                        <a href="../SvEstadisticasEstablecimientos" class="nav-link">Establecimientos</a>
                     </nav>
                 </div>
-                <% }%>
                 <% }%>
             </div>
         </div>

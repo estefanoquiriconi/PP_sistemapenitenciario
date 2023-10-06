@@ -46,13 +46,8 @@
                                             <th>Inicio</th>
                                             <th>Duración</th>
                                             <th>Fin</th>
-                                                <%
-                                                    if (usuario.getRol() != 4 && usuario.getRol() != 3) {
-                                                %>
                                             <th>Estado</th>
-                                            <th>Eliminar</th>
-                                            <th>Editar</th>
-                                                <% } %>
+                                            <th>Acción</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -65,13 +60,8 @@
                                             <th>Inicio</th>
                                             <th>Duración</th>
                                             <th>Fin</th>
-                                                <%
-                                                    if (usuario.getRol() != 4 && usuario.getRol() != 3) {
-                                                %>
                                             <th>Estado</th>
-                                            <th>Eliminar</th>
-                                            <th>Editar</th>
-                                                <% } %>
+                                            <th>Acción</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -80,6 +70,7 @@
                                             List<Condena> listaCondenas = (List) request.getSession().getAttribute("listaCondenas");
                                             if (listaCondenas != null) {
                                                 for (Condena condena : listaCondenas) {
+                                                    if (condena.getEstado() && condena.getDuracionDias() > 0) {
                                         %>
                                         <tr>
                                             <td><%=condena.getCodCondena()%></td>
@@ -90,34 +81,22 @@
                                             <td><%=sdf.format(condena.getFechaInicio())%></td>
                                             <td><%=condena.getDuracionDias()%></td>
                                             <td><%=sdf.format(condena.getFechaFin())%></td>
-                                            <%
-                                                if (usuario.getRol() != 4 && usuario.getRol() != 3) {
-                                            %>
                                             <%if (condena.getEstado()) { %>
                                             <td><p style="color: blue">Activo</p></td>
                                             <% } else { %>
                                             <td><p style="color: red">Inactivo</p></td>
                                             <%}%>
                                             <td>
-                                                <%if (condena.getEstado()) {%>
-                                                <form name="eliminar" action="../SvElimCondena" method="GET">
-                                                    <button type="submit" class="btn btn-danger btn-user btn-block" style="margin-right: 5px; "> 
-                                                        <i class="fas fa-trash-alt"></i> Eliminar
-                                                    </button>
-                                                    <input type="hidden" name="id" value="<%=condena.getIdCondena()%>">
-                                                </form>
-                                                <% }%>
-                                            </td>
-                                            <td>
-                                                <form name="editar" action="../SvEditCondena" method="GET">
-                                                    <button type="submit" class="btn btn-primary btn-user btn-block" style="margin-left: 5px; " > 
-                                                        <i class="fas fa-pencil-alt"></i> Editar
+
+                                                <form name="reducir" action="../SvReducciones" method="POST">
+                                                    <button type="submit" class="btn btn-dark btn-user btn-block" style="margin-right: 5px; "> 
+                                                        <i class="fa-solid fa-award"></i> Reducir 
                                                     </button>
                                                     <input type="hidden" name="id" value="<%=condena.getIdCondena()%>">
                                                 </form>
                                             </td>
-                                            <% } %>
                                         </tr>
+                                        <% }%>
                                         <%
                                             }
                                         } else {
