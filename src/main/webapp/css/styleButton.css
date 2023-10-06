@@ -1,0 +1,14 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 4 oct. 2023, 08:44:17
+    Author     : Administrador
+*/
+
+.buttonWidth {
+    width: 200px; /* Ajusta el ancho deseado */
+    height: 40px; /* Ajusta la altura deseada */
+     margin: 5px; 
+}

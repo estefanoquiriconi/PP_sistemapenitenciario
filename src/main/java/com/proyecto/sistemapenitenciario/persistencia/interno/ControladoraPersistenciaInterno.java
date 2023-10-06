@@ -18,12 +18,19 @@ public class ControladoraPersistenciaInterno {
     public void crearInterno(Interno interno){
         intJpa.create(interno);
     }
-    
+    public void editInterno(Interno interno) throws Exception{
+        intJpa.edit(interno);
+    }
     public List<Interno> traerInternos() {
         return intJpa.findInternoEntities();
     }
 
     public Interno traerInterno(Integer id) {
         return intJpa.findInterno(id);
+    }
+    public void eliminarInterno(Interno interno) throws Exception{
+        interno.setEstado(false);
+        intJpa.edit(interno);
+        
     }
 }

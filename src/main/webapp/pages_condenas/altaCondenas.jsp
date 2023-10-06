@@ -1,4 +1,4 @@
-<%@page import="com.proyecto.sistemapenitenciario.logica.interno.Interno"%>
+H<%@page import="com.proyecto.sistemapenitenciario.logica.interno.Interno"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">

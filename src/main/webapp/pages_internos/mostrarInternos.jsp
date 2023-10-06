@@ -1,3 +1,6 @@
+<%@page import="java.util.Date"%>
+
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.proyecto.sistemapenitenciario.logica.interno.Interno"%>
 <%@page import="java.util.List"%>
 <%@page import="com.proyecto.sistemapenitenciario.logica.usuario.Usuario"%>
@@ -5,6 +8,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
+
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -18,6 +22,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="../css/stylesPages.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="../css/styleButton.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="sb-nav-fixed">
         <%@include file="../components/controlSession.jsp"%>
@@ -27,12 +32,37 @@
             <%@include file="../components/sidenav_menu.jsp"%>
             <div id="layoutSidenav_content">
                 <main>
+                    <% 
+                       
+                        String fechaInicio = (String) request.getSession().getAttribute("fechaInicio");
+                        String fechaFin = (String) request.getSession().getAttribute("fechaFin");
+
+                    %>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Internos</h1>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <h1 class="mt-4">Internos </h1>
+                               
+                                <%if (fechaInicio != " "&&fechaInicio!=null) {%><p>Salidas periodo desde: <%=fechaInicio%> hasta: <%=fechaFin%> </p><%}%>
+                              <%request.getSession().removeAttribute("fechaInicio"); %>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mt-4 mb-0" >
+                                    <form name="editar" action="filtrarFechas.jsp" method="GET">
+                                        <button type="submit" class="btn btn-primary btn-user btn-dark" style="margin-left: 5px; float: right; " > 
+                                            <i class="fas fa-pencil-alt"></i> Listar por Fechas
+                                        </button>
+                                        <input type="hidden" name="modificar" value=" ">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>                
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Listado
+                                Listado 
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -77,6 +107,7 @@
                                             List<Interno> listaInternos = (List) request.getSession().getAttribute("listaInternos");
                                             if (listaInternos != null) {
                                                 for (Interno interno : listaInternos) {
+                                                    if (interno.getEstado()) {
                                         %>
                                         <tr>
                                             <td><%=interno.getLegajo()%></td>
@@ -105,26 +136,31 @@
                                             <%if (usuario.getRol() != 4 && usuario.getRol() != 3) {%>
                                             <td>
                                                 <%if (interno.getEstado()) {%>
-                                                <form name="eliminar" action="#" method="GET">
-                                                    <button type="submit" class="btn btn-danger btn-user btn-block" style="margin-right: 5px; "> 
-                                                        <i class="fas fa-trash-alt"></i> Eliminar
+
+                                                <form name="eliminar" action="../SvEliminarInternos" method="GET">
+                                                    <button type="submit" class="btn btn-primary btn-user btn-danger"  margin-right: 5px; "> 
+                                                        <i class="fas fa-trash-alt"></i> Desactivar
+
                                                     </button>
-                                                    <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
+                                                    <input type="hidden" name="interEliminar" value="<%=interno.getIdInterno()%>">
                                                 </form>
                                                 <% }%>
+
+
                                             </td>
                                             <td>
-                                                <form name="editar" action="#" method="GET">
-                                                    <button type="submit" class="btn btn-primary btn-user btn-block" style="margin-left: 5px; " > 
+                                                <form name="editar" action="../SvMoodificarInterno" method="GET">
+                                                    <button type="submit" class="btn btn-primary btn-user btn-block " style="margin-left: 5px; " > 
                                                         <i class="fas fa-pencil-alt"></i> Editar
                                                     </button>
-                                                    <input type="hidden" name="id" value="<%=interno.getIdInterno()%>">
+                                                    <input type="hidden" name="modificar" value="<%=interno.getIdInterno()%>">
                                                 </form>
                                             </td>
                                             <% }%>
                                             <% }%>
                                         </tr>
                                         <%
+                                                }
                                             }
                                         } else {
                                         %>
@@ -145,6 +181,6 @@
         <script src="../js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="../js/datatables-simple-demo.js"></script>
-        <% } %>
+        <% }%>
     </body>
 </html>

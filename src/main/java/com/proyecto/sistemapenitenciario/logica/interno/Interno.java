@@ -2,6 +2,8 @@ package com.proyecto.sistemapenitenciario.logica.interno;
 
 import com.proyecto.sistemapenitenciario.logica.establecimiento.Establecimiento;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -73,15 +75,16 @@ public class Interno implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
 
-    public Date getFechaIngreso() {
+  
+
+    public Interno() {
+    }
+      public Date getFechaIngreso() {
         return fechaIngreso;
     }
 
     public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
-
-    public Interno() {
+        this.fechaIngreso =fechaIngreso;
     }
 
     public Integer getIdInterno() {
@@ -153,6 +156,7 @@ public class Interno implements Serializable {
     }
 
     public void setPciaNac(String pciaNac) {
+        
         this.pciaNac = pciaNac;
     }
 
@@ -220,6 +224,7 @@ public class Interno implements Serializable {
         this.idEstablecimiento = idEstablecimiento;
     }
 
+     
     @Override
     public String toString() {
         return "Interno{" + "idInterno=" + idInterno + ", legajo=" + legajo + ", nombre=" + nombre + ", apellido=" + apellido + ", sexo=" + sexo + ", apodo=" + apodo + ", fechaNac=" + fechaNac + ", dptoNac=" + dptoNac + ", pciaNac=" + pciaNac + ", nacionalidad=" + nacionalidad + ", domicilio=" + domicilio + ", estadoCivil=" + estadoCivil + ", profesion=" + profesion + ", tipoDoc=" + tipoDoc + ", numDoc=" + numDoc + ", estado=" + estado + ", idEstablecimiento=" + idEstablecimiento + ", fechaIngreso=" + fechaIngreso + '}';

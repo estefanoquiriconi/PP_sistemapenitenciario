@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.proyecto.sistemapenitenciario.logica.establecimiento.Establecimiento"%>
 <%@page import="com.proyecto.sistemapenitenciario.logica.interno.Interno"%>
 
@@ -12,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Alta Internos</title>
+        <title>Modificar Internos</title>
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link href="css_internos/Styles_Internos.css" rel="stylesheet" type="text/css"/>
@@ -32,13 +33,13 @@
     </head>
 
     <body class="bg-dark">
-            <%
-                response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-                Usuario usuario = (Usuario) request.getSession().getAttribute("usuSession");
-                if (usuario == null) {
-                    response.sendRedirect("../sinLogin.jsp");
-                }
-            %>
+        <%
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            Usuario usuario = (Usuario) request.getSession().getAttribute("usuSession");
+            if (usuario == null) {
+                response.sendRedirect("../sinLogin.jsp");
+            }
+        %>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -47,12 +48,12 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Alta Internos</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Modificar Internos</h3></div>
                                     <div class="card-body" style="text-align: center">
 
-                                        <form id="formularioAlta" action="../SvInternos" method="POST" onsubmit="return validarFormulario()" >
+                                        <form id="formularioAlta" action="../SvMoodificarInterno" method="POST" onsubmit="return validarFormulario()" >
                                             <% Interno inter = (Interno) request.getSession().getAttribute("interModificar");
-                                            List<Establecimiento> establecimientos = (List<Establecimiento>) request.getSession().getAttribute("listaEstablecimientos");
+                                                List<Establecimiento> establecimientos = (List<Establecimiento>) request.getSession().getAttribute("listaEstablecimientos");
                                             %>
 
                                             <div class="row mb-3">
@@ -121,13 +122,13 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 ">
-                                                   
+
                                                     <p >Sexo:</p>
-                                                    <input class="form-check-input" type="radio" name="sexo" id="checkFemenino" value="femenino" <% if (inter.getSexo().equals("F")){%> checked=""<%}%>>
+                                                    <input class="form-check-input" type="radio" name="sexo" id="checkFemenino" value="femenino" <% if (inter.getSexo() == 'F') {%> checked=""<%}%>>
                                                     <label class="form-check-label" for="checkFemenino">Femenino</label>
 
                                                     <br>
-                                                    <input class="form-check-input" type="radio" name="sexo" id="checkMasculino" value="masculino" <% if (inter.getSexo().equals("M")){%> checked=""<%}%>>
+                                                    <input class="form-check-input" type="radio" name="sexo" id="checkMasculino" value="masculino" <% if (inter.getSexo() == 'M') {%> checked=""<%}%>>
                                                     <label class="form-check-label" for="checkMasculino">Masculino</label>
 
 
@@ -136,9 +137,11 @@
 
                                                     <div class="form-group" style="padding-top:2% ;" >
                                                         <p >Fecha Nacim.</p>
+                                                        <%SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                                            String fechaNacimiento = sdf.format(inter.getFechaNac());
+                                                        %>
 
-
-                                                        <input  type="text" class="form-control" id="fechaNac" name="fechaNac" width="190" value="<%=inter.getFechaNac()%>">
+                                                        <input  type="text" class="form-control" id="fechaNac" name="fechaNac" width="190" value="<%=fechaNacimiento%>">
 
 
                                                     </div>
@@ -147,9 +150,11 @@
 
                                                     <div class="form-group">
                                                         <p >Fecha Ingreso</p>
+                                                        <%
+                                                            String fechaIngreso = sdf.format(inter.getFechaIngreso());
+                                                        %>
 
-
-                                                        <input  type="text" class="form-control" id="fechaIngreso" name="fechaIngreso" width="190" value="<%=inter.getFechaIngreso()%>">
+                                                        <input  type="text" class="form-control" id="fechaIngreso" name="fechaIngreso" width="190" value="<%=fechaIngreso%>">
 
 
                                                     </div>
@@ -160,9 +165,9 @@
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <select id="profesion" name="profesion"  class="mi-selector form-select "  >
                                                             <option  disabled="" selected="">Seleccione una Profesion</option>
-                                                            <option value="1" <% if (inter.getProfesion().equals("Medico")){%> selected=""<%}%>>Medico</option>
-                                                            <option value="2"<% if (inter.getProfesion().equals("Arquitecto")){%> selected=""<%}%>>Arquitecto</option>
-                                                            <option value="3"<% if (inter.getProfesion().equals("Cocinero")){%> selected=""<%}%>>Cocinero</option>
+                                                            <option value="Medico" <% if (inter.getProfesion().equals("Medico")) {%> selected=""<%}%>>Medico</option>
+                                                            <option value="Arquitecto"<% if (inter.getProfesion().equals("Arquitecto")) {%> selected=""<%}%>>Arquitecto</option>
+                                                            <option value="Cocinero"<% if (inter.getProfesion().equals("Cocinero")) {%> selected=""<%}%>>Cocinero</option>
                                                         </select>
 
                                                     </div>
@@ -177,7 +182,7 @@
 
                                                             <option  disabled="" >Selecciona un Establecimiento</option>
                                                             <%     for (Establecimiento est : establecimientos) {%>
-                                                            <option value="<%=est.getId_establecimiento()%>"<% if (inter.getIdEstablecimiento().getId_establecimiento()==est.getId_establecimiento()){%> selected=""<%}%>> <%=est.getNombre()%></option>
+                                                            <option value="<%=est.getId_establecimiento()%>"<% if (inter.getIdEstablecimiento().getId_establecimiento() == est.getId_establecimiento()) {%> selected=""<%}%>> <%=est.getNombre()%></option>
                                                             <%
 
                                                                 };
@@ -192,10 +197,10 @@
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <select id="estCivil" name="estCivil"  class="mi-selector form-select "  >
-                                                            <option  disabled="" selected="">Estado Civil</option>
-                                                            <option value="1">Soltero</option>
-                                                            <option value="2">Casado</option>
-                                                            <option value="3">Viudo</option>
+                                                            <option  disabled="" >Estado Civil</option>
+                                                            <option value="Soltero" <% if (inter.getEstadoCivil().equals("Soltero")) {%>  selected="" <%}%>>Soltero</option>
+                                                            <option value="Casado" <% if (inter.getEstadoCivil().equals("Casado")) {%>  selected="" <%}%>>Casado</option>
+                                                            <option value="Viudo"<% if (inter.getEstadoCivil().equals("Viudo")) {%>  selected="" <%}%>>Viudo</option>
                                                         </select>
 
                                                     </div>
@@ -203,10 +208,10 @@
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
                                                         <select id="tipoDoc" name="tipoDoc"   class="mi-selector form-select "  >
-                                                            <option disabled="" selected="">Tipo de Documento</option>
-                                                            <option value="1">DNI</option>
-                                                            <option value="2">Pasaporte</option>
-                                                            <option value="3">Licencia de Conducir</option>
+                                                            <option disabled="" >Tipo de Documento</option>
+                                                            <option value="DNI"<% if (inter.getTipoDoc().equals("DNI")) {%>  selected="" <%}%>>DNI</option>
+                                                            <option value="Pasaporte"<% if (inter.getTipoDoc().equals("Pasaporte")) {%>  selected="" <%}%>>Pasaporte</option>
+
                                                         </select>
                                                     </div>
                                                 </div>

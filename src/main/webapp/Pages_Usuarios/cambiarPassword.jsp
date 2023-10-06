@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Editar Establecimiento</title>
+        <title>Cambiar Contraseña</title>
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="JavaScript/Validaciones.js" type="text/javascript"></script>
@@ -36,7 +36,7 @@
 
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating mb-3 mb-md-0">             
-                                                    <h5 id="usuario"> <strong><%=usuario.getNombre()%></strong> <h5> 
+                                                    <h5 id="usuario"><strong><%=usuario.getNombre()%></strong><h5> 
                                                             </div>
                                                             </div>
                                                             <br>
@@ -55,30 +55,38 @@
                                                                         <label for="PasswordConfirm">Confirmar contraseña</label><div id="error-messagePassConfirm" class="alert alert-danger" style="display: none;">
                                                                         </div>
                                                                     </div>
-                                                                    <input type="hidden" id="resultadoValidacion" name="resultadoValidacion" value="" />
-                                                                    <div class="mt-4 mb-0" >
-
-
-                                                                        <button class="btn btn-dark btn-user" id="cambiarPass" name="cambiarPass"  type="submit" style="width: 100%">
-                                                                            Cambiar Contraseña
-                                                                        </button>
-                                                                    </div>
-                                                                    </form>
-                                                                    <div class="mt-4 mb-0" >
-                                                                        <form action="../index.jsp" >
-                                                                            <button class="btn btn-dark btn-user btn-block"  type="submit" style="width: 100%">
-                                                                                Cancelar
-                                                                            </button>
-                                                                        </form>
-                                                                    </div>
-
-
                                                                 </div>
+                                                            </div>
+                                                            <input type="hidden" id="resultadoValidacion" name="resultadoValidacion" value="" />
+                                                            <div class="col-md-6 mx-auto">
+                                                                <div class="mt-4 mb-0" >
+                                                                    <button class="btn btn-dark btn-user" id="cambiarPass" name="cambiarPass"  type="submit" style="width: 100%">
+                                                                        Cambiar Contraseña
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            </form>
+                                                            <div class="col-md-6 mx-auto">
+                                                                <div class="mt-4 mb-0" >
+                                                                    <form action="../index.jsp" >
+                                                                        <button class="btn btn-dark btn-user btn-block"  type="submit" style="width: 100%">
+                                                                            Cancelar
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+
+
+
+
+                                                            </div>
+
                                                             </div>
                                                             </div>
                                                             </div>
                                                             </div>
                                                             </main>
+                                                            </div>
                                                             </div>
                                                             <br>
                                                             <br>
@@ -87,13 +95,13 @@
                                                                     <div class="container-fluid px-4">
                                                                         <div class="d-flex align-items-center justify-content-between small">
                                                                             <div class="text-muted">Copyright &copy; Quiriconi - Dominguez 2023</div>
-                                                                            <div>
-                                                                            </div>
+
                                                                         </div>
                                                                     </div>
                                                                 </footer>
                                                             </div>
-                                                            </div>
+
+
                                                             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
                                                             <script src="../js/scripts.js"></script>
                                                             </body>
