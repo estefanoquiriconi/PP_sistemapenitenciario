@@ -52,8 +52,8 @@
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
                                                 <form action="../SvEliminarInternos" method="POST" >
-                                                    <button class="btn btn-dark btn-user btn-block" type="submit" style="width: 80%">
-                                                        Eliminar
+                                                    <button class="btn btn-danger btn-user btn-block" type="submit" style="width: 80%">
+                                                        Desactivar
                                                     </button>
                                                 </form>
                                                 <br>

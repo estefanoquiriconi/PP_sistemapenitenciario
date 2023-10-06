@@ -50,6 +50,9 @@ public class SvInternos extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+          List<Interno> listaInternos = new ArrayList<>();
+        listaInternos = control.traerInternos();
+
         boolean resultadoValidacion = Boolean.parseBoolean(request.getParameter("resultadoValidacion"));
         Interno interno = new Interno();
         interno.setNumDoc(request.getParameter("dni"));
@@ -78,12 +81,18 @@ public class SvInternos extends HttpServlet {
         interno.setEstado(true);
         System.out.println(interno.getLegajo());
         if (resultadoValidacion) {
+            int idInterno=FuncionesInternos.ExisteInterno(listaInternos, interno);
+            if((idInterno==0)){
             control.crearInterno(interno);
-
+            
             response.sendRedirect("index.jsp");
-        } else {
+            }else{
+                request.getSession().setAttribute("idInternoExistente",idInterno);
+                 response.sendRedirect("pages_internos/ExisteInterno.jsp");
+            }} else {
             response.sendRedirect("pages_interno/altaInternos.jsp");
         }
+
     }
 
     @Override

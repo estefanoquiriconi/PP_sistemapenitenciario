@@ -29,39 +29,29 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Filtrar Fechas</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Filtrar Fin de Condena</h3></div>
                                     <div class="card-body" style="text-align: center">
-                                    
-                                        <form id="formularioActualizacionPass" name="formularioActualizacionPass" action="../SvFiltrarFechas" method="GET"  >  
 
-
+                                        <form id="formularioActualizacionPass" name="formularioActualizacionPass" action="../SvFiltraFechas" method="GET"  >  
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating mb-3 mb-md-0">             
-
                                                 </div>
                                             </div>
-                                            <br>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-group">
                                                     <p >Fecha Inicio</p>
-
-
                                                     <input  type="text" class="form-control" id="fechaIngreso" name="fechaInicio" width="auto">
-
-
                                                 </div>
                                             </div>
-                                            <br>
+
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-group">
                                                     <p >Fecha Fin</p>
-
-
                                                     <input  type="text" class="form-control" id="fechaNac" name="fechaFin" width="auto">
-
-
                                                 </div>
                                             </div>
+                                            <br>
+                                
                                             <input type="hidden" id="resultadoValidacion" name="resultadoValidacion" value="" />
                                             <div class="col-md-6 mx-auto">
                                                 <div class="mt-4 mb-0" >
@@ -71,14 +61,14 @@
                                                 </div>
                                             </div>
                                         </form>
-                                           <div class="col-md-6 mx-auto">
-                                        <div class="mt-4 mb-0" >
-                                            <form action="../index.jsp" >
-                                                <button class="btn btn-dark btn-user btn-block"  type="submit" style="width: 100%">
-                                                    Cancelar
-                                                </button>
-                                            </form>
-                                        </div>
+                                        <div class="col-md-6 mx-auto">
+                                            <div class="mt-4 mb-0" >
+                                                <form action="../index.jsp" >
+                                                    <button class="btn btn-dark btn-user btn-block"  type="submit" style="width: 100%">
+                                                        Cancelar
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
 
 
@@ -109,6 +99,6 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>
-          <script src="JavaScript/Js_internos.js" type="text/javascript"></script>
+        <script src="JavaScript/Js_internos.js" type="text/javascript"></script>
     </body>
 </html>

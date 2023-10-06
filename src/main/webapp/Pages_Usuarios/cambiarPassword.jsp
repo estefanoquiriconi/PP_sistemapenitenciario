@@ -66,12 +66,14 @@
                                                                 </div>
                                                             </div>
                                                             </form>
-                                                            <div class="mt-4 mb-0" >
-                                                                <form action="../index.jsp" >
-                                                                    <button class="btn btn-dark btn-user btn-block"  type="submit" style="width: 100%">
-                                                                        Cancelar
-                                                                    </button>
-                                                                </form>
+                                                            <div class="col-md-6 mx-auto">
+                                                                <div class="mt-4 mb-0" >
+                                                                    <form action="../index.jsp" >
+                                                                        <button class="btn btn-dark btn-user btn-block"  type="submit" style="width: 100%">
+                                                                            Cancelar
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
 
 

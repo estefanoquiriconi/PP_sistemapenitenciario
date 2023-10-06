@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "SvMoodificarInterno", urlPatterns = {"/SvMoodificarInterno"})
 public class SvMoodificarInterno extends HttpServlet {
-
+    
     ControladoraInterno control = new ControladoraInterno();
     ControladoraEstablecimiento controlEstablecimientos = new ControladoraEstablecimiento();
 
@@ -44,9 +44,9 @@ public class SvMoodificarInterno extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
     }
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -58,20 +58,20 @@ public class SvMoodificarInterno extends HttpServlet {
         misesion.setAttribute("listaEstablecimientos", est);
         response.sendRedirect("pages_internos/modificarInternos.jsp");
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         Interno interno = (Interno) request.getSession().getAttribute("interModificar");
         boolean resultadoValidacion = Boolean.parseBoolean(request.getParameter("resultadoValidacion"));
-
+        
         interno.setNumDoc(request.getParameter("dni"));
         interno.setNombre(request.getParameter("nombre"));
         interno.setApellido(request.getParameter("apellido"));
         interno.setApodo(request.getParameter("apodo"));
         interno.setSexo(Character.toUpperCase(request.getParameter("sexo").charAt(0)));
-
+        
         try {
             interno.setFechaNac(FuncionesInternos.parseDate(request.getParameter("fechaNac")));
             interno.setFechaIngreso(FuncionesInternos.parseDate(request.getParameter("fechaIngreso")));
@@ -87,24 +87,24 @@ public class SvMoodificarInterno extends HttpServlet {
         interno.setEstadoCivil(request.getParameter("estCivil"));
         Establecimiento est = controlEstablecimientos.traerEstablecimeinto(Integer.parseInt(request.getParameter("establecimientos")));
         interno.setIdEstablecimiento(est);
-        interno.setLegajo(FuncionesInternos.obtenerLegajo(interno));
-
+        interno.setEstado(true);
+        
         if (resultadoValidacion) {
             try {
                 control.modificarInterno(interno);
             } catch (Exception ex) {
                 Logger.getLogger(SvMoodificarInterno.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
             response.sendRedirect("index.jsp");
         } else {
             response.sendRedirect("pages_interno/modificarInternos.jsp");
         }
     }
-
+    
     @Override
     public String getServletInfo() {
         return "Short description";
     }
-
+    
 }
