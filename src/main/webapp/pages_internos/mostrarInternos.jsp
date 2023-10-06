@@ -44,7 +44,7 @@
                             <div class="col-md-6">
                                 <h1 class="mt-4">Internos </h1>
                                
-                                <%if (fechaInicio != " "&&fechaInicio!=null) {%><p>Salidas periodo desde: <%=fechaInicio%> hasta: <%=fechaFin%> </p>}%>
+                                <%if (fechaInicio != " "&&fechaInicio!=null) {%><p>Salidas periodo desde: <%=fechaInicio%> hasta: <%=fechaFin%> </p><%}%>
                               <%request.getSession().removeAttribute("fechaInicio"); %>
                             </div>
 

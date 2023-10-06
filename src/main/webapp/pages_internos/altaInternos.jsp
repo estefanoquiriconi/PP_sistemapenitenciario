@@ -14,7 +14,7 @@
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link href="css_internos/Styles_Internos.css" rel="stylesheet" type="text/css"/>
-      
+
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
@@ -55,16 +55,28 @@
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="dni" name="dni" type="text" placeholder="DNI"  />
-                                                        <label for="dni">DNI</label>
+                                                        <select id="tipoDoc" name="tipoDoc"   class="mi-selector form-select "  >
+                                                            <option disabled="" selected="">Tipo de Documento</option>
+                                                            <option value="DNI">DNI</option>
+                                                            <option value="Pasaporte">Pasaporte</option>
+                                                        </select>
+                                                        <select id="estCivil" name="estCivil"  class="mi-selector form-select "  >
+                                                            <option  disabled="" selected="">Estado Civil</option>
+                                                            <option value="Soltero">Soltero</option>
+                                                            <option value="Casado">Casado</option>
+                                                            <option value="Viudo">Viudo</option>
+                                                        </select>
 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre" />
-                                                        <label for="nombre">Nombre</label>
+                                                        <input class="form-control" id="dni" name="dni" type="text" placeholder="DNI"  />
+                                                        <label for="dni">Numero de Documento</label>
 
+                                                 
+
+                                                  
                                                     </div>
                                                 </div>
                                             </div>
@@ -73,28 +85,29 @@
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <input class="form-control" id="apellido" name="apellido" type="text" placeholder="Apellido" />
                                                         <label for="apellido">Apellido</label>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="apodo" name="apodo" type="text" placeholder="Apodo" />
-                                                        <label for="apodo">Apodo</label>
+                                                        <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre" />
+                                                        <label for="nombre">Nombre</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="apodo" name="apodo" type="text" placeholder="Apodo" />
+                                                        <label for="apodo">Apodo</label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
                                                         <input class="form-control" id="domicilio" name="domicilio" type="text" placeholder="Provincia de Nacimiento" />
                                                         <label for="provincia">Domicilio</label>
 
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating">
-                                                        <input class="form-control" id="dpto_nac" name="dpto_nac" type="text" placeholder="Provincia de Nacimiento" />
-                                                        <label for="provincia">Departamento de Nacimiento</label>
-
 
                                                     </div>
                                                 </div>
@@ -102,15 +115,15 @@
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="provincia" name="provincia" type="text" placeholder="Provincia de Nacimiento" />
-                                                        <label for="provincia">Provincia de Nacimiento</label>
+                                                        <input class="form-control" id="dpto_nac" name="dpto_nac" type="text" placeholder="Provincia de Nacimiento" />
+                                                        <label for="provincia">Departamento de Nacimiento</label>
 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="nacionalidad" name="nacionalidad" type="text" placeholder="Nacionalidad" />
-                                                        <label for="nacionalidad">Nacionalidad</label>
+                                                        <input class="form-control" id="provincia" name="provincia" type="text" placeholder="Provincia de Nacimiento" />
+                                                        <label for="provincia">Provincia de Nacimiento</label>
 
 
                                                     </div>
@@ -162,52 +175,35 @@
                                                             <option value="Arquitecto">Arquitecto</option>
                                                             <option value="Cocinero">Cocinero</option>
                                                         </select>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating">
-
-
-
-
                                                         <select id="establecimientos" name="establecimientos"  class="mi-selector form-select "  >
 
                                                             <option  disabled="" selected="">Selecciona un Establecimiento</option>
                                                             <%     for (Establecimiento est : establecimientos) {%>
                                                             <option value="<%=est.getId_establecimiento()%>"> <%=est.getNombre()%></option>
                                                             <%
-                                                                   
+
                                                                 };
                                                             %>
-                                                        </select>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <select id="estCivil" name="estCivil"  class="mi-selector form-select "  >
-                                                            <option  disabled="" selected="">Estado Civil</option>
-                                                            <option value="Soltero">Soltero</option>
-                                                            <option value="Casado">Casado</option>
-                                                            <option value="Viudo">Viudo</option>
                                                         </select>
 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <select id="tipoDoc" name="tipoDoc"   class="mi-selector form-select "  >
-                                                            <option disabled="" selected="">Tipo de Documento</option>
-                                                            <option value="DNI">DNI</option>
-                                                            <option value="Pasaporte">Pasaporte</option>
-                                                        </select>
+
+
+                                                        <input class="form-control" id="nacionalidad" name="nacionalidad" type="text" placeholder="Nacionalidad" />
+                                                        <label for="nacionalidad">Nacionalidad</label>
+
+
+
+
+
                                                     </div>
                                                 </div>
                                             </div>
+                                        
+                                           
                                             <div id="error-message" class="alert alert-danger" style="display: none;"></div>
                                             <br>
                                             <br>
