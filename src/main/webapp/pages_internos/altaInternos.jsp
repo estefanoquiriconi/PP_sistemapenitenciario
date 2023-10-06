@@ -160,7 +160,8 @@
                                                             <option value="Ninguna">Ninguna</option>
                                                             <option value="Médico">Medico</option>
                                                             <option value="Arquitecto">Arquitecto</option>
-                                                            <option value="Cocinero">Cocinero</option>
+                                                            <option value="Ingeniero">Ingeniero</option>
+                                                            <option value="Profesor">Profesor</option>
                                                         </select>
 
                                                     </div>
@@ -177,7 +178,7 @@
                                                             <%     for (Establecimiento est : establecimientos) {%>
                                                             <option value="<%=est.getId_establecimiento()%>"> <%=est.getNombre()%></option>
                                                             <%
-                                                                   
+
                                                                 };
                                                             %>
                                                         </select>
@@ -185,7 +186,7 @@
 
                                                     </div>
                                                 </div>
-                                            </div>
+                                                </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">

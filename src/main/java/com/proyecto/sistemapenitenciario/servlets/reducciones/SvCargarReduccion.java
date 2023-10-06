@@ -1,7 +1,9 @@
 package com.proyecto.sistemapenitenciario.servlets.reducciones;
 
 import com.proyecto.sistemapenitenciario.logica.condenas.Condena;
+import com.proyecto.sistemapenitenciario.logica.condenas.CondenaHistorial;
 import com.proyecto.sistemapenitenciario.logica.condenas.ControladoraCondena;
+import com.proyecto.sistemapenitenciario.logica.condenas.ControladoraCondenaHistorial;
 import com.proyecto.sistemapenitenciario.logica.condenas.ControladoraReduccion;
 import com.proyecto.sistemapenitenciario.logica.condenas.ReduccionCondenas;
 import java.io.IOException;
@@ -20,6 +22,7 @@ public class SvCargarReduccion extends HttpServlet {
     
     ControladoraReduccion controlReduccion = new ControladoraReduccion();
     ControladoraCondena controlCondena = new ControladoraCondena();
+    ControladoraCondenaHistorial controlHistorial = new ControladoraCondenaHistorial();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -70,6 +73,22 @@ public class SvCargarReduccion extends HttpServlet {
         
         controlCondena.editarCondena(condenaReduc);
         reduccion.setFkCondena(condenaReduc);
+        
+        /* GUARDAR LA CONDENA ACTUALIZADA EN EL HISTORIAL */
+        Condena condenaActualizada = controlCondena.traerCondena(idCondena);
+        CondenaHistorial condenaHistorial = new CondenaHistorial();
+        condenaHistorial.setCodCondena(condenaActualizada.getCodCondena());
+        condenaHistorial.setDuracionDias(condenaActualizada.getDuracionDias());
+        condenaHistorial.setEstado(condenaActualizada.getEstado());
+        condenaHistorial.setFechaDetencion(condenaActualizada.getFechaDetencion());
+        condenaHistorial.setFechaFin(condenaActualizada.getFechaFin());
+        condenaHistorial.setFechaInicio(condenaActualizada.getFechaInicio());
+        condenaHistorial.setFkInterno(condenaActualizada.getFkInterno());
+        condenaHistorial.setFkDelito(condenaActualizada.getFkDelito());
+        condenaHistorial.setJuez(condenaActualizada.getJuez());
+        
+        controlHistorial.cargarHistorial(condenaHistorial);
+        
         controlReduccion.cargarReduccion(reduccion);
         response.sendRedirect("index.jsp");
     }

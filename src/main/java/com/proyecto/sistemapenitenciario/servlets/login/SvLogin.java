@@ -1,8 +1,12 @@
 package com.proyecto.sistemapenitenciario.servlets.login;
 
+import com.proyecto.sistemapenitenciario.funciones.Hash;
 import com.proyecto.sistemapenitenciario.logica.usuario.ControladoraUsuario;
 import com.proyecto.sistemapenitenciario.logica.usuario.Usuario;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,9 +35,10 @@ public class SvLogin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        // if(request.getSession()!=null){
+        Hash hash = new Hash();
         request.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("nombre");
-        String password = request.getParameter("password");
+        String password = hash.generarHash(request.getParameter("password"));
         Usuario usuario = new Usuario();
         boolean validacion = false;
         boolean estadoUsuario = false;
