@@ -173,7 +173,8 @@
                                                             <option value="Ninguna">Ninguna</option>
                                                             <option value="Médico">Medico</option>
                                                             <option value="Arquitecto">Arquitecto</option>
-                                                            <option value="Cocinero">Cocinero</option>
+                                                            <option value="Ingeniero">Ingeniero</option>
+                                                            <option value="Profesor">Profesor</option>
                                                         </select>
                                                         <select id="establecimientos" name="establecimientos"  class="mi-selector form-select "  >
 
@@ -185,7 +186,6 @@
                                                                 };
                                                             %>
                                                         </select>
-
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">

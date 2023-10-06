@@ -4,10 +4,13 @@
  */
 package com.proyecto.sistemapenitenciario.servlets.usuario;
 
+import com.proyecto.sistemapenitenciario.funciones.Hash;
 import com.proyecto.sistemapenitenciario.logica.usuario.ControladoraUsuario;
 import com.proyecto.sistemapenitenciario.logica.usuario.Usuario;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,63 +19,66 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  *
  * @author Administrador
  */
 @WebServlet(name = "SvUsuarios", urlPatterns = {"/SvUsuarios"})
 public class SvUsuarios extends HttpServlet {
-    
-    ControladoraUsuario control = new ControladoraUsuario();
 
+    ControladoraUsuario control = new ControladoraUsuario();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-     
+
     }
 
-      @Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Usuario> listaUsuarios;
         listaUsuarios = control.traerUsuarios();
-        
-          HttpSession misesion = request.getSession();
-          misesion.setAttribute("listaUsuarios", listaUsuarios);
-          response.sendRedirect("Pages_Usuarios/mostrarUsuarios.jsp");
+
+        HttpSession misesion = request.getSession();
+        misesion.setAttribute("listaUsuarios", listaUsuarios);
+        response.sendRedirect("Pages_Usuarios/mostrarUsuarios.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           List<Usuario> listaUsuarios;
+        Hash hash = new Hash();
+        List<Usuario> listaUsuarios;
         listaUsuarios = control.traerUsuarios();
         request.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("nombre");
         String password = request.getParameter("password");
         int rol = Integer.parseInt(request.getParameter("rol"));
-        boolean resultadoValidacion= Boolean.parseBoolean(request.getParameter("resultadoValidacion"));
-       boolean existe=false;
+        boolean resultadoValidacion = Boolean.parseBoolean(request.getParameter("resultadoValidacion"));
+        boolean existe = false;
         for (Usuario user : listaUsuarios) {
-            if(user.getNombre().equals(nombre)){
-                existe= true;
+            if (user.getNombre().equals(nombre)) {
+                existe = true;
             }
         }
-        if(resultadoValidacion && !existe ){
-             Usuario usu = new Usuario();
-        usu.setNombre(nombre);
-        usu.setPassword(password);
-        usu.setRol(rol);
-        usu.setEstado(true); 
+        if (resultadoValidacion && !existe) {
+            Usuario usu = new Usuario();
+            usu.setNombre(nombre);
+            usu.setPassword(hash.generarHash(password));
+            usu.setRol(rol);
+            usu.setEstado(true);
             control.crearUsuario(usu);
-        response.sendRedirect("index.jsp");
-    }else{
-            if(existe){  response.sendRedirect("Pages_Usuarios/ExisteUsuario.jsp");}else{
-             response.sendRedirect("Pages_Usuarios/altaUsuarios.jsp");}
+            response.sendRedirect("index.jsp");
+        } else {
+            if (existe) {
+                response.sendRedirect("Pages_Usuarios/ExisteUsuario.jsp");
+            } else {
+                response.sendRedirect("Pages_Usuarios/altaUsuarios.jsp");
+            }
         }
     }
+
     @Override
     public String getServletInfo() {
         return "Short description";

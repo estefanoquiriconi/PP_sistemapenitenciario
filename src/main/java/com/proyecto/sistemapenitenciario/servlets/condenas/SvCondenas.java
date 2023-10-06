@@ -1,7 +1,9 @@
 package com.proyecto.sistemapenitenciario.servlets.condenas;
 
 import com.proyecto.sistemapenitenciario.logica.condenas.Condena;
+import com.proyecto.sistemapenitenciario.logica.condenas.CondenaHistorial;
 import com.proyecto.sistemapenitenciario.logica.condenas.ControladoraCondena;
+import com.proyecto.sistemapenitenciario.logica.condenas.ControladoraCondenaHistorial;
 import com.proyecto.sistemapenitenciario.logica.condenas.ControladoraDelito;
 import com.proyecto.sistemapenitenciario.logica.interno.ControladoraInterno;
 import com.proyecto.sistemapenitenciario.logica.interno.Interno;
@@ -24,6 +26,7 @@ public class SvCondenas extends HttpServlet {
     ControladoraInterno controlInterno = new ControladoraInterno();
     ControladoraDelito controlDelito = new ControladoraDelito();
     ControladoraCondena controlCondena = new ControladoraCondena();
+    ControladoraCondenaHistorial controlHistorial = new ControladoraCondenaHistorial();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -68,15 +71,15 @@ public class SvCondenas extends HttpServlet {
         int idDelito = Integer.parseInt(request.getParameter("delito"));
         int idInterno = Integer.parseInt(request.getParameter("idInterno"));
         Interno internoCondena = controlInterno.traerInterno(idInterno);
-        
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaInicio);
         calendar.add(Calendar.DAY_OF_YEAR, cantDias);
         Date fechaFin = calendar.getTime();
-        
+
         Random random = new Random();
         int num = random.nextInt(9000) + 1000;
-        String codCondena =  num + "" + internoCondena.getApellido().charAt(0) + internoCondena.getNombre().charAt(0) + "" + strFecInicio.charAt(2) + strFecInicio.charAt(3);
+        String codCondena = "" + internoCondena.getApellido().charAt(0) + internoCondena.getNombre().charAt(0) + "" + internoCondena.getIdInterno() + strFecInicio.charAt(2) + strFecInicio.charAt(3);
 
         Condena condena = new Condena();
         condena.setJuez(juez);
@@ -88,8 +91,20 @@ public class SvCondenas extends HttpServlet {
         condena.setFechaFin(fechaFin);
         condena.setEstado(true);
         condena.setCodCondena(codCondena);
-        
+
+        CondenaHistorial condenaHistorial = new CondenaHistorial();
+        condenaHistorial.setJuez(juez);
+        condenaHistorial.setCodCondena(codCondena);
+        condenaHistorial.setDuracionDias(cantDias);
+        condenaHistorial.setEstado(true);
+        condenaHistorial.setFechaDetencion(fechaDetencion);
+        condenaHistorial.setFechaFin(fechaFin);
+        condenaHistorial.setFechaInicio(fechaInicio);
+        condenaHistorial.setFkDelito(controlDelito.traerDelito(idDelito));
+        condenaHistorial.setFkInterno(internoCondena);
+
         controlCondena.cargarCondena(condena);
+        controlHistorial.cargarHistorial(condenaHistorial);
         response.sendRedirect("index.jsp");
     }
 
@@ -97,5 +112,5 @@ public class SvCondenas extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-
+    
 }

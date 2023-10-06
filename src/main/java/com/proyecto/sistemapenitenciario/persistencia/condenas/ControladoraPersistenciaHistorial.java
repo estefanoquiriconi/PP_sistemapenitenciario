@@ -11,4 +11,8 @@ public class ControladoraPersistenciaHistorial {
         return historialJpa.findCondenaHistorialEntities();
     }
 
+    public void cargarHistorial(CondenaHistorial condenaHistorial) {
+        historialJpa.create(condenaHistorial);
+    }
+
 }

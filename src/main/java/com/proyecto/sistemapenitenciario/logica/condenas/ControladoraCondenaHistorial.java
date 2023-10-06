@@ -11,5 +11,9 @@ public class ControladoraCondenaHistorial {
     public List<CondenaHistorial> traerHistorial() {
         return controlPersis.traerHistorial();
     }
+
+    public void cargarHistorial(CondenaHistorial condenaHistorial) {
+        controlPersis.cargarHistorial(condenaHistorial);
+    }
     
 }
