@@ -80,7 +80,7 @@
 
                                             <%if (usu.isEstado()) {%>
                                             <form  action="../SvUsuarioEliminar" method="GET">
-                                                <button type="submit" name="eliminar"  value="<%=usu.getId()%>" class="btn btn-danger btn-user btn-block" style="background-color: red; margin-right: 5px; "> 
+                                                <button type="submit" name="eliminar"  value="<%=usu.getId()%>" class="btn btn-danger btn-user btn-block" style="margin-right: 5px; "> 
                                                     <i class="fas fa-trash-alt"></i> Desactivar
                                                 </button>
 

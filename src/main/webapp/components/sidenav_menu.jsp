@@ -99,6 +99,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a href="../SvEstadisticasDelitos" class="nav-link">Delitos</a>
                         <a href="../SvEstadisticasEstablecimientos" class="nav-link">Establecimientos</a>
+                        <a href="../SvEstadisticasCondenas" class="nav-link">Condenas</a>
                     </nav>
                 </div>
                 <% }%>

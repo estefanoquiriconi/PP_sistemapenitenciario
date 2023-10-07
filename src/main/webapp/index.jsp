@@ -125,12 +125,12 @@
                                         <input type="hidden" id="altaCondena" name="altaCondena" value="1">
                                     </form>
                                     <%
-                                        if (usuario.getRol() != 4) {
+                                        if (usuario != null && usuario.getRol() != 4) {
                                     %>
                                     <a href="#" class="nav-link" onclick="document.getElementById('formAltaCondena').submit(); return false;">Cargar</a>
                                     <a class="nav-link" href="SvCondenasList">Listado</a>
                                     <%
-                                        if (usuario.getRol() != 3) {
+                                        if (usuario != null && usuario.getRol() != 3) {
                                     %>
                                     <a class="nav-link" href="SvHistorialCondenas">Historial</a>
                                     <%}%>
@@ -162,6 +162,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a href="SvEstadisticasDelitos" class="nav-link">Delitos</a>
                                     <a href="SvEstadisticasEstablecimientos" class="nav-link">Establecimientos</a>
+                                    <a href="SvEstadisticasCondenas" class="nav-link">Condenas</a>
                                 </nav>
                             </div>
                             <% }%>
@@ -170,6 +171,11 @@
                     <div class="sb-sidenav-footer">
                         <div class="small">Conectado como:</div>
                         <p> <%=request.getSession().getAttribute("usuSession")%> </p>
+                        <%
+                            if (usuario != null && usuario.getRol() == 1) {
+                        %>
+                        <a href="apidocs/index.html">Documentación</a>
+                        <%}%>
                     </div>
                 </nav>
             </div>

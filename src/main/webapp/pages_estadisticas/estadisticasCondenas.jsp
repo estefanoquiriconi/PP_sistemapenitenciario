@@ -1,3 +1,5 @@
+<%@page import="java.util.concurrent.TimeUnit"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.proyecto.sistemapenitenciario.logica.condenas.Condena"%>
 <%@page import="com.proyecto.sistemapenitenciario.logica.usuario.Usuario"%>
@@ -11,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Condenas</title>
+        <title>Estadísticas Condenas</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -38,86 +40,59 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Condena</th>
+                                            <th>Código</th>
                                             <th>Interno</th>
                                             <th>Delito</th>
-                                            <th>Juez</th>
-                                            <th>Detención</th>
                                             <th>Inicio</th>
                                             <th>Duración</th>
                                             <th>Fin</th>
-                                                <%
-                                                    if (usuario.getRol() != 4 && usuario.getRol() != 3) {
-                                                %>
-                                            <th>Estado</th>
-                                            <th>Eliminar</th>
-                                            <th>Editar</th>
-                                                <% } %>
+                                            <th>Porcentaje de pena cumplida</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Condena</th>
+                                            <th>Código</th>
                                             <th>Interno</th>
                                             <th>Delito</th>
-                                            <th>Juez</th>
-                                            <th>Detención</th>
                                             <th>Inicio</th>
                                             <th>Duración</th>
                                             <th>Fin</th>
-                                                <%
-                                                    if (usuario.getRol() != 4 && usuario.getRol() != 3) {
-                                                %>
-                                            <th>Estado</th>
-                                            <th>Eliminar</th>
-                                            <th>Editar</th>
-                                                <% } %>
+                                            <th>Porcentaje de pena cumplida</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <%
                                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                                            List<Condena> listaCondenas = (List) request.getSession().getAttribute("listaCondenas");
+                                            List<Condena> listaCondenas = (List) request.getSession().getAttribute("listaCondenasEstadisticas");
                                             if (listaCondenas != null) {
                                                 for (Condena condena : listaCondenas) {
+                                                    if(condena.getEstado()) {
+                                                    Date fechaInicio = condena.getFechaInicio();
+                                                    Date fechaFin = condena.getFechaFin();
+                                                    Date fechaActual = new Date();
+                                                    long diasTranscurridos = TimeUnit.DAYS.convert(fechaActual.getTime() - fechaInicio.getTime(), TimeUnit.MILLISECONDS);
+                                                    long diasTotalCondena = TimeUnit.DAYS.convert(fechaFin.getTime() - fechaInicio.getTime(), TimeUnit.MILLISECONDS);
+                                                    double porcentajePenaCumplida = (double) diasTranscurridos / diasTotalCondena * 100;
+                                                    if (porcentajePenaCumplida >= 100) {
+                                                        porcentajePenaCumplida = 100;
+                                                    } else if (porcentajePenaCumplida <= 0) {
+                                                        porcentajePenaCumplida = 0;
+                                                    }
                                         %>
                                         <tr>
                                             <td><%=condena.getCodCondena() + "" + condena.getIdCondena()%></td>
                                             <td><%=condena.getFkInterno().getApellido() + " " + condena.getFkInterno().getNombre()%></td>
                                             <td><%=condena.getFkDelito().getDescripcion()%></td>
-                                            <td><%=condena.getJuez()%></td>
-                                            <td><%=sdf.format(condena.getFechaDetencion())%></td>
                                             <td><%=sdf.format(condena.getFechaInicio())%></td>
                                             <td><%=condena.getDuracionDias()%></td>
                                             <td><%=sdf.format(condena.getFechaFin())%></td>
-                                            <%
-                                                if (usuario.getRol() != 4 && usuario.getRol() != 3) {
-                                            %>
-                                            <%if (condena.getEstado()) { %>
-                                            <td><p style="color: blue">Activo</p></td>
-                                            <% } else { %>
-                                            <td><p style="color: red">Inactivo</p></td>
-                                            <%}%>
                                             <td>
-                                                <%if (condena.getEstado()) {%>
-                                                <form name="eliminar" action="../SvElimCondena" method="GET">
-                                                    <button type="submit" class="btn btn-danger btn-user btn-block" style="margin-right: 5px; "> 
-                                                        <i class="fas fa-trash-alt"></i> Eliminar
-                                                    </button>
-                                                    <input type="hidden" name="id" value="<%=condena.getIdCondena()%>">
-                                                </form>
-                                                <% }%>
+                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="progress-bar" style="width: <%=porcentajePenaCumplida%>%"><%=porcentajePenaCumplida%>%</div>
+                                                </div>
                                             </td>
-                                            <td>
-                                                <form name="editar" action="../SvEditCondena" method="GET">
-                                                    <button type="submit" class="btn btn-primary btn-user btn-block" style="margin-left: 5px; " > 
-                                                        <i class="fas fa-pencil-alt"></i> Editar
-                                                    </button>
-                                                    <input type="hidden" name="id" value="<%=condena.getIdCondena()%>">
-                                                </form>
-                                            </td>
-                                            <% } %>
                                         </tr>
+                                        <%}%>
                                         <%
                                             }
                                         } else {

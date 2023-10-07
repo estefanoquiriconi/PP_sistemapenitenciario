@@ -4,9 +4,18 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * La clase Hash proporciona métodos para generar un hash utilizando el
+ * algoritmo SHA-256.
+ */
 public class Hash {
 
-    // Agrega este método para generar el hash
+    /**
+     * Genera un hash SHA-256 a partir de una cadena de entrada.
+     *
+     * @param input La cadena de entrada para la cual se calculará el hash.
+     * @return Una representación hexadecimal del hash SHA-256 generado.
+     */
     public String generarHash(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -20,8 +29,7 @@ public class Hash {
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            return null; // Manejo de errores apropiado en tu aplicación
+            return null;
         }
     }
-
 }

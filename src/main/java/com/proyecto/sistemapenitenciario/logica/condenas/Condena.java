@@ -195,5 +195,5 @@ public class Condena implements Serializable {
     public String toString() {
         return "com.proyecto.sistema_penitenciario.Condena[ idCondena=" + idCondena + " ]";
     }
-    
+
 }

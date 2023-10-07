@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Usuario implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_usuario;
@@ -55,7 +55,7 @@ public class Usuario implements Serializable {
     public int getRol() {
         return rol;
     }
-    
+
     public String getRolString() {
         switch (rol) {
             case 1: return "Administrador";
@@ -68,11 +68,11 @@ public class Usuario implements Serializable {
     }
 public String getEstadoString(){
     if(this.estado==false){
-        return "Inactivo";
+            return "Inactivo";
+        }
+        return "Activo";
     }
-    return "Activo";
-}
-    
+
     
     public void setRol(int rol) {
         this.rol = rol;
@@ -90,7 +90,5 @@ public String getEstadoString(){
     public String toString() {
         return getRolString();
     }
-    
-    
-    
+
 }
