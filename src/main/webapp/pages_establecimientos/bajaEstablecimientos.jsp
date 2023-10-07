@@ -46,7 +46,7 @@
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
                                                 <form action="../SvEliminarEstablecimiento" method="POST">    
-                                                    <button class="btn btn-dark btn-user btn-block" type="submit" style="background-color: red; width: 80%">
+                                                    <button class="btn btn-danger btn-user btn-danger" type="submit" style=" width: 80%">
                                                         Confirmar
                                                     </button>
                                                     <input type="hidden" name="id" value="<%=est.getId_establecimiento()%>">

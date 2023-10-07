@@ -44,7 +44,7 @@
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
                                                 <form action="../SvUsuarioEliminar" method="POST">    
-                                                    <button class="btn btn-primary btn-user btn-block" name="confirmarBajaUsuario" value"<%=usuEliminar.getId()%>"type="submit" style="background-color: red; width: 100%">
+                                                    <button class="btn btn-da btn-user btn-danger" name="confirmarBajaUsuario" value"<%=usuEliminar.getId()%>"type="submit" style=" width: 100%">
                                                         Confirmar
                                                     </button>
                                              
