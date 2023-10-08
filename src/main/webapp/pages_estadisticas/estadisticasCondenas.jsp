@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.concurrent.TimeUnit"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -73,6 +74,7 @@
                                                     long diasTranscurridos = TimeUnit.DAYS.convert(fechaActual.getTime() - fechaInicio.getTime(), TimeUnit.MILLISECONDS);
                                                     long diasTotalCondena = TimeUnit.DAYS.convert(fechaFin.getTime() - fechaInicio.getTime(), TimeUnit.MILLISECONDS);
                                                     double porcentajePenaCumplida = (double) diasTranscurridos / diasTotalCondena * 100;
+                                                    DecimalFormat dec = new DecimalFormat("0.00");
                                                     if (porcentajePenaCumplida >= 100) {
                                                         porcentajePenaCumplida = 100;
                                                     } else if (porcentajePenaCumplida <= 0) {
@@ -88,7 +90,7 @@
                                             <td><%=sdf.format(condena.getFechaFin())%></td>
                                             <td>
                                                 <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: <%=porcentajePenaCumplida%>%"><%=porcentajePenaCumplida%>%</div>
+                                                    <div class="progress-bar" style="width: <%=porcentajePenaCumplida%>%"><%=dec.format(porcentajePenaCumplida)%>%</div>
                                                 </div>
                                             </td>
                                         </tr>
