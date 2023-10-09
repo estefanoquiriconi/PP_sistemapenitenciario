@@ -32,8 +32,7 @@
             <%@include file="../components/sidenav_menu.jsp"%>
             <div id="layoutSidenav_content">
                 <main>
-                    <% 
-                       
+                    <%
                         String fechaInicio = (String) request.getSession().getAttribute("fechaInicio");
                         String fechaFin = (String) request.getSession().getAttribute("fechaFin");
 
@@ -43,9 +42,9 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <h1 class="mt-4">Internos </h1>
-                               
-                                <%if (fechaInicio != " "&&fechaInicio!=null) {%><p>Salidas periodo desde: <%=fechaInicio%> hasta: <%=fechaFin%> </p><%}%>
-                              <%request.getSession().removeAttribute("fechaInicio"); %>
+
+                                <%if (fechaInicio != " " && fechaInicio != null) {%><p>Salidas periodo desde: <%=fechaInicio%> hasta: <%=fechaFin%> </p><%}%>
+
                             </div>
 
                             <div class="col-md-6">
@@ -73,6 +72,9 @@
                                             <th>Nombre</th>
                                             <th>Documento</th>
                                             <th>Establecimiento</th>
+                                                <%if (fechaInicio != " " && fechaInicio != null) {%>
+                                            <th>Dias Condenado</th>
+                                                <% }%>
                                                 <% if (isCargarCondena) {%>
                                             <th>Condena</th>
                                                 <% } else { %>
@@ -91,6 +93,9 @@
                                             <th>Nombre</th>
                                             <th>Documento</th>
                                             <th>Establecimiento</th>
+                                                <%if (fechaInicio != " " && fechaInicio != null) {%>
+                                            <th>Dias Condenado</th>
+                                                <% }%>
                                                 <% if (isCargarCondena) { %>
                                             <th>Condena</th>
                                                 <% } else { %>
@@ -106,6 +111,7 @@
                                         <%
                                             List<Interno> listaInternos = (List) request.getSession().getAttribute("listaInternos");
                                             if (listaInternos != null) {
+                                                    int i = 0;
                                                 for (Interno interno : listaInternos) {
                                                     if (interno.getEstado()) {
                                         %>
@@ -115,6 +121,9 @@
                                             <td><%=interno.getNombre()%></td>
                                             <td><%=interno.getNumDoc()%></td>
                                             <td><%=interno.getIdEstablecimiento().getNombre()%></td>
+                                            <%if (fechaInicio != " " && fechaInicio != null) {%>
+                                            <td><%=request.getSession().getAttribute("dias"+i)%></td>
+                                            <%   }%>
                                             <% if (isCargarCondena) {%>
                                             <td>
                                                 <form name="info" action="../SvCondenas" method="GET">
@@ -161,6 +170,7 @@
                                         </tr>
                                         <%
                                                 }
+                                                i++;
                                             }
                                         } else {
                                         %>
@@ -173,6 +183,7 @@
                             </div>
                         </div>
                     </div>
+                    <%request.getSession().removeAttribute("fechaInicio"); %>
                 </main>
                 <%@include file="../components/footer.jsp"%>
             </div>

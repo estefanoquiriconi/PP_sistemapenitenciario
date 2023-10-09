@@ -47,6 +47,7 @@
                                             <div class="d-grid">
                                                 <form action="../SvEliminarEstablecimiento" method="POST">    
                                                     <button class="btn btn-danger btn-user btn-block" type="submit" style="width: 80%">
+
                                                         Confirmar
                                                     </button>
                                                     <input type="hidden" name="id" value="<%=est.getId_establecimiento()%>">

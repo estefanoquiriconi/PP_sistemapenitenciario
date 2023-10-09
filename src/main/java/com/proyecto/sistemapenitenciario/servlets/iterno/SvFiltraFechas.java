@@ -46,22 +46,31 @@ public class SvFiltraFechas extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Condena> listaCondenas;
+        List<Interno> listaInternos;
         listaCondenas = controlCondenas.traerCondenas();
-        List<Interno> listaFiltradaFechas = new ArrayList<>();;
+        listaInternos = control.traerInternos();
+        List<Interno> listaFiltradaFechas = new ArrayList<>();
         String fechaInicio;
         String fechaFin;
         fechaInicio = (request.getParameter("fechaInicio"));
         fechaFin = (request.getParameter("fechaFin"));
         String fechaCondena;
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat formato = new SimpleDateFormat("MM/dd/YYYY");
         HttpSession misesion = request.getSession();
-        for (Condena condenas : listaCondenas) {
-            fechaCondena = formato.format(condenas.getFechaFin());
+ int j = 0;
+        for (int i = listaCondenas.size() - 1; i >= 0; i--) {
+           
+            fechaCondena = formato.format(listaCondenas.get(i).getFechaFin());
 
             try {
-                if (FuncionesInternos.fechaEnRango(fechaCondena, fechaInicio, fechaFin)) {
-                    listaFiltradaFechas.add(condenas.getFkInterno());
-                    
+                if (FuncionesInternos.fechaEnRango(fechaCondena, fechaInicio, fechaFin) && listaCondenas.get(i).getEstado()) {
+                    System.out.println("nombre:" + listaCondenas.get(i).getFkInterno().getNombre() + " fecha:" + fechaCondena);
+                    if (!listaFiltradaFechas.contains(listaCondenas.get(i).getFkInterno())) {
+                        listaFiltradaFechas.add(listaCondenas.get(i).getFkInterno());
+                        request.getSession().setAttribute("dias" + j, FuncionesInternos.sumarDias(listaCondenas.get(i).getFkInterno().getNumDoc(), listaCondenas));
+                        j++;
+                    }
+
                 } else {
                 }
             } catch (ParseException ex) {
@@ -71,7 +80,7 @@ public class SvFiltraFechas extends HttpServlet {
         }
         misesion.setAttribute("fechaInicio", fechaInicio);
         misesion.setAttribute("fechaFin", fechaFin);
-          misesion.setAttribute("mostrarFechas", true);
+        misesion.setAttribute("mostrarFechas", true);
         misesion.setAttribute("listaInternos", listaFiltradaFechas);
 
         response.sendRedirect("pages_internos/mostrarInternos.jsp");
