@@ -164,10 +164,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <select id="profesion" name="profesion"  class="mi-selector form-select "  >
-                                                            <option  disabled="" selected="">Seleccione una Profesion</option>
-                                                            <option value="Medico" <% if (inter.getProfesion().equals("Medico")) {%> selected=""<%}%>>Medico</option>
+                                                            <option  disabled="">Seleccione una Profesion</option>
+                                                            <option value="Ninguna" <% if (inter.getProfesion().equals("Ninguna")) {%> selected=""<%}%>>Ninguna</option>
+                                                            <option value="Médico"<% if (inter.getProfesion().equals("Médico")) {%> selected=""<%}%>>Médico</option>
                                                             <option value="Arquitecto"<% if (inter.getProfesion().equals("Arquitecto")) {%> selected=""<%}%>>Arquitecto</option>
-                                                            <option value="Cocinero"<% if (inter.getProfesion().equals("Cocinero")) {%> selected=""<%}%>>Cocinero</option>
+                                                            <option value="Ingeniero" <% if (inter.getProfesion().equals("Ingeniero")) {%> selected=""<%}%>>Ingeniero</option>
+                                                            <option value="Profesor"<% if (inter.getProfesion().equals("Profesor")) {%> selected=""<%}%>>Profesor</option>
+                                                            
                                                         </select>
 
                                                     </div>

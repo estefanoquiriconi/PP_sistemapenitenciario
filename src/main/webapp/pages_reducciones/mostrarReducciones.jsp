@@ -63,7 +63,7 @@
                                                 for (ReduccionCondenas reduccion : listaReducciones) {
                                         %>
                                         <tr>
-                                            <td><%=reduccion.getFkCondena().getCodCondena()%></td>
+                                            <td><%=reduccion.getFkCondena().getCodCondena()+ "" + reduccion.getFkCondena().getIdCondena() %></td>
                                             <td><%=reduccion.getFkCondena().getFkInterno().getApellido() + " " + reduccion.getFkCondena().getFkInterno().getNombre()%></td>
                                             <td><%=sdf.format(reduccion.getFechaReduccion())%></td>
                                             <td><%=reduccion.getMotivoReduccion()%></td>
