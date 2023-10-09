@@ -16,6 +16,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="../css/stylesPages.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="../css/imprimir.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="bg-dark">
         <div id="layoutAuthentication">
@@ -29,58 +30,61 @@
                                     <div class="card-body" style="align-self: center">
                                         <% Interno interno = (Interno) request.getSession().getAttribute("infoInterno");%>
                                         <div class="form-floating mb-6 ">
-                                            <h5><strong>Legajo: </strong><%=interno.getLegajo() %></h5>
+                                            <h5><strong>Legajo: </strong><%=interno.getLegajo()%></h5>
                                             <h5><strong>Apellido: </strong><%=interno.getApellido()%></h5>
-                                            <h5><strong>Nombre: </strong><%=interno.getNombre() %></h5>
-                                            <h5><strong>Apodo: </strong><%=interno.getApodo() %></h5>
+                                            <h5><strong>Nombre: </strong><%=interno.getNombre()%></h5>
+                                            <h5><strong>Apodo: </strong><%=interno.getApodo()%></h5>
                                             <h5><strong>Tipo de Documento: </strong><%=interno.getTipoDoc()%></h5>
                                             <h5><strong>Número de Documento: </strong><%=interno.getNumDoc()%></h5>
-                                            <h5><strong>Nacionalidad: </strong><%=interno.getNacionalidad() %></h5>
+                                            <h5><strong>Nacionalidad: </strong><%=interno.getNacionalidad()%></h5>
                                             <h5><strong>Domicilio: </strong><%=interno.getDomicilio()%></h5>
                                             <%SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                                             String fechaNacimiento = sdf.format(interno.getFechaNac());
+                                                String fechaNacimiento = sdf.format(interno.getFechaNac());
                                             %>
                                             <h5><strong>Fecha de Nacimiento: </strong><%=fechaNacimiento%></h5>
                                             <h5><strong>Provincia de Nacimiento: </strong><%=interno.getPciaNac()%></h5>
                                             <h5><strong>Departamento de Nacimiento: </strong><%=interno.getDptoNac()%></h5>
-                                            <h5><strong>Profesión: </strong><%=interno.getProfesion() %></h5>
-                                            <h5><strong>Estado Civil: </strong><%=interno.getEstadoCivil() %></h5>
+                                            <h5><strong>Profesión: </strong><%=interno.getProfesion()%></h5>
+                                            <h5><strong>Estado Civil: </strong><%=interno.getEstadoCivil()%></h5>
                                             <h5><strong>Sexo: </strong><%=interno.getSexo()%></h5>
                                             <h5><strong>Establecimiento: </strong><%=interno.getIdEstablecimiento().getNombre()%></h5>
                                             <h5><strong>Fecha de Ingreso: </strong><%=sdf.format(interno.getFechaIngreso())%></h5>
                                         </div>
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
-                                                <form action="../SvInternos" >
-                                                    <button class="btn btn-dark btn-user btn-block" type="submit" style="width: 80%">
-                                                        Regresar
-                                                    </button>
-                                                </form>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <form action="../SvInternos" >
+                                                            <button class="btn btn-dark btn-user btn-block d-print-none" type="submit">
+                                                                Regresar
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <button class="btn btn-dark btn-user btn-block" id="botonImprimir" onclick="imprimirPagina()">Imprimir</button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <br>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <br>
                 </main>
             </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Quiriconi - Dominguez 2023</div>
-                            <div>
-                            </div>
-                        </div>
+        </div>
+        <div id="layoutAuthentication_footer" class="d-print-none">
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Quiriconi - Dominguez 2023</div>
                     </div>
-                </footer>
-            </div>
+                </div>
+            </footer>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../js/scripts.js"></script>
+        <script src="JavaScript/imprimir.js"></script>
     </body>
 </html>
+
