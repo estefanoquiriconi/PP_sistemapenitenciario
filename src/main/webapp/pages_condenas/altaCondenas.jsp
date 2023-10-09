@@ -53,14 +53,14 @@ H<%@page import="com.proyecto.sistemapenitenciario.logica.interno.Interno"%>
                                             <br>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating">
-                                                    <input class="form-control" name="fechaDetencion" id="fechaDetencion" type="date" placeholder="Fecha Detención" value="<%=fecDet%>"/>
+                                                    <input class="form-control" name="fechaDetencion" id="fechaDetencion" type="date" <%if(condenaDeInterno!=null){%>disabled=""<%}%> placeholder="Fecha Detención" value="<%=fecDet%>"/>
                                                     <label for="fechaDentencion">Fecha Detención</label>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating">
-                                                    <input class="form-control" name="fechaInicio" id="fechaInicio" type="date" placeholder="Fecha de Inicio" value="<%=fecFin%>"/>
+                                                    <input class="form-control" name="fechaInicio" id="fechaInicio" type="date"  <%if(condenaDeInterno!=null){%>disabled=""<%}%> placeholder="Fecha de Inicio" value="<%=fecFin%>"/>
                                                     <label for="fechaInicio">Fecha de Inicio</label>
                                                 </div>
                                             </div>
