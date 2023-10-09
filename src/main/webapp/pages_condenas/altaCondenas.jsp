@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.proyecto.sistemapenitenciario.logica.condenas.Condena"%>
 H<%@page import="com.proyecto.sistemapenitenciario.logica.interno.Interno"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,6 +20,15 @@ H<%@page import="com.proyecto.sistemapenitenciario.logica.interno.Interno"%>
     </head>
     <body class="bg-dark">
         <% Interno internoCondena = (Interno) request.getSession().getAttribute("internoCondena");%>
+        <% Condena condenaDeInterno = (Condena) request.getSession().getAttribute("CondenaDelInterno");%>
+        <%SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String fecDet = " ";
+            String fecFin = " ";
+            if (condenaDeInterno != null) {
+                fecDet = sdf.format(condenaDeInterno.getFechaDetencion());
+                fecFin = sdf.format(condenaDeInterno.getFechaFin());
+            }
+        %>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -42,14 +53,14 @@ H<%@page import="com.proyecto.sistemapenitenciario.logica.interno.Interno"%>
                                             <br>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating">
-                                                    <input class="form-control" format="dd-MM-yyyy" name="fechaDetencion" id="fechaDetencion" type="date" placeholder="Fecha Detención"/>
+                                                    <input class="form-control" name="fechaDetencion" id="fechaDetencion" type="date" placeholder="Fecha Detención" value="<%=fecDet%>"/>
                                                     <label for="fechaDentencion">Fecha Detención</label>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating">
-                                                    <input class="form-control" name="fechaInicio" id="fechaInicio" type="date" placeholder="Fecha de Inicio"/>
+                                                    <input class="form-control" name="fechaInicio" id="fechaInicio" type="date" placeholder="Fecha de Inicio" value="<%=fecFin%>"/>
                                                     <label for="fechaInicio">Fecha de Inicio</label>
                                                 </div>
                                             </div>
@@ -79,7 +90,7 @@ H<%@page import="com.proyecto.sistemapenitenciario.logica.interno.Interno"%>
                                                 </button>
                                             </div>
                                         </form>
-                                        
+
                                         <div class="mt-4 mb-0">
                                             <form action="../index.jsp" method="GET">
                                                 <button class="btn btn-dark btn-user btn-block" type="submit" style="width: 50%">

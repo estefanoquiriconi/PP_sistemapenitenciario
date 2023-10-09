@@ -37,9 +37,10 @@ public class SvCondenas extends HttpServlet {
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Interno interno = controlInterno.traerInterno(id);
-
+        Condena condenaDeIterno = FuncionesCondenas.condenaDeInterno(id, controlCondena.traerCondenas());
         HttpSession misesion = request.getSession();
         misesion.setAttribute("internoCondena", interno);
+        misesion.setAttribute("CondenaDelInterno", condenaDeIterno);
 
         response.sendRedirect("pages_condenas/altaCondenas.jsp");
     }
