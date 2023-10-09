@@ -38,7 +38,7 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Código</th>
+                                            <th>Condena</th>
                                             <th>Interno</th>
                                             <th>Delito</th>
                                             <th>Juez</th>
@@ -57,7 +57,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Código</th>
+                                            <th>Condena</th>
                                             <th>Interno</th>
                                             <th>Delito</th>
                                             <th>Juez</th>
@@ -82,7 +82,7 @@
                                                 for (Condena condena : listaCondenas) {
                                         %>
                                         <tr>
-                                            <td><%=condena.getCodCondena()%></td>
+                                            <td><%=condena.getCodCondena() + "" + condena.getIdCondena()%></td>
                                             <td><%=condena.getFkInterno().getApellido() + " " + condena.getFkInterno().getNombre()%></td>
                                             <td><%=condena.getFkDelito().getDescripcion()%></td>
                                             <td><%=condena.getJuez()%></td>

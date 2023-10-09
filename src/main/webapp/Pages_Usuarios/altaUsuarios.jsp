@@ -39,10 +39,8 @@
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <input class="form-control"  id="password" name="password" type="password" placeholder="password" />
                                                     <label for="password">Contraseña</label><div id="error-messagePass" class="alert alert-danger" style="display: none;"></div>
-
                                                 </div>
                                             </div>
-
                                             <br>
                                             <div class="col-md-6 mx-auto">
                                                 <div class="form-floating mb-3 mb-md-0">

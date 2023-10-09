@@ -4,6 +4,7 @@
  */
 package com.proyecto.sistemapenitenciario.servlets.usuario;
 
+import com.proyecto.sistemapenitenciario.funciones.Hash;
 import com.proyecto.sistemapenitenciario.logica.usuario.ControladoraUsuario;
 import com.proyecto.sistemapenitenciario.logica.usuario.Usuario;
 
@@ -42,11 +43,11 @@ public class SvUsuariosModificar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        Hash hash = new Hash();
         request.setCharacterEncoding("UTF-8");
         Usuario user = (Usuario) request.getSession().getAttribute("usuModificar");
         user.setNombre(request.getParameter("nombre"));
-        user.setPassword(request.getParameter("password"));
+        user.setPassword(hash.generarHash(request.getParameter("password")));
         user.setRol(Integer.parseInt(request.getParameter("rol")));
 
         String valorCheck = request.getParameter("estado");

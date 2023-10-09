@@ -1,7 +1,9 @@
 package com.proyecto.sistemapenitenciario.servlets.condenas;
 
 import com.proyecto.sistemapenitenciario.logica.condenas.Condena;
+import com.proyecto.sistemapenitenciario.logica.condenas.CondenaHistorial;
 import com.proyecto.sistemapenitenciario.logica.condenas.ControladoraCondena;
+import com.proyecto.sistemapenitenciario.logica.condenas.ControladoraCondenaHistorial;
 import com.proyecto.sistemapenitenciario.logica.condenas.ControladoraDelito;
 import com.proyecto.sistemapenitenciario.logica.interno.ControladoraInterno;
 import com.proyecto.sistemapenitenciario.logica.interno.Interno;
@@ -10,13 +12,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Random;
 
 @WebServlet(name = "SvCondenas", urlPatterns = {"/SvCondenas"})
 public class SvCondenas extends HttpServlet {
@@ -24,6 +26,7 @@ public class SvCondenas extends HttpServlet {
     ControladoraInterno controlInterno = new ControladoraInterno();
     ControladoraDelito controlDelito = new ControladoraDelito();
     ControladoraCondena controlCondena = new ControladoraCondena();
+    ControladoraCondenaHistorial controlHistorial = new ControladoraCondenaHistorial();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -68,19 +71,32 @@ public class SvCondenas extends HttpServlet {
         int idDelito = Integer.parseInt(request.getParameter("delito"));
         int idInterno = Integer.parseInt(request.getParameter("idInterno"));
         Interno internoCondena = controlInterno.traerInterno(idInterno);
+
         
+        String codCondena = "" + internoCondena.getApellido().charAt(0) + internoCondena.getNombre().charAt(0) + "" + internoCondena.getIdInterno() + strFecInicio.charAt(2) + strFecInicio.charAt(3);
+
+        List<Condena> listaCondenas = controlCondena.traerCondenas();
+        Condena condenaAnterior = new Condena();
+        for (Condena conAnt : listaCondenas) {
+            if (conAnt.getFkInterno().getIdInterno() == internoCondena.getIdInterno()) {
+                condenaAnterior = conAnt;
+            }
+        }
+
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(fechaInicio);
+        Condena condena = new Condena();
+        Date fechaActual = new Date();
+        condena.setJuez(juez);
+        if (condenaAnterior.getFechaFin() != null && condenaAnterior.getEstado()) {
+            condena.setFechaInicio(condenaAnterior.getFechaFin());
+            calendar.setTime(condenaAnterior.getFechaFin());
+        }else{
+            calendar.setTime(fechaInicio);
+            condena.setFechaInicio(fechaInicio);
+        }
         calendar.add(Calendar.DAY_OF_YEAR, cantDias);
         Date fechaFin = calendar.getTime();
         
-        Random random = new Random();
-        int num = random.nextInt(9000) + 1000;
-        String codCondena =  num + "" + internoCondena.getApellido().charAt(0) + internoCondena.getNombre().charAt(0) + "" + strFecInicio.charAt(2) + strFecInicio.charAt(3);
-
-        Condena condena = new Condena();
-        condena.setJuez(juez);
-        condena.setFechaInicio(fechaInicio);
         condena.setFechaDetencion(fechaDetencion);
         condena.setDuracionDias(cantDias);
         condena.setFkInterno(internoCondena);
@@ -88,8 +104,20 @@ public class SvCondenas extends HttpServlet {
         condena.setFechaFin(fechaFin);
         condena.setEstado(true);
         condena.setCodCondena(codCondena);
-        
+
+        CondenaHistorial condenaHistorial = new CondenaHistorial();
+        condenaHistorial.setJuez(condena.getJuez());
+        condenaHistorial.setCodCondena(condena.getCodCondena());
+        condenaHistorial.setDuracionDias(condena.getDuracionDias());
+        condenaHistorial.setEstado(true);
+        condenaHistorial.setFechaDetencion(condena.getFechaDetencion());
+        condenaHistorial.setFechaFin(condena.getFechaFin());
+        condenaHistorial.setFechaInicio(condena.getFechaInicio());
+        condenaHistorial.setFkDelito(condena.getFkDelito());
+        condenaHistorial.setFkInterno(condena.getFkInterno());
+
         controlCondena.cargarCondena(condena);
+        controlHistorial.cargarHistorial(condenaHistorial);
         response.sendRedirect("index.jsp");
     }
 

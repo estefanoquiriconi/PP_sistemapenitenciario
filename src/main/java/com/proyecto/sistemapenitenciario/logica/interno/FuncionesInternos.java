@@ -4,8 +4,10 @@
  */
 package com.proyecto.sistemapenitenciario.logica.interno;
 
+import com.proyecto.sistemapenitenciario.logica.condenas.Condena;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +18,7 @@ import java.util.List;
 public class FuncionesInternos {
 
     public static Date parseDate(String fechaString) throws ParseException {
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("MM/DD/YYYY");
         Date fecha = null;
         try {
             fecha = formatoFecha.parse(fechaString);
@@ -34,21 +36,33 @@ public class FuncionesInternos {
     }
 
     public static boolean fechaEnRango(String fechaStr, String fechaInicioStr, String fechaFinStr) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Date fecha = dateFormat.parse(fechaStr);
         Date fechaInicio = dateFormat.parse(fechaInicioStr);
         Date fechaFin = dateFormat.parse(fechaFinStr);
         System.out.println(fecha + "///" + fechaInicio + "///" + fechaFin);
-        return !fecha.before(fechaInicio) && !fecha.after(fechaFin);
+        return !fecha.before(fechaInicio) && !fecha.after(fechaFin) || fecha.equals(fechaInicio) || fecha.equals(fechaFin);
     }
 
     public static int ExisteInterno(List<Interno> internos, Interno newInterno) {
-        int idInternoExistente=0;
+        int idInternoExistente = 0;
         for (Interno interno : internos) {
             if ((interno.getNumDoc().equals(newInterno.getNumDoc()))) {
                 idInternoExistente = interno.getIdInterno();
-            }      
+            }
         }
-         return idInternoExistente;
+        return idInternoExistente;
     }
+
+    public static int sumarDias(String documento, List<Condena> condenas) {
+        int dias = 0;
+        for (Condena condena : condenas) {
+            if (documento.equals(condena.getFkInterno().getNumDoc())) {
+                dias += condena.getDuracionDias();
+            }
+        }
+
+        return dias;
+    }
+
 }
