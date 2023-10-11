@@ -58,7 +58,7 @@
                             <i class="fas fa-chart-bar me-1"></i>
                             Cantidad de Internos por establecimientos
                         </div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="35"></canvas></div>
+                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                         <div class="card-footer small text-muted"><p>Actualizado el: <span id="fecha"></span></p></div>
                     </div>
                 </main>

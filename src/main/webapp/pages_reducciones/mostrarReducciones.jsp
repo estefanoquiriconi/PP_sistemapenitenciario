@@ -40,7 +40,8 @@
                                     <thead>
                                         <tr>
                                             <th>Condena</th>
-                                            <th>Interno</th>
+                                            <th>Nombre completo</th>
+                                            <th>Documento</th>
                                             <th>Fecha</th>
                                             <th>Motivo</th>
                                             <th>Tiempo</th>
@@ -49,7 +50,8 @@
                                     <tfoot>
                                         <tr>
                                             <th>Condena</th>
-                                            <th>Interno</th>
+                                            <th>Nombre completo</th>
+                                            <th>Documneto</th>
                                             <th>Fecha</th>
                                             <th>Motivo</th>
                                             <th>Tiempo</th>
@@ -63,8 +65,9 @@
                                                 for (ReduccionCondenas reduccion : listaReducciones) {
                                         %>
                                         <tr>
-                                            <td><%=reduccion.getFkCondena().getCodCondena()+ "" + reduccion.getFkCondena().getIdCondena() %></td>
+                                            <td><%=reduccion.getFkCondena().getIdCondena() + "-" + reduccion.getFkCondena().getCodCondena() + ""%></td>
                                             <td><%=reduccion.getFkCondena().getFkInterno().getApellido() + " " + reduccion.getFkCondena().getFkInterno().getNombre()%></td>
+                                            <td><%=reduccion.getFkCondena().getFkInterno().getNumDoc()%></td>
                                             <td><%=sdf.format(reduccion.getFechaReduccion())%></td>
                                             <td><%=reduccion.getMotivoReduccion()%></td>
                                             <td><%=reduccion.getTiempoDias()%></td>

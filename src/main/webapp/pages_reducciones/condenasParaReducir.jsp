@@ -38,8 +38,9 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Código</th>
-                                            <th>Interno</th>
+                                            <th>Condena</th>
+                                            <th>Nombre completo</th>
+                                            <th>Documento</th>
                                             <th>Delito</th>
                                             <th>Juez</th>
                                             <th>Detención</th>
@@ -52,8 +53,9 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Código</th>
-                                            <th>Interno</th>
+                                            <th>Condena</th>
+                                            <th>Nombre completo</th>
+                                            <th>Documento</th>
                                             <th>Delito</th>
                                             <th>Juez</th>
                                             <th>Detención</th>
@@ -73,8 +75,9 @@
                                                     if (condena.getEstado() && condena.getDuracionDias() > 0) {
                                         %>
                                         <tr>
-                                            <td><%=condena.getCodCondena()%></td>
+                                            <td><%=condena.getIdCondena() + "-" + condena.getCodCondena()%></td>
                                             <td><%=condena.getFkInterno().getApellido() + " " + condena.getFkInterno().getNombre()%></td>
+                                            <td><%=condena.getFkInterno().getNumDoc()%></td>
                                             <td><%=condena.getFkDelito().getDescripcion()%></td>
                                             <td><%=condena.getJuez()%></td>
                                             <td><%=sdf.format(condena.getFechaDetencion())%></td>

@@ -39,7 +39,8 @@
                                     <thead>
                                         <tr>
                                             <th>Condena</th>
-                                            <th>Interno</th>
+                                            <th>Nombre completo</th>
+                                            <th>Documento</th>
                                             <th>Delito</th>
                                             <th>Juez</th>
                                             <th>Detención</th>
@@ -58,7 +59,8 @@
                                     <tfoot>
                                         <tr>
                                             <th>Condena</th>
-                                            <th>Interno</th>
+                                            <th>Nombre Completo</th>
+                                            <th>Documento</th>
                                             <th>Delito</th>
                                             <th>Juez</th>
                                             <th>Detención</th>
@@ -82,8 +84,9 @@
                                                 for (Condena condena : listaCondenas) {
                                         %>
                                         <tr>
-                                            <td><%=condena.getCodCondena() + "" + condena.getIdCondena()%></td>
+                                            <td><%=condena.getIdCondena() + "-" +  condena.getCodCondena()%></td>
                                             <td><%=condena.getFkInterno().getApellido() + " " + condena.getFkInterno().getNombre()%></td>
+                                            <td><%=condena.getFkInterno().getNumDoc()%></td>
                                             <td><%=condena.getFkDelito().getDescripcion()%></td>
                                             <td><%=condena.getJuez()%></td>
                                             <td><%=sdf.format(condena.getFechaDetencion())%></td>

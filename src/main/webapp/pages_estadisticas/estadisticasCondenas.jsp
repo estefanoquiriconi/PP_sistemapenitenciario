@@ -41,8 +41,9 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Código</th>
-                                            <th>Interno</th>
+                                            <th>Condena</th>
+                                            <th>Nombre completo</th>
+                                            <th>Documento</th>
                                             <th>Delito</th>
                                             <th>Inicio</th>
                                             <th>Duración</th>
@@ -52,8 +53,9 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Código</th>
-                                            <th>Interno</th>
+                                            <th>Condena</th>
+                                            <th>Nombre completo</th>
+                                            <th>Documento</th>
                                             <th>Delito</th>
                                             <th>Inicio</th>
                                             <th>Duración</th>
@@ -82,8 +84,9 @@
                                                     }
                                         %>
                                         <tr>
-                                            <td><%=condena.getCodCondena() + "" + condena.getIdCondena()%></td>
+                                            <td><%=condena.getIdCondena() + "-" +  condena.getCodCondena()%></td>
                                             <td><%=condena.getFkInterno().getApellido() + " " + condena.getFkInterno().getNombre()%></td>
+                                            <td><%=condena.getFkInterno().getNumDoc()%></td>
                                             <td><%=condena.getFkDelito().getDescripcion()%></td>
                                             <td><%=sdf.format(condena.getFechaInicio())%></td>
                                             <td><%=condena.getDuracionDias()%></td>

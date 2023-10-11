@@ -40,7 +40,7 @@
                                     <thead>
                                         <tr>
                                             <th>Condena</th>
-                                            <th>Interno</th>
+                                            <th>Nombre completo</th>
                                             <th>Documento</th>
                                             <th>Inicio</th>
                                             <th>Duración</th>
@@ -50,7 +50,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>Condena</th>
-                                            <th>Interno</th>
+                                            <th>Nombre completo</th>
                                             <th>Documento</th>
                                             <th>Inicio</th>
                                             <th>Duración</th>
@@ -65,7 +65,7 @@
                                                 for (CondenaHistorial historial : listaHistorialCondena) {
                                         %>
                                         <tr>
-                                            <td><%=historial.getCodCondena()%></td>
+                                            <td><%=historial.getIdHistorial() + "-" + historial.getCodCondena()%></td>
                                             <td><%=historial.getFkInterno().getApellido() + " " + historial.getFkInterno().getNombre()%></td>
                                             <td><%=historial.getFkInterno().getNumDoc() %></td>
                                             <td><%=sdf.format(historial.getFechaInicio())%></td>

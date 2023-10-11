@@ -77,7 +77,7 @@ public class SvCargarReduccion extends HttpServlet {
         /* GUARDAR LA CONDENA ACTUALIZADA EN EL HISTORIAL */
         Condena condenaActualizada = controlCondena.traerCondena(idCondena);
         CondenaHistorial condenaHistorial = new CondenaHistorial();
-        condenaHistorial.setCodCondena(condenaActualizada.getCodCondena());
+        condenaHistorial.setCodCondena(condenaActualizada.getIdCondena() + "-" + condenaActualizada.getCodCondena());
         condenaHistorial.setDuracionDias(condenaActualizada.getDuracionDias());
         condenaHistorial.setEstado(condenaActualizada.getEstado());
         condenaHistorial.setFechaDetencion(condenaActualizada.getFechaDetencion());

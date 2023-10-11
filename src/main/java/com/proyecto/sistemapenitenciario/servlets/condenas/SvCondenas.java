@@ -108,7 +108,7 @@ public class SvCondenas extends HttpServlet {
 
         CondenaHistorial condenaHistorial = new CondenaHistorial();
         condenaHistorial.setJuez(condena.getJuez());
-        condenaHistorial.setCodCondena(condena.getCodCondena());
+        condenaHistorial.setCodCondena(condena.getIdCondena() + "-" + condena.getCodCondena());
         condenaHistorial.setDuracionDias(condena.getDuracionDias());
         condenaHistorial.setEstado(true);
         condenaHistorial.setFechaDetencion(condena.getFechaDetencion());
