@@ -116,7 +116,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <input class="form-control" id="dpto_nac" name="dpto_nac" type="text" placeholder="Provincia de Nacimiento" />
-                                                        <label for="provincia">Departamento de Nacimiento</label>
+                                                        <label for="dpto_nac">Departamento de Nacimiento</label>
 
                                                     </div>
                                                 </div>
