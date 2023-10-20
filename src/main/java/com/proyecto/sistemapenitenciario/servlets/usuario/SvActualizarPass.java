@@ -4,10 +4,11 @@
  */
 package com.proyecto.sistemapenitenciario.servlets.usuario;
 
+import com.proyecto.sistemapenitenciario.funciones.Hash;
 import com.proyecto.sistemapenitenciario.logica.usuario.ControladoraUsuario;
 import com.proyecto.sistemapenitenciario.logica.usuario.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "SvActualizarPass", urlPatterns = {"/SvActualizarPass"})
 public class SvActualizarPass extends HttpServlet {
         ControladoraUsuario control = new ControladoraUsuario();
-
+  Hash hash= new Hash();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,7 +44,7 @@ public class SvActualizarPass extends HttpServlet {
       
         request.setCharacterEncoding("UTF-8");
         Usuario user = (Usuario) request.getSession().getAttribute("usuSession");
-        user.setPassword(request.getParameter("password"));
+        user.setPassword(hash.generarHash(request.getParameter("password")));
         boolean resultadoValidacion = (Boolean.parseBoolean(request.getParameter("resultadoValidacion")));
         System.out.println(resultadoValidacion);
         if(resultadoValidacion){

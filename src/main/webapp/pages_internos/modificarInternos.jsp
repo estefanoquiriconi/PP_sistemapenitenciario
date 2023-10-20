@@ -59,15 +59,25 @@
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="dni" name="dni" type="text" placeholder="DNI" value="<%=inter.getNumDoc()%>" />
-                                                        <label for="dni">DNI</label>
+                                                        <select id="estCivil" name="estCivil"  class="mi-selector form-select "  >
+                                                            <option  disabled="" >Estado Civil</option>
+                                                            <option value="Soltero" <% if (inter.getEstadoCivil().equals("Soltero")) {%>  selected="" <%}%>>Soltero</option>
+                                                            <option value="Casado" <% if (inter.getEstadoCivil().equals("Casado")) {%>  selected="" <%}%>>Casado</option>
+                                                            <option value="Viudo"<% if (inter.getEstadoCivil().equals("Viudo")) {%>  selected="" <%}%>>Viudo</option>
+                                                        </select>
+                                                        <select id="tipoDoc" name="tipoDoc"   class="mi-selector form-select "  >
+                                                            <option disabled="" >Tipo de Documento</option>
+                                                            <option value="DNI"<% if (inter.getTipoDoc().equals("DNI")) {%>  selected="" <%}%>>DNI</option>
+                                                            <option value="Pasaporte"<% if (inter.getTipoDoc().equals("Pasaporte")) {%>  selected="" <%}%>>Pasaporte</option>
+
+                                                        </select>
 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre" value="<%=inter.getNombre()%>" />
-                                                        <label for="nombre">Nombre</label>
+                                                        <input class="form-control" id="dni" name="dni" type="text" placeholder="DNI" value="<%=inter.getNumDoc()%>" />
+                                                        <label for="dni">Numero Documento</label>
 
                                                     </div>
                                                 </div>
@@ -81,24 +91,24 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="apodo" name="apodo" type="text" placeholder="Apodo" value="<%=inter.getApodo()%>"  />
-                                                        <label for="apodo">Apodo</label>
+                                                        <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre" value="<%=inter.getNombre()%>" />
+                                                        <label for="nombre">Nombre</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="apodo" name="apodo" type="text" placeholder="Apodo" value="<%=inter.getApodo()%>"  />
+                                                        <label for="apodo">Apodo</label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
                                                         <input class="form-control" id="domicilio" name="domicilio" type="text" placeholder="Domicilio" value="<%=inter.getDomicilio()%>"  />
                                                         <label for="provincia">Domicilio</label>
 
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating">
-                                                        <input class="form-control" id="dpto_nac" name="dpto_nac" type="text" placeholder="Departamento de Nacimiento" value="<%=inter.getDptoNac()%>"  />
-                                                        <label for="provincia">Departamento de Nacimiento</label>
-
 
                                                     </div>
                                                 </div>
@@ -106,16 +116,15 @@
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="provincia" name="provincia" type="text" placeholder="Provincia de Nacimiento" value="<%=inter.getPciaNac()%>"  />
-                                                        <label for="provincia">Provincia de Nacimiento</label>
+                                                        <input class="form-control" id="dpto_nac" name="dpto_nac" type="text" placeholder="Departamento de Nacimiento" value="<%=inter.getDptoNac()%>"  />
+                                                        <label for="provincia">Departamento de Nacimiento</label>
 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="nacionalidad" name="nacionalidad" type="text" placeholder="Nacionalidad" value="<%=inter.getNacionalidad()%>"  />
-                                                        <label for="nacionalidad">Nacionalidad</label>
-
+                                                        <input class="form-control" id="provincia" name="provincia" type="text" placeholder="Provincia de Nacimiento" value="<%=inter.getPciaNac()%>"  />
+                                                        <label for="provincia">Provincia de Nacimiento</label>
 
                                                     </div>
                                                 </div>
@@ -169,15 +178,6 @@
                                                             <option value="Arquitecto"<% if (inter.getProfesion().equals("Arquitecto")) {%> selected=""<%}%>>Arquitecto</option>
                                                             <option value="Cocinero"<% if (inter.getProfesion().equals("Cocinero")) {%> selected=""<%}%>>Cocinero</option>
                                                         </select>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating">
-
-
-
-
                                                         <select id="establecimientos" name="establecimientos"  class="mi-selector form-select "  >
 
                                                             <option  disabled="" >Selecciona un Establecimiento</option>
@@ -187,35 +187,25 @@
 
                                                                 };
                                                             %>
+
                                                         </select>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <select id="estCivil" name="estCivil"  class="mi-selector form-select "  >
-                                                            <option  disabled="" >Estado Civil</option>
-                                                            <option value="Soltero" <% if (inter.getEstadoCivil().equals("Soltero")) {%>  selected="" <%}%>>Soltero</option>
-                                                            <option value="Casado" <% if (inter.getEstadoCivil().equals("Casado")) {%>  selected="" <%}%>>Casado</option>
-                                                            <option value="Viudo"<% if (inter.getEstadoCivil().equals("Viudo")) {%>  selected="" <%}%>>Viudo</option>
-                                                        </select>
-
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <select id="tipoDoc" name="tipoDoc"   class="mi-selector form-select "  >
-                                                            <option disabled="" >Tipo de Documento</option>
-                                                            <option value="DNI"<% if (inter.getTipoDoc().equals("DNI")) {%>  selected="" <%}%>>DNI</option>
-                                                            <option value="Pasaporte"<% if (inter.getTipoDoc().equals("Pasaporte")) {%>  selected="" <%}%>>Pasaporte</option>
 
-                                                        </select>
+
+
+
+                                                        <input class="form-control" id="nacionalidad" name="nacionalidad" type="text" placeholder="Nacionalidad" value="<%=inter.getNacionalidad()%>"  />
+                                                        <label for="nacionalidad">Nacionalidad</label>
+
+
+
                                                     </div>
                                                 </div>
                                             </div>
+                                       
                                             <div id="error-message" class="alert alert-danger" style="display: none;"></div>
                                             <br>
                                             <br>
